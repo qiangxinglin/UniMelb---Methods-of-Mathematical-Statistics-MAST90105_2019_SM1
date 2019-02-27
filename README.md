@@ -20,6 +20,8 @@ The following ways can be used to load a GitHub-hosted notebook into [Google Col
 * Use this GitHub repository's url (subsequent GitHub sign-in is required) to open the notebook directly from GitHub.
 * Click on the [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]() badge on the top of the GitHub notebook displayed on the website (subsequent GitHub sign-in is required).
 * Save the notebook to Google Drive, then open it from Google Drive.
-* Download the notebook to your machine, then upload it to Google Colab.
-
+* Download the notebook to your machine, then upload it to Google Colab.  
 To learn more about loading and saving GitHub-hosted notebooks with Google Colab, please visit [Using Google Colab with GitHub](https://colab.research.google.com/github/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipynb).
+
+# Execute R code in RStudio Cloud
+This repository is synchronized with this edX - Data Analysis for Social Scientists (11 Sep 2018 – 27 Nov 2018, audit track) RStudio Cloud project. To access the project, registration for https://rstudio.cloud is required.
