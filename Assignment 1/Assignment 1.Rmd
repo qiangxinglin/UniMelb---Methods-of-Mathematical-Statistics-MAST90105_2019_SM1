@@ -47,6 +47,7 @@ Student 2: can take (365-1) possible birthdays
 ...  
 Student 23: can take (365-22) possible birthdays  
 All possibilites: 365^23  
+**P(no same birthday)** = (365 x 364 x ... x 343) / 365^23  
 ```{r}
 "P(no same birthday)"
 p_null <- prod((365-22):365) / 365^23
