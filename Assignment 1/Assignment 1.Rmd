@@ -1,0 +1,76 @@
+---
+title: "Assignment 1"
+author: "Vinh Nguyen (ID 1029531)"
+output:
+  html_notebook: default
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+
+1. Five fair coins are tossed (i.e., the probability of tail and head equals 0.5 for each coin)
+and the number of tails, T is counted. Find the conditional probability that T ≥ 1
+given that at least one coin shows head.  
+H: number of heads  
+H + T = 5 (5 tosses)  
+P(at least one coin shows head) = P(H >= 1) = P(T <= 4)  
+**P(T ≥ 1|T <= 4)** = P(T ≥ 1 and T <= 4) / P(T <= 4) = P(1 <= T <= 4) / P(T <= 4)  
+T ~ Bi(n=5, p=0.5)
+```{r}
+p1 <- sum(dbinom(1:4, 5, 0.5)) # P(1 <= T <= 4)
+p2 <- pbinom(4, size=5, prob=0.5) # P(T <= 4)
+"P(T ≥ 1|T <= 4)"
+p1/p2
+```
+
+2. Birthday paradox  
+(a) Consider a group of 3 students. Each student has a birthday that can be any one
+of the days numbered 1, 2, 3, ..., 365. What is the probability that none of them
+have the same birthday with each other?  
+Student 1: can take 365 possible birthdays  
+Student 2: can take 364 possible birthdays  
+Student 3: can take 363 possible birthdays  
+All possibilites: 365 x 365 x 365  
+P(no same birthday) = (365 x 364 x 363) / (365 x 365 x 365)  
+```{r}
+"P(no same birthday)"
+(365*364*363) / 365^3
+```
+
+(b) Consider a group of 23 students. Each student has a birthday that can be any
+one of the days numbered 1, 2, 3, ..., 365.  
+i. What is the probability that none of them have the same birthday with each
+other?  
+Student 1: can take 365 possible birthdays  
+Student 2: can take (365-1) possible birthdays  
+...  
+Student 23: can take (365-22) possible birthdays  
+All possibilites: 365^23  
+```{r}
+"P(no same birthday)"
+p_null <- prod((365-22):365) / 365^23
+p_null
+```
+
+ii. What is the probability that some of them have the same birthday with each
+other? Is this probability greater than 0.5?  
+P(some same birthdays) = 1 - P(no same birthday)  
+```{r}
+"P(some same birthdays)"
+p_some <- 1 - p_null
+p_some
+"Is this probability greater than 0.5?"
+p_some > 0.5
+```
+
+
+
+
+
+
+
+
+
+
+
