@@ -1880,9 +1880,260 @@ p_some</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<ol start="3" style="list-style-type: decimal">
+<li>It is known from experience that in a certain industry 60 percent of all labor-management disputes are over wages, 15 percent are over working conditions, and 25 percent are over fringe issues. Also, 45 percent of the disputes over wages are resolved without strikes, 70 percent of the disputes over working conditions are resolved without strikes, and 40 percent of the disputes over fringe issues are resolved without strikes. What is the probability that a labour-management dispute in this industry will be resolved without a strike?<br />
+Let A1 = event where a dispute is over wages<br />
+A2 = event where a dispute is over working conditions<br />
+A3 = event where a dispute is over fringe issues<br />
+B = event where a dispute is resolved without a strike<br />
+Applying the Law of Total Probability:<br />
+P(B) = P(A1)P(B|A1) + P(A2)P(B|A2) + P(A3)P(B|A3)</li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXCJQcm9iYWJpbGl0eSB0aGF0IGEgbGFib3VyLW1hbmFnZW1lbnQgZGlzcHV0ZSBpbiB0aGlzIGluZHVzdHJ5IHdpbGwgYmUgcmVzb2x2ZWQgd2l0aG91dCBhIHN0cmlrZVwiXG5gYGAifQ== -->
+<pre class="r"><code>&quot;Probability that a labour-management dispute in this industry will be resolved without a strike&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiUHJvYmFiaWxpdHkgdGhhdCBhIGxhYm91ci1tYW5hZ2VtZW50IGRpc3B1dGUgaW4gdGhpcyBpbmR1c3RyeSB3aWxsIGJlIHJlc29sdmVkIHdpdGhvdXQgYSBzdHJpa2VcIlxuIn0= -->
+<pre><code>[1] &quot;Probability that a labour-management dispute in this industry will be resolved without a strike&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuMC42KjAuNDUgKyAwLjE1KjAuNyArIDAuMjUqMC40XG5gYGAifQ== -->
+<pre class="r"><code>0.6*0.45 + 0.15*0.7 + 0.25*0.4</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuNDc1XG4ifQ== -->
+<pre><code>[1] 0.475</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="4" style="list-style-type: decimal">
+<li>In a certain community, 8 percent of all adults have Type 2 diabetes. If a health service in this community correctly diagnoses 95 percent of adults with diabetes as having the disease and incorrectly diagnoses 2 percent adults without diabetes as having the disease, find the probabilities that<br />
+</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>the community health service will diagnose an adult as having diabetes;<br />
+Let X = 1: event that an adult has Type 2 diabetes (P(X=1) = 0.08)<br />
+X = 0: event that an adult does not have Type 2 diabetes (P(X=0) = 0.92)<br />
+Y = 1: event that an adult is diagnosed with diabetes<br />
+Y = 0: event that an adult is diagnosed as not having diabetes<br />
+P(Y=1|X=1) = 0.95 (correctly diagnosed as having diabetes)<br />
+P(Y=1|X=0) = 0.02 (incorrectly diagnosed as having diabetes)<br />
+<em>P(Y=1)</em> = P(X=1)P(Y=1|X=1) + P(X=0)P(Y=1|X=0)</li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXCJQcm9iYWJpbGl0eSB0aGF0IHRoZSBjb21tdW5pdHkgaGVhbHRoIHNlcnZpY2Ugd2lsbCBkaWFnbm9zZSBhbiBhZHVsdCBhcyBoYXZpbmcgZGlhYmV0ZXNcIlxuYGBgIn0= -->
+<pre class="r"><code>&quot;Probability that the community health service will diagnose an adult as having diabetes&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiUHJvYmFiaWxpdHkgdGhhdCB0aGUgY29tbXVuaXR5IGhlYWx0aCBzZXJ2aWNlIHdpbGwgZGlhZ25vc2UgYW4gYWR1bHQgYXMgaGF2aW5nIGRpYWJldGVzXCJcbiJ9 -->
+<pre><code>[1] &quot;Probability that the community health service will diagnose an adult as having diabetes&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuMC4wOCowLjk1ICsgMC45MiowLjAyXG5gYGAifQ== -->
+<pre class="r"><code>0.08*0.95 + 0.92*0.02</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuMDk0NFxuIn0= -->
+<pre><code>[1] 0.0944</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="2" style="list-style-type: lower-alpha">
+<li>an adult diagnosed by the health service as having diabetes actually has the disease.<br />
+Using the same notations as in a)<br />
+<em>P(Y=1 and X=1)</em> = P(X=1)P(Y=1|X=1)</li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuMC4wOCowLjk1XG5gYGAifQ== -->
+<pre class="r"><code>0.08*0.95</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuMDc2XG4ifQ== -->
+<pre><code>[1] 0.076</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="5" style="list-style-type: decimal">
+<li>A bag contains 5 coins, one of which has a head on both sides, another one has a tail on both sides while the other 3 coins are normal (with equal probability of tail and head). A coin is chosen at random from the bag and tossed 2 times. The number of heads obtained is a random variable, say X.<br />
+</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>What are the possible values of X? Also tabulate the pmf of X. (Hint: The coin chosen is either normal (a) or with head (b) or tail (c) on both sides. Find the conditional probability of X in each of these three cases (a), (b) and (c). Then use the law of total probability and multiplication rule to find the pmf of X.)<br />
+Suppose:<br />
+Coin 1 is all-heads, probability of Heads p1 = 1<br />
+Coin 2 is all-tails, probability of Heads p2 = 0<br />
+Coin 3, 4, 5 are normal, probabilities of Heads p3 = p4 = p5 = 0.5<br />
+Ai: event that coin i is selected (P(Ai) = 1/5)<br />
+<em>Possible values of X</em> = 0, 1, 2<br />
+<em>PMF of X:</em><br />
+P(X=0) = P(A1)P(X=0|A1) + P(A2)P(X=0|A2) + … + P(A5)P(X=0|A5) = P(A1) {P(X=0|A1) + P(X=0|A2) + … + P(X=0|A5)}<br />
+** P(A1) = 1/5<br />
+** Given coin 1 selected, X ~ Bi(n=2, p=p1) -&gt; calculate P(X=0|A1)<br />
+** Given coin 2 selected, X ~ Bi(n=2, p=p2) -&gt; calculate P(X=0|A2)<br />
+** Given coin 3 or 4 or 5 selected, X ~ Bi(n=2, p=p3) -&gt; calculate P(X=0|A3) = P(X=0|A4) = P(X=0|A5)</li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucDEgPC0gMVxucDIgPC0gMFxucDMgPC0gMC41XG5weDAxIDwtIGRiaW5vbSgwLCBzaXplPTIsIHByb2I9cDEpICMgUChYPTB8QTEpXG5weDAyIDwtIGRiaW5vbSgwLCBzaXplPTIsIHByb2I9cDIpICMgUChYPTB8QTIpXG5weDAzIDwtIGRiaW5vbSgwLCBzaXplPTIsIHByb2I9cDMpICMgUChYPTB8QTMpXG5cblwiUChYPTApXCJcbmBgYCJ9 -->
+<pre class="r"><code>p1 &lt;- 1
+p2 &lt;- 0
+p3 &lt;- 0.5
+px01 &lt;- dbinom(0, size=2, prob=p1) # P(X=0|A1)
+px02 &lt;- dbinom(0, size=2, prob=p2) # P(X=0|A2)
+px03 &lt;- dbinom(0, size=2, prob=p3) # P(X=0|A3)
+
+&quot;P(X=0)&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiUChYPTApXCJcbiJ9 -->
+<pre><code>[1] &quot;P(X=0)&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuMS81ICogKHB4MDEgKyBweDAyICsgMypweDAzKVxuYGBgIn0= -->
+<pre class="r"><code>1/5 * (px01 + px02 + 3*px03)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuMzVcbiJ9 -->
+<pre><code>[1] 0.35</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Similarly,<br />
+P(X=1) = P(A1)P(X=1|A1) + P(A2)P(X=1|A2) + … + P(A5)P(X=1|A5) = P(A1) {P(X=1|A1) + P(X=1|A2) + … + P(X=1|A5)}<br />
+** P(A1) = 1/5<br />
+** Given coin 1 selected, X ~ Bi(n=2, p=p1) -&gt; calculate P(X=1|A1)<br />
+** Given coin 2 selected, X ~ Bi(n=2, p=p2) -&gt; calculate P(X=1|A2)<br />
+** Given coin 3 or 4 or 5 selected, X ~ Bi(n=2, p=p3) -&gt; calculate P(X=1|A3) = P(X=1|A4) = P(X=1|A5)</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHgxMSA8LSBkYmlub20oMSwgc2l6ZT0yLCBwcm9iPXAxKSAjIFAoWD0xfEExKVxucHgxMiA8LSBkYmlub20oMSwgc2l6ZT0yLCBwcm9iPXAyKSAjIFAoWD0xfEEyKVxucHgxMyA8LSBkYmlub20oMSwgc2l6ZT0yLCBwcm9iPXAzKSAjIFAoWD0xfEEzKVxuXG5cIlAoWD0xKVwiXG5gYGAifQ== -->
+<pre class="r"><code>px11 &lt;- dbinom(1, size=2, prob=p1) # P(X=1|A1)
+px12 &lt;- dbinom(1, size=2, prob=p2) # P(X=1|A2)
+px13 &lt;- dbinom(1, size=2, prob=p3) # P(X=1|A3)
+
+&quot;P(X=1)&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiUChYPTEpXCJcbiJ9 -->
+<pre><code>[1] &quot;P(X=1)&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuMS81ICogKHB4MTEgKyBweDEyICsgMypweDEzKVxuYGBgIn0= -->
+<pre class="r"><code>1/5 * (px11 + px12 + 3*px13)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuM1xuIn0= -->
+<pre><code>[1] 0.3</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Similarly again,<br />
+P(X=2) = P(A1)P(X=2|A1) + P(A2)P(X=2|A2) + … + P(A5)P(X=2|A5) = P(A1) {P(X=2|A1) + P(X=2|A2) + … + P(X=2|A5)}</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGExID0gMS81ICMgUChBMSlcbnB4MjEgPC0gZGJpbm9tKDIsIHNpemU9MiwgcHJvYj1wMSkgIyBQKFg9MnxBMSlcbnB4MjIgPC0gZGJpbm9tKDIsIHNpemU9MiwgcHJvYj1wMikgIyBQKFg9MnxBMilcbnB4MjMgPC0gZGJpbm9tKDIsIHNpemU9MiwgcHJvYj1wMykgIyBQKFg9MnxBMylcblxuXCJQKFg9MilcIlxuYGBgIn0= -->
+<pre class="r"><code>pa1 = 1/5 # P(A1)
+px21 &lt;- dbinom(2, size=2, prob=p1) # P(X=2|A1)
+px22 &lt;- dbinom(2, size=2, prob=p2) # P(X=2|A2)
+px23 &lt;- dbinom(2, size=2, prob=p3) # P(X=2|A3)
+
+&quot;P(X=2)&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiUChYPTIpXCJcbiJ9 -->
+<pre><code>[1] &quot;P(X=2)&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGExICogKHB4MjEgKyBweDIyICsgMypweDIzKVxuYGBgIn0= -->
+<pre class="r"><code>pa1 * (px21 + px22 + 3*px23)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuMzVcbiJ9 -->
+<pre><code>[1] 0.35</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Summary,<br />
+<span class="math display">\[
+p_X = \left\{ \begin{array}{cl}
+0.35 &amp; \ ; \ X = 0 \\
+0.3 &amp; \ ; \ X = 1 \\
+0.35 &amp; \ ; \ X = 2 \end{array} \right.
+\]</span></p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Calculate E(X) and Var(X).</li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXCJFKFgpXCJcbmBgYCJ9 -->
+<pre class="r"><code>&quot;E(X)&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiRShYKVwiXG4ifQ== -->
+<pre><code>[1] &quot;E(X)&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueF9tZWFuIDwtIDAuMzUqMCArIDAuMyoxICsgMC4zNSoyXG54X21lYW5cbmBgYCJ9 -->
+<pre class="r"><code>x_mean &lt;- 0.35*0 + 0.3*1 + 0.35*2
+x_mean</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDFcbiJ9 -->
+<pre><code>[1] 1</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXCJFKFheMilcIlxuYGBgIn0= -->
+<pre class="r"><code>&quot;E(X^2)&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiRShYXjIpXCJcbiJ9 -->
+<pre><code>[1] &quot;E(X^2)&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueF9zcV9tZWFuIDwtIDAuMzUqMF4yICsgMC4zKjFeMiArIDAuMzUqMl4yXG54X3NxX21lYW5cbmBgYCJ9 -->
+<pre class="r"><code>x_sq_mean &lt;- 0.35*0^2 + 0.3*1^2 + 0.35*2^2
+x_sq_mean</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEuN1xuIn0= -->
+<pre><code>[1] 1.7</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXCJWYXIoWClcIlxuYGBgIn0= -->
+<pre class="r"><code>&quot;Var(X)&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiVmFyKFgpXCJcbiJ9 -->
+<pre><code>[1] &quot;Var(X)&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueF92YXIgPC0geF9zcV9tZWFuIC0geF9tZWFuXjJcbnhfdmFyXG5gYGAifQ== -->
+<pre class="r"><code>x_var &lt;- x_sq_mean - x_mean^2
+x_var</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuN1xuIn0= -->
+<pre><code>[1] 0.7</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="6" style="list-style-type: decimal">
+<li>Among the 16 applicants for a job, 10 have university degrees. A sample of 3 applicants are to be randomly chosen for interviews. Let X be the number of applicants in the sample who have university degrees.<br />
+</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>Give the name to the distribution of X if it has a name. Also specify the values of all parameters involved in this distribution.<br />
+<strong>Hypergeometric distribution</strong> with parameters:<br />
+Population size (N) = 16<br />
+Number of successes in population (K) = 10<br />
+Sample size (n) = 3</p></li>
+<li><p>Find the probability that exactly 1 applicant in the sample has a university degree.<br />
+<strong>P(X=1)</strong> = <span class="math inline">\(\frac{{10 \choose 1}{6 \choose 2}}{{16 \choose 3}}\)</span></p></li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2hvb3NlKDEwLCAxKSAqIGNob29zZSg2LCAyKSAvIGNob29zZSgxNiwgMylcbmBgYCJ9 -->
+<pre class="r"><code>choose(10, 1) * choose(6, 2) / choose(16, 3)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuMjY3ODU3MVxuIn0= -->
+<pre><code>[1] 0.2678571</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Find the probability that at most 1 applicant in the sample has a university degree.<br />
+<strong>P(X&lt;=1)</strong> = <span class="math inline">\(P(X=0) + P(X=1)\)</span></li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGh5cGVyKDAsIG09MTAsIG49Niwgaz0zKSArIGRoeXBlcigxLCBtPTEwLCBuPTYsIGs9MylcbmBgYCJ9 -->
+<pre class="r"><code>dhyper(0, m=10, n=6, k=3) + dhyper(1, m=10, n=6, k=3)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuMzAzNTcxNFxuIn0= -->
+<pre><code>[1] 0.3035714</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQXNzaWdubWVudCAxIgphdXRob3I6ICJWaW5oIE5ndXllbiAoSUQgMTAyOTUzMSkiCm91dHB1dDoKICBodG1sX25vdGVib29rOiBkZWZhdWx0CiAgaHRtbF9kb2N1bWVudDoKICAgIGRmX3ByaW50OiBwYWdlZAogIHBkZl9kb2N1bWVudDogZGVmYXVsdAotLS0KCgoxLiBGaXZlIGZhaXIgY29pbnMgYXJlIHRvc3NlZCAoaS5lLiwgdGhlIHByb2JhYmlsaXR5IG9mIHRhaWwgYW5kIGhlYWQgZXF1YWxzIDAuNSBmb3IgZWFjaCBjb2luKQphbmQgdGhlIG51bWJlciBvZiB0YWlscywgVCBpcyBjb3VudGVkLiBGaW5kIHRoZSBjb25kaXRpb25hbCBwcm9iYWJpbGl0eSB0aGF0IFQg4omlIDEKZ2l2ZW4gdGhhdCBhdCBsZWFzdCBvbmUgY29pbiBzaG93cyBoZWFkLiAgCkg6IG51bWJlciBvZiBoZWFkcyAgCkggKyBUID0gNSAoNSB0b3NzZXMpICAKUChhdCBsZWFzdCBvbmUgY29pbiBzaG93cyBoZWFkKSA9IFAoSCA+PSAxKSA9IFAoVCA8PSA0KSAgCioqUChUIOKJpSAxfFQgPD0gNCkqKiA9IFAoVCDiiaUgMSBhbmQgVCA8PSA0KSAvIFAoVCA8PSA0KSA9IFAoMSA8PSBUIDw9IDQpIC8gUChUIDw9IDQpICAKVCB+IEJpKG49NSwgcD0wLjUpCmBgYHtyfQpwMSA8LSBzdW0oZGJpbm9tKDE6NCwgNSwgMC41KSkgIyBQKDEgPD0gVCA8PSA0KQpwMiA8LSBwYmlub20oNCwgc2l6ZT01LCBwcm9iPTAuNSkgIyBQKFQgPD0gNCkKIlAoVCDiiaUgMXxUIDw9IDQpIgpwMS9wMgpgYGAKCjIuIEJpcnRoZGF5IHBhcmFkb3ggIAooYSkgQ29uc2lkZXIgYSBncm91cCBvZiAzIHN0dWRlbnRzLiBFYWNoIHN0dWRlbnQgaGFzIGEgYmlydGhkYXkgdGhhdCBjYW4gYmUgYW55IG9uZQpvZiB0aGUgZGF5cyBudW1iZXJlZCAxLCAyLCAzLCAuLi4sIDM2NS4gV2hhdCBpcyB0aGUgcHJvYmFiaWxpdHkgdGhhdCBub25lIG9mIHRoZW0KaGF2ZSB0aGUgc2FtZSBiaXJ0aGRheSB3aXRoIGVhY2ggb3RoZXI/ICAKU3R1ZGVudCAxOiBjYW4gdGFrZSAzNjUgcG9zc2libGUgYmlydGhkYXlzICAKU3R1ZGVudCAyOiBjYW4gdGFrZSAzNjQgcG9zc2libGUgYmlydGhkYXlzICAKU3R1ZGVudCAzOiBjYW4gdGFrZSAzNjMgcG9zc2libGUgYmlydGhkYXlzICAKQWxsIHBvc3NpYmlsaXRlczogMzY1IHggMzY1IHggMzY1ICAKUChubyBzYW1lIGJpcnRoZGF5KSA9ICgzNjUgeCAzNjQgeCAzNjMpIC8gKDM2NSB4IDM2NSB4IDM2NSkgIApgYGB7cn0KIlAobm8gc2FtZSBiaXJ0aGRheSkiCigzNjUqMzY0KjM2MykgLyAzNjVeMwpgYGAKCihiKSBDb25zaWRlciBhIGdyb3VwIG9mIDIzIHN0dWRlbnRzLiBFYWNoIHN0dWRlbnQgaGFzIGEgYmlydGhkYXkgdGhhdCBjYW4gYmUgYW55Cm9uZSBvZiB0aGUgZGF5cyBudW1iZXJlZCAxLCAyLCAzLCAuLi4sIDM2NS4gIAppLiBXaGF0IGlzIHRoZSBwcm9iYWJpbGl0eSB0aGF0IG5vbmUgb2YgdGhlbSBoYXZlIHRoZSBzYW1lIGJpcnRoZGF5IHdpdGggZWFjaApvdGhlcj8gIApTdHVkZW50IDE6IGNhbiB0YWtlIDM2NSBwb3NzaWJsZSBiaXJ0aGRheXMgIApTdHVkZW50IDI6IGNhbiB0YWtlICgzNjUtMSkgcG9zc2libGUgYmlydGhkYXlzICAKLi4uICAKU3R1ZGVudCAyMzogY2FuIHRha2UgKDM2NS0yMikgcG9zc2libGUgYmlydGhkYXlzICAKQWxsIHBvc3NpYmlsaXRlczogMzY1XjIzICAKYGBge3J9CiJQKG5vIHNhbWUgYmlydGhkYXkpIgpwX251bGwgPC0gcHJvZCgoMzY1LTIyKTozNjUpIC8gMzY1XjIzCnBfbnVsbApgYGAKCmlpLiBXaGF0IGlzIHRoZSBwcm9iYWJpbGl0eSB0aGF0IHNvbWUgb2YgdGhlbSBoYXZlIHRoZSBzYW1lIGJpcnRoZGF5IHdpdGggZWFjaApvdGhlcj8gSXMgdGhpcyBwcm9iYWJpbGl0eSBncmVhdGVyIHRoYW4gMC41PyAgClAoc29tZSBzYW1lIGJpcnRoZGF5cykgPSAxIC0gUChubyBzYW1lIGJpcnRoZGF5KSAgCmBgYHtyfQoiUChzb21lIHNhbWUgYmlydGhkYXlzKSIKcF9zb21lIDwtIDEgLSBwX251bGwKcF9zb21lCiJJcyB0aGlzIHByb2JhYmlsaXR5IGdyZWF0ZXIgdGhhbiAwLjU/IgpwX3NvbWUgPiAwLjUKYGBgCgoKCgoKCgoKCgoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQXNzaWdubWVudCAxIgphdXRob3I6ICJWaW5oIE5ndXllbiAoSUQgMTAyOTUzMSkiCm91dHB1dDoKICBodG1sX25vdGVib29rOiBkZWZhdWx0CiAgaHRtbF9kb2N1bWVudDoKICAgIGRmX3ByaW50OiBwYWdlZAogIHBkZl9kb2N1bWVudDogZGVmYXVsdAotLS0KCgoxLiBGaXZlIGZhaXIgY29pbnMgYXJlIHRvc3NlZCAoaS5lLiwgdGhlIHByb2JhYmlsaXR5IG9mIHRhaWwgYW5kIGhlYWQgZXF1YWxzIDAuNSBmb3IgZWFjaCBjb2luKQphbmQgdGhlIG51bWJlciBvZiB0YWlscywgVCBpcyBjb3VudGVkLiBGaW5kIHRoZSBjb25kaXRpb25hbCBwcm9iYWJpbGl0eSB0aGF0IFQg4omlIDEKZ2l2ZW4gdGhhdCBhdCBsZWFzdCBvbmUgY29pbiBzaG93cyBoZWFkLiAgCkg6IG51bWJlciBvZiBoZWFkcyAgCkggKyBUID0gNSAoNSB0b3NzZXMpICAKUChhdCBsZWFzdCBvbmUgY29pbiBzaG93cyBoZWFkKSA9IFAoSCA+PSAxKSA9IFAoVCA8PSA0KSAgCioqUChUIOKJpSAxfFQgPD0gNCkqKiA9IFAoVCDiiaUgMSBhbmQgVCA8PSA0KSAvIFAoVCA8PSA0KSA9IFAoMSA8PSBUIDw9IDQpIC8gUChUIDw9IDQpICAKVCB+IEJpKG49NSwgcD0wLjUpCmBgYHtyfQpwMSA8LSBzdW0oZGJpbm9tKDE6NCwgNSwgMC41KSkgIyBQKDEgPD0gVCA8PSA0KQpwMiA8LSBwYmlub20oNCwgc2l6ZT01LCBwcm9iPTAuNSkgIyBQKFQgPD0gNCkKIlAoVCDiiaUgMXxUIDw9IDQpIgpwMS9wMgpgYGAKCjIuIEJpcnRoZGF5IHBhcmFkb3ggIAooYSkgQ29uc2lkZXIgYSBncm91cCBvZiAzIHN0dWRlbnRzLiBFYWNoIHN0dWRlbnQgaGFzIGEgYmlydGhkYXkgdGhhdCBjYW4gYmUgYW55IG9uZQpvZiB0aGUgZGF5cyBudW1iZXJlZCAxLCAyLCAzLCAuLi4sIDM2NS4gV2hhdCBpcyB0aGUgcHJvYmFiaWxpdHkgdGhhdCBub25lIG9mIHRoZW0KaGF2ZSB0aGUgc2FtZSBiaXJ0aGRheSB3aXRoIGVhY2ggb3RoZXI/ICAKU3R1ZGVudCAxOiBjYW4gdGFrZSAzNjUgcG9zc2libGUgYmlydGhkYXlzICAKU3R1ZGVudCAyOiBjYW4gdGFrZSAzNjQgcG9zc2libGUgYmlydGhkYXlzICAKU3R1ZGVudCAzOiBjYW4gdGFrZSAzNjMgcG9zc2libGUgYmlydGhkYXlzICAKQWxsIHBvc3NpYmlsaXRlczogMzY1IHggMzY1IHggMzY1ICAKUChubyBzYW1lIGJpcnRoZGF5KSA9ICgzNjUgeCAzNjQgeCAzNjMpIC8gKDM2NSB4IDM2NSB4IDM2NSkgIApgYGB7cn0KIlAobm8gc2FtZSBiaXJ0aGRheSkiCigzNjUqMzY0KjM2MykgLyAzNjVeMwpgYGAKCihiKSBDb25zaWRlciBhIGdyb3VwIG9mIDIzIHN0dWRlbnRzLiBFYWNoIHN0dWRlbnQgaGFzIGEgYmlydGhkYXkgdGhhdCBjYW4gYmUgYW55Cm9uZSBvZiB0aGUgZGF5cyBudW1iZXJlZCAxLCAyLCAzLCAuLi4sIDM2NS4gIAppLiBXaGF0IGlzIHRoZSBwcm9iYWJpbGl0eSB0aGF0IG5vbmUgb2YgdGhlbSBoYXZlIHRoZSBzYW1lIGJpcnRoZGF5IHdpdGggZWFjaApvdGhlcj8gIApTdHVkZW50IDE6IGNhbiB0YWtlIDM2NSBwb3NzaWJsZSBiaXJ0aGRheXMgIApTdHVkZW50IDI6IGNhbiB0YWtlICgzNjUtMSkgcG9zc2libGUgYmlydGhkYXlzICAKLi4uICAKU3R1ZGVudCAyMzogY2FuIHRha2UgKDM2NS0yMikgcG9zc2libGUgYmlydGhkYXlzICAKQWxsIHBvc3NpYmlsaXRlczogMzY1XjIzICAKYGBge3J9CiJQKG5vIHNhbWUgYmlydGhkYXkpIgpwX251bGwgPC0gcHJvZCgoMzY1LTIyKTozNjUpIC8gMzY1XjIzCnBfbnVsbApgYGAKCmlpLiBXaGF0IGlzIHRoZSBwcm9iYWJpbGl0eSB0aGF0IHNvbWUgb2YgdGhlbSBoYXZlIHRoZSBzYW1lIGJpcnRoZGF5IHdpdGggZWFjaApvdGhlcj8gSXMgdGhpcyBwcm9iYWJpbGl0eSBncmVhdGVyIHRoYW4gMC41PyAgClAoc29tZSBzYW1lIGJpcnRoZGF5cykgPSAxIC0gUChubyBzYW1lIGJpcnRoZGF5KSAgCmBgYHtyfQoiUChzb21lIHNhbWUgYmlydGhkYXlzKSIKcF9zb21lIDwtIDEgLSBwX251bGwKcF9zb21lCiJJcyB0aGlzIHByb2JhYmlsaXR5IGdyZWF0ZXIgdGhhbiAwLjU/IgpwX3NvbWUgPiAwLjUKYGBgCgozLiBJdCBpcyBrbm93biBmcm9tIGV4cGVyaWVuY2UgdGhhdCBpbiBhIGNlcnRhaW4gaW5kdXN0cnkgNjAgcGVyY2VudCBvZiBhbGwgbGFib3ItbWFuYWdlbWVudApkaXNwdXRlcyBhcmUgb3ZlciB3YWdlcywgMTUgcGVyY2VudCBhcmUgb3ZlciB3b3JraW5nIGNvbmRpdGlvbnMsIGFuZCAyNSBwZXJjZW50IGFyZQpvdmVyIGZyaW5nZSBpc3N1ZXMuIEFsc28sIDQ1IHBlcmNlbnQgb2YgdGhlIGRpc3B1dGVzIG92ZXIgd2FnZXMgYXJlIHJlc29sdmVkIHdpdGhvdXQKc3RyaWtlcywgNzAgcGVyY2VudCBvZiB0aGUgZGlzcHV0ZXMgb3ZlciB3b3JraW5nIGNvbmRpdGlvbnMgYXJlIHJlc29sdmVkIHdpdGhvdXQgc3RyaWtlcywKYW5kIDQwIHBlcmNlbnQgb2YgdGhlIGRpc3B1dGVzIG92ZXIgZnJpbmdlIGlzc3VlcyBhcmUgcmVzb2x2ZWQgd2l0aG91dCBzdHJpa2VzLiBXaGF0CmlzIHRoZSBwcm9iYWJpbGl0eSB0aGF0IGEgbGFib3VyLW1hbmFnZW1lbnQgZGlzcHV0ZSBpbiB0aGlzIGluZHVzdHJ5IHdpbGwgYmUgcmVzb2x2ZWQKd2l0aG91dCBhIHN0cmlrZT8gIApMZXQgQTEgPSBldmVudCB3aGVyZSBhIGRpc3B1dGUgaXMgb3ZlciB3YWdlcyAgCkEyID0gZXZlbnQgd2hlcmUgYSBkaXNwdXRlIGlzIG92ZXIgd29ya2luZyBjb25kaXRpb25zICAKQTMgPSBldmVudCB3aGVyZSBhIGRpc3B1dGUgaXMgb3ZlciBmcmluZ2UgaXNzdWVzICAKQiA9IGV2ZW50IHdoZXJlIGEgZGlzcHV0ZSBpcyByZXNvbHZlZCB3aXRob3V0IGEgc3RyaWtlICAKQXBwbHlpbmcgdGhlIExhdyBvZiBUb3RhbCBQcm9iYWJpbGl0eTogIApQKEIpID0gUChBMSlQKEJ8QTEpICsgUChBMilQKEJ8QTIpICsgUChBMylQKEJ8QTMpICAKYGBge3J9CiJQcm9iYWJpbGl0eSB0aGF0IGEgbGFib3VyLW1hbmFnZW1lbnQgZGlzcHV0ZSBpbiB0aGlzIGluZHVzdHJ5IHdpbGwgYmUgcmVzb2x2ZWQgd2l0aG91dCBhIHN0cmlrZSIKMC42KjAuNDUgKyAwLjE1KjAuNyArIDAuMjUqMC40CmBgYAoKNC4gSW4gYSBjZXJ0YWluIGNvbW11bml0eSwgOCBwZXJjZW50IG9mIGFsbCBhZHVsdHMgaGF2ZSBUeXBlIDIgZGlhYmV0ZXMuIElmIGEgaGVhbHRoIHNlcnZpY2UKaW4gdGhpcyBjb21tdW5pdHkgY29ycmVjdGx5IGRpYWdub3NlcyA5NSBwZXJjZW50IG9mIGFkdWx0cyB3aXRoIGRpYWJldGVzIGFzIGhhdmluZwp0aGUgZGlzZWFzZSBhbmQgaW5jb3JyZWN0bHkgZGlhZ25vc2VzIDIgcGVyY2VudCBhZHVsdHMgd2l0aG91dCBkaWFiZXRlcyBhcyBoYXZpbmcgdGhlCmRpc2Vhc2UsIGZpbmQgdGhlIHByb2JhYmlsaXRpZXMgdGhhdCAgCihhKSB0aGUgY29tbXVuaXR5IGhlYWx0aCBzZXJ2aWNlIHdpbGwgZGlhZ25vc2UgYW4gYWR1bHQgYXMgaGF2aW5nIGRpYWJldGVzOyAgCkxldCBYID0gMTogZXZlbnQgdGhhdCBhbiBhZHVsdCBoYXMgVHlwZSAyIGRpYWJldGVzIChQKFg9MSkgPSAwLjA4KSAgClggPSAwOiBldmVudCB0aGF0IGFuIGFkdWx0IGRvZXMgbm90IGhhdmUgVHlwZSAyIGRpYWJldGVzIChQKFg9MCkgPSAwLjkyKSAgClkgPSAxOiBldmVudCB0aGF0IGFuIGFkdWx0IGlzIGRpYWdub3NlZCB3aXRoIGRpYWJldGVzICAKWSA9IDA6IGV2ZW50IHRoYXQgYW4gYWR1bHQgaXMgZGlhZ25vc2VkIGFzIG5vdCBoYXZpbmcgZGlhYmV0ZXMgIApQKFk9MXxYPTEpID0gMC45NSAoY29ycmVjdGx5IGRpYWdub3NlZCBhcyBoYXZpbmcgZGlhYmV0ZXMpICAKUChZPTF8WD0wKSA9IDAuMDIgKGluY29ycmVjdGx5IGRpYWdub3NlZCBhcyBoYXZpbmcgZGlhYmV0ZXMpICAKKlAoWT0xKSogPSBQKFg9MSlQKFk9MXxYPTEpICsgUChYPTApUChZPTF8WD0wKSAgCmBgYHtyfQoiUHJvYmFiaWxpdHkgdGhhdCB0aGUgY29tbXVuaXR5IGhlYWx0aCBzZXJ2aWNlIHdpbGwgZGlhZ25vc2UgYW4gYWR1bHQgYXMgaGF2aW5nIGRpYWJldGVzIgowLjA4KjAuOTUgKyAwLjkyKjAuMDIKYGBgCihiKSBhbiBhZHVsdCBkaWFnbm9zZWQgYnkgdGhlIGhlYWx0aCBzZXJ2aWNlIGFzIGhhdmluZyBkaWFiZXRlcyBhY3R1YWxseSBoYXMgdGhlCmRpc2Vhc2UuICAKVXNpbmcgdGhlIHNhbWUgbm90YXRpb25zIGFzIGluIGEpICAKKlAoWT0xIGFuZCBYPTEpKiA9IFAoWD0xKVAoWT0xfFg9MSkgIApgYGB7cn0KMC4wOCowLjk1CmBgYAoKNS4gQSBiYWcgY29udGFpbnMgNSBjb2lucywgb25lIG9mIHdoaWNoIGhhcyBhIGhlYWQgb24gYm90aCBzaWRlcywgYW5vdGhlciBvbmUgaGFzIGEgdGFpbApvbiBib3RoIHNpZGVzIHdoaWxlIHRoZSBvdGhlciAzIGNvaW5zIGFyZSBub3JtYWwgKHdpdGggZXF1YWwgcHJvYmFiaWxpdHkgb2YgdGFpbCBhbmQKaGVhZCkuIEEgY29pbiBpcyBjaG9zZW4gYXQgcmFuZG9tIGZyb20gdGhlIGJhZyBhbmQgdG9zc2VkIDIgdGltZXMuIFRoZSBudW1iZXIgb2YKaGVhZHMgb2J0YWluZWQgaXMgYSByYW5kb20gdmFyaWFibGUsIHNheSBYLiAgCihhKSBXaGF0IGFyZSB0aGUgcG9zc2libGUgdmFsdWVzIG9mIFg/IEFsc28gdGFidWxhdGUgdGhlIHBtZiBvZiBYLgooSGludDogVGhlIGNvaW4gY2hvc2VuIGlzIGVpdGhlciBub3JtYWwgKGEpIG9yIHdpdGggaGVhZCAoYikgb3IgdGFpbCAoYykgb24gYm90aApzaWRlcy4gRmluZCB0aGUgY29uZGl0aW9uYWwgcHJvYmFiaWxpdHkgb2YgWCBpbiBlYWNoIG9mIHRoZXNlIHRocmVlIGNhc2VzIChhKSwgKGIpCmFuZCAoYykuIFRoZW4gdXNlIHRoZSBsYXcgb2YgdG90YWwgcHJvYmFiaWxpdHkgYW5kIG11bHRpcGxpY2F0aW9uIHJ1bGUgdG8gZmluZCB0aGUKcG1mIG9mIFguKSAgClN1cHBvc2U6ICAKQ29pbiAxIGlzIGFsbC1oZWFkcywgcHJvYmFiaWxpdHkgb2YgSGVhZHMgcDEgPSAxICAKQ29pbiAyIGlzIGFsbC10YWlscywgcHJvYmFiaWxpdHkgb2YgSGVhZHMgcDIgPSAwICAKQ29pbiAzLCA0LCA1IGFyZSBub3JtYWwsIHByb2JhYmlsaXRpZXMgb2YgSGVhZHMgcDMgPSBwNCA9IHA1ID0gMC41ICAKQWk6IGV2ZW50IHRoYXQgY29pbiBpIGlzIHNlbGVjdGVkIChQKEFpKSA9IDEvNSkgIAoqUG9zc2libGUgdmFsdWVzIG9mIFgqID0gMCwgMSwgMiAgCipQTUYgb2YgWDoqICAKUChYPTApID0gUChBMSlQKFg9MHxBMSkgKyBQKEEyKVAoWD0wfEEyKSArIC4uLiArIFAoQTUpUChYPTB8QTUpID0gUChBMSkge1AoWD0wfEExKSArIFAoWD0wfEEyKSArIC4uLiArIFAoWD0wfEE1KX0gIAoqKiBQKEExKSA9IDEvNSAgCioqIEdpdmVuIGNvaW4gMSBzZWxlY3RlZCwgWCB+IEJpKG49MiwgcD1wMSkgLT4gY2FsY3VsYXRlIFAoWD0wfEExKSAgCioqIEdpdmVuIGNvaW4gMiBzZWxlY3RlZCwgWCB+IEJpKG49MiwgcD1wMikgLT4gY2FsY3VsYXRlIFAoWD0wfEEyKSAgCioqIEdpdmVuIGNvaW4gMyBvciA0IG9yIDUgc2VsZWN0ZWQsIFggfiBCaShuPTIsIHA9cDMpIC0+IGNhbGN1bGF0ZSBQKFg9MHxBMykgPSBQKFg9MHxBNCkgPSBQKFg9MHxBNSkgIApgYGB7cn0KcDEgPC0gMQpwMiA8LSAwCnAzIDwtIDAuNQpweDAxIDwtIGRiaW5vbSgwLCBzaXplPTIsIHByb2I9cDEpICMgUChYPTB8QTEpCnB4MDIgPC0gZGJpbm9tKDAsIHNpemU9MiwgcHJvYj1wMikgIyBQKFg9MHxBMikKcHgwMyA8LSBkYmlub20oMCwgc2l6ZT0yLCBwcm9iPXAzKSAjIFAoWD0wfEEzKQoKIlAoWD0wKSIKMS81ICogKHB4MDEgKyBweDAyICsgMypweDAzKQpgYGAKU2ltaWxhcmx5LCAgClAoWD0xKSA9IFAoQTEpUChYPTF8QTEpICsgUChBMilQKFg9MXxBMikgKyAuLi4gKyBQKEE1KVAoWD0xfEE1KSA9IFAoQTEpIHtQKFg9MXxBMSkgKyBQKFg9MXxBMikgKyAuLi4gKyBQKFg9MXxBNSl9ICAKKiogUChBMSkgPSAxLzUgIAoqKiBHaXZlbiBjb2luIDEgc2VsZWN0ZWQsIFggfiBCaShuPTIsIHA9cDEpIC0+IGNhbGN1bGF0ZSBQKFg9MXxBMSkgIAoqKiBHaXZlbiBjb2luIDIgc2VsZWN0ZWQsIFggfiBCaShuPTIsIHA9cDIpIC0+IGNhbGN1bGF0ZSBQKFg9MXxBMikgIAoqKiBHaXZlbiBjb2luIDMgb3IgNCBvciA1IHNlbGVjdGVkLCBYIH4gQmkobj0yLCBwPXAzKSAtPiBjYWxjdWxhdGUgUChYPTF8QTMpID0gUChYPTF8QTQpID0gUChYPTF8QTUpICAKYGBge3J9CnB4MTEgPC0gZGJpbm9tKDEsIHNpemU9MiwgcHJvYj1wMSkgIyBQKFg9MXxBMSkKcHgxMiA8LSBkYmlub20oMSwgc2l6ZT0yLCBwcm9iPXAyKSAjIFAoWD0xfEEyKQpweDEzIDwtIGRiaW5vbSgxLCBzaXplPTIsIHByb2I9cDMpICMgUChYPTF8QTMpCgoiUChYPTEpIgoxLzUgKiAocHgxMSArIHB4MTIgKyAzKnB4MTMpCmBgYApTaW1pbGFybHkgYWdhaW4sICAKUChYPTIpID0gUChBMSlQKFg9MnxBMSkgKyBQKEEyKVAoWD0yfEEyKSArIC4uLiArIFAoQTUpUChYPTJ8QTUpID0gUChBMSkge1AoWD0yfEExKSArIFAoWD0yfEEyKSArIC4uLiArIFAoWD0yfEE1KX0gIApgYGB7cn0KcGExID0gMS81ICMgUChBMSkKcHgyMSA8LSBkYmlub20oMiwgc2l6ZT0yLCBwcm9iPXAxKSAjIFAoWD0yfEExKQpweDIyIDwtIGRiaW5vbSgyLCBzaXplPTIsIHByb2I9cDIpICMgUChYPTJ8QTIpCnB4MjMgPC0gZGJpbm9tKDIsIHNpemU9MiwgcHJvYj1wMykgIyBQKFg9MnxBMykKCiJQKFg9MikiCnBhMSAqIChweDIxICsgcHgyMiArIDMqcHgyMykKYGBgClN1bW1hcnksICAKJCQKcF9YID0gXGxlZnRceyBcYmVnaW57YXJyYXl9e2NsfQowLjM1ICYgXCA7IFwgWCA9IDAgXFwKMC4zICYgXCA7IFwgWCA9IDEgXFwKMC4zNSAmIFwgOyBcIFggPSAyIFxlbmR7YXJyYXl9IFxyaWdodC4KJCQKCihiKSBDYWxjdWxhdGUgRShYKSBhbmQgVmFyKFgpLiAgCmBgYHtyfQoiRShYKSIKeF9tZWFuIDwtIDAuMzUqMCArIDAuMyoxICsgMC4zNSoyCnhfbWVhbgoKIkUoWF4yKSIKeF9zcV9tZWFuIDwtIDAuMzUqMF4yICsgMC4zKjFeMiArIDAuMzUqMl4yCnhfc3FfbWVhbgoKIlZhcihYKSIKeF92YXIgPC0geF9zcV9tZWFuIC0geF9tZWFuXjIKeF92YXIKYGBgCgo2LiBBbW9uZyB0aGUgMTYgYXBwbGljYW50cyBmb3IgYSBqb2IsIDEwIGhhdmUgdW5pdmVyc2l0eSBkZWdyZWVzLiBBIHNhbXBsZSBvZiAzIGFwcGxpY2FudHMKYXJlIHRvIGJlIHJhbmRvbWx5IGNob3NlbiBmb3IgaW50ZXJ2aWV3cy4gTGV0IFggYmUgdGhlIG51bWJlciBvZiBhcHBsaWNhbnRzIGluIHRoZQpzYW1wbGUgd2hvIGhhdmUgdW5pdmVyc2l0eSBkZWdyZWVzLiAgCihhKSBHaXZlIHRoZSBuYW1lIHRvIHRoZSBkaXN0cmlidXRpb24gb2YgWCBpZiBpdCBoYXMgYSBuYW1lLiBBbHNvIHNwZWNpZnkgdGhlIHZhbHVlcwpvZiBhbGwgcGFyYW1ldGVycyBpbnZvbHZlZCBpbiB0aGlzIGRpc3RyaWJ1dGlvbi4gIAoqKkh5cGVyZ2VvbWV0cmljIGRpc3RyaWJ1dGlvbioqIHdpdGggcGFyYW1ldGVyczogIApQb3B1bGF0aW9uIHNpemUgKE4pID0gMTYgIApOdW1iZXIgb2Ygc3VjY2Vzc2VzIGluIHBvcHVsYXRpb24JKEspID0gMTAgIApTYW1wbGUgc2l6ZSAobikgPSAzICAKCihiKSBGaW5kIHRoZSBwcm9iYWJpbGl0eSB0aGF0IGV4YWN0bHkgMSBhcHBsaWNhbnQgaW4gdGhlIHNhbXBsZSBoYXMgYSB1bml2ZXJzaXR5IGRlZ3JlZS4gIAoqKlAoWD0xKSoqID0gJFxmcmFje3sxMCBcY2hvb3NlIDF9ezYgXGNob29zZSAyfX17ezE2IFxjaG9vc2UgM319JCAgCmBgYHtyfQpjaG9vc2UoMTAsIDEpICogY2hvb3NlKDYsIDIpIC8gY2hvb3NlKDE2LCAzKQpgYGAKCihjKSBGaW5kIHRoZSBwcm9iYWJpbGl0eSB0aGF0IGF0IG1vc3QgMSBhcHBsaWNhbnQgaW4gdGhlIHNhbXBsZSBoYXMgYSB1bml2ZXJzaXR5CmRlZ3JlZS4gIAoqKlAoWDw9MSkqKiA9ICRQKFg9MCkgKyBQKFg9MSkkICAKYGBge3J9CmRoeXBlcigwLCBtPTEwLCBuPTYsIGs9MykgKyBkaHlwZXIoMSwgbT0xMCwgbj02LCBrPTMpCmBgYAoKCgoKCgoKCg==</div>
 
 
 

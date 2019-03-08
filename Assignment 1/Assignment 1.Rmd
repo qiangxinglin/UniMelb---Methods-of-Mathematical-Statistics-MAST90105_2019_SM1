@@ -64,8 +64,150 @@ p_some
 p_some > 0.5
 ```
 
+3. It is known from experience that in a certain industry 60 percent of all labor-management
+disputes are over wages, 15 percent are over working conditions, and 25 percent are
+over fringe issues. Also, 45 percent of the disputes over wages are resolved without
+strikes, 70 percent of the disputes over working conditions are resolved without strikes,
+and 40 percent of the disputes over fringe issues are resolved without strikes. What
+is the probability that a labour-management dispute in this industry will be resolved
+without a strike?  
+Let A1 = event where a dispute is over wages  
+A2 = event where a dispute is over working conditions  
+A3 = event where a dispute is over fringe issues  
+B = event where a dispute is resolved without a strike  
+Applying the Law of Total Probability:  
+P(B) = P(A1)P(B|A1) + P(A2)P(B|A2) + P(A3)P(B|A3)  
+```{r}
+"Probability that a labour-management dispute in this industry will be resolved without a strike"
+0.6*0.45 + 0.15*0.7 + 0.25*0.4
+```
 
+4. In a certain community, 8 percent of all adults have Type 2 diabetes. If a health service
+in this community correctly diagnoses 95 percent of adults with diabetes as having
+the disease and incorrectly diagnoses 2 percent adults without diabetes as having the
+disease, find the probabilities that  
+(a) the community health service will diagnose an adult as having diabetes;  
+Let X = 1: event that an adult has Type 2 diabetes (P(X=1) = 0.08)  
+X = 0: event that an adult does not have Type 2 diabetes (P(X=0) = 0.92)  
+Y = 1: event that an adult is diagnosed with diabetes  
+Y = 0: event that an adult is diagnosed as not having diabetes  
+P(Y=1|X=1) = 0.95 (correctly diagnosed as having diabetes)  
+P(Y=1|X=0) = 0.02 (incorrectly diagnosed as having diabetes)  
+*P(Y=1)* = P(X=1)P(Y=1|X=1) + P(X=0)P(Y=1|X=0)  
+```{r}
+"Probability that the community health service will diagnose an adult as having diabetes"
+0.08*0.95 + 0.92*0.02
+```
+(b) an adult diagnosed by the health service as having diabetes actually has the
+disease.  
+Using the same notations as in a)  
+*P(Y=1 and X=1)* = P(X=1)P(Y=1|X=1)  
+```{r}
+0.08*0.95
+```
 
+5. A bag contains 5 coins, one of which has a head on both sides, another one has a tail
+on both sides while the other 3 coins are normal (with equal probability of tail and
+head). A coin is chosen at random from the bag and tossed 2 times. The number of
+heads obtained is a random variable, say X.  
+(a) What are the possible values of X? Also tabulate the pmf of X.
+(Hint: The coin chosen is either normal (a) or with head (b) or tail (c) on both
+sides. Find the conditional probability of X in each of these three cases (a), (b)
+and (c). Then use the law of total probability and multiplication rule to find the
+pmf of X.)  
+Suppose:  
+Coin 1 is all-heads, probability of Heads p1 = 1  
+Coin 2 is all-tails, probability of Heads p2 = 0  
+Coin 3, 4, 5 are normal, probabilities of Heads p3 = p4 = p5 = 0.5  
+Ai: event that coin i is selected (P(Ai) = 1/5)  
+*Possible values of X* = 0, 1, 2  
+*PMF of X:*  
+P(X=0) = P(A1)P(X=0|A1) + P(A2)P(X=0|A2) + ... + P(A5)P(X=0|A5) = P(A1) {P(X=0|A1) + P(X=0|A2) + ... + P(X=0|A5)}  
+** P(A1) = 1/5  
+** Given coin 1 selected, X ~ Bi(n=2, p=p1) -> calculate P(X=0|A1)  
+** Given coin 2 selected, X ~ Bi(n=2, p=p2) -> calculate P(X=0|A2)  
+** Given coin 3 or 4 or 5 selected, X ~ Bi(n=2, p=p3) -> calculate P(X=0|A3) = P(X=0|A4) = P(X=0|A5)  
+```{r}
+p1 <- 1
+p2 <- 0
+p3 <- 0.5
+px01 <- dbinom(0, size=2, prob=p1) # P(X=0|A1)
+px02 <- dbinom(0, size=2, prob=p2) # P(X=0|A2)
+px03 <- dbinom(0, size=2, prob=p3) # P(X=0|A3)
+
+"P(X=0)"
+1/5 * (px01 + px02 + 3*px03)
+```
+Similarly,  
+P(X=1) = P(A1)P(X=1|A1) + P(A2)P(X=1|A2) + ... + P(A5)P(X=1|A5) = P(A1) {P(X=1|A1) + P(X=1|A2) + ... + P(X=1|A5)}  
+** P(A1) = 1/5  
+** Given coin 1 selected, X ~ Bi(n=2, p=p1) -> calculate P(X=1|A1)  
+** Given coin 2 selected, X ~ Bi(n=2, p=p2) -> calculate P(X=1|A2)  
+** Given coin 3 or 4 or 5 selected, X ~ Bi(n=2, p=p3) -> calculate P(X=1|A3) = P(X=1|A4) = P(X=1|A5)  
+```{r}
+px11 <- dbinom(1, size=2, prob=p1) # P(X=1|A1)
+px12 <- dbinom(1, size=2, prob=p2) # P(X=1|A2)
+px13 <- dbinom(1, size=2, prob=p3) # P(X=1|A3)
+
+"P(X=1)"
+1/5 * (px11 + px12 + 3*px13)
+```
+Similarly again,  
+P(X=2) = P(A1)P(X=2|A1) + P(A2)P(X=2|A2) + ... + P(A5)P(X=2|A5) = P(A1) {P(X=2|A1) + P(X=2|A2) + ... + P(X=2|A5)}  
+```{r}
+pa1 = 1/5 # P(A1)
+px21 <- dbinom(2, size=2, prob=p1) # P(X=2|A1)
+px22 <- dbinom(2, size=2, prob=p2) # P(X=2|A2)
+px23 <- dbinom(2, size=2, prob=p3) # P(X=2|A3)
+
+"P(X=2)"
+pa1 * (px21 + px22 + 3*px23)
+```
+Summary,  
+$$
+p_X = \left\{ \begin{array}{cl}
+0.35 & \ ; \ X = 0 \\
+0.3 & \ ; \ X = 1 \\
+0.35 & \ ; \ X = 2 \end{array} \right.
+$$
+
+(b) Calculate E(X) and Var(X).  
+```{r}
+"E(X)"
+x_mean <- 0.35*0 + 0.3*1 + 0.35*2
+x_mean
+
+"E(X^2)"
+x_sq_mean <- 0.35*0^2 + 0.3*1^2 + 0.35*2^2
+x_sq_mean
+
+"Var(X)"
+x_var <- x_sq_mean - x_mean^2
+x_var
+```
+
+6. Among the 16 applicants for a job, 10 have university degrees. A sample of 3 applicants
+are to be randomly chosen for interviews. Let X be the number of applicants in the
+sample who have university degrees.  
+(a) Give the name to the distribution of X if it has a name. Also specify the values
+of all parameters involved in this distribution.  
+**Hypergeometric distribution** with parameters:  
+Population size (N) = 16  
+Number of successes in population	(K) = 10  
+Sample size (n) = 3  
+
+(b) Find the probability that exactly 1 applicant in the sample has a university degree.  
+**P(X=1)** = $\frac{{10 \choose 1}{6 \choose 2}}{{16 \choose 3}}$  
+```{r}
+choose(10, 1) * choose(6, 2) / choose(16, 3)
+```
+
+(c) Find the probability that at most 1 applicant in the sample has a university
+degree.  
+**P(X<=1)** = $P(X=0) + P(X=1)$  
+```{r}
+dhyper(0, m=10, n=6, k=3) + dhyper(1, m=10, n=6, k=3)
+```
 
 
 
