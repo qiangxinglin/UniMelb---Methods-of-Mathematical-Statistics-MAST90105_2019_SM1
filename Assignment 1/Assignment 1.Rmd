@@ -210,7 +210,14 @@ degree.
 dhyper(0, m=10, n=6, k=3) + dhyper(1, m=10, n=6, k=3)
 ```
 
-
+7. A moment-generating function of X is given by M(t) = e
+t/(2 − e
+t
+).
+(a) Find the values of the mean, µ, and variance, σ
+2
+, for X.
+(b) Calculate Pr{X ≥ 4}.
 
 
 
