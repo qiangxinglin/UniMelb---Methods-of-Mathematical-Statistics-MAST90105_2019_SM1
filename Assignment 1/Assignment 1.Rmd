@@ -213,10 +213,20 @@ dhyper(0, m=10, n=6, k=3) + dhyper(1, m=10, n=6, k=3)
 7. A moment-generating function of X is given by M(t) = e
 t/(2 − e
 t
-).
+).  
 (a) Find the values of the mean, µ, and variance, σ
 2
-, for X.
+, for X.  
+$$M_X(t) = E(e^{tX}) = 1 + tE(X) + \frac{t^2}{2!}E(X^2)+...+
+\frac{t^k}{k!}E(X^k)+... \text{(Taylor series)}$$
+$$E(X^k) = M_X^{(k)}(0) = \frac{d^k}{dt^k} M_X(t) |_{t=0}$$
+**Mean**  
+$$\mu = E(X) = \frac{d}{dt} M_X(t) |_{t=0} = \frac{2e^t}{(2-e^t)^2} \bigg|_{t=0} = 2$$
+**Variance**  
+$$\sigma^2 = E(X^2) = \frac{d^2}{dt^2} M_X(t) |_{t=0} = \frac{d^k}{dt^k} M_X(t) |_{t=0}$$
+
+
+
 (b) Calculate Pr{X ≥ 4}.
 
 
