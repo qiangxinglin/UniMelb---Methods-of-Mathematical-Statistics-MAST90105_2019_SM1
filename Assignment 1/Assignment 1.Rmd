@@ -223,11 +223,10 @@ $$E(X^k) = M_X^{(k)}(0) = \frac{d^k}{dt^k} M_X(t) |_{t=0}$$
 **Mean**  
 $$\mu = E(X) = \frac{d}{dt} M_X(t) |_{t=0} = \frac{2e^t}{(2-e^t)^2} \bigg|_{t=0} = 2$$
 **Variance**  
-$$\sigma^2 = E(X^2) = \frac{d^2}{dt^2} M_X(t) |_{t=0} = \frac{d^k}{dt^k} M_X(t) |_{t=0}$$
+$$E(X^2) = \frac{d^2}{dt^2} M_X(t) |_{t=0} = 2 \frac{2e^t + e^{2t}}{(2-e^t)^3} \bigg|_{t=0} = 6$$
+$$\sigma^2 = E(X^2) - [E(X)]^2 = 6 - 2^2 = 2$$
+(b) Calculate Pr{X ≥ 4}.  
 
-
-
-(b) Calculate Pr{X ≥ 4}.
 
 
 
