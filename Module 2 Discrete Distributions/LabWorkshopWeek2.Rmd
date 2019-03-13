@@ -1,0 +1,18 @@
+---
+title: "MAST90105: Lab and Workshop 2"
+output: html_notebook
+---
+
+
+# Coding Example
+## Sampling Without Replacement
+```{r}
+N <- 1000
+K <- 30
+n <- 10
+k <- 0:10 # improvable lines of code
+probs <- dhyper(k, m=K, n=N-K, k=10) # probabilities
+plot(k, probs, type="h", xlim=c(0, 10), ylim=c(0,1), lwd=2, col="blue", ylab="p")
+points(k, probs, pch=16, cex=2, col="dark red")
+```
+
