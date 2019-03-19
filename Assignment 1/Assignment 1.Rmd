@@ -226,10 +226,16 @@ $$\mu = E(X) = \frac{d}{dt} M_X(t) |_{t=0} = \frac{2e^t}{(2-e^t)^2} \bigg|_{t=0}
 $$E(X^2) = \frac{d^2}{dt^2} M_X(t) |_{t=0} = 2 \frac{2e^t + e^{2t}}{(2-e^t)^3} \bigg|_{t=0} = 6$$
 $$\sigma^2 = E(X^2) - [E(X)]^2 = 6 - 2^2 = 2$$
 (b) Calculate Pr{X ≥ 4}.  
-
-
-
-
-
-
-
+Consider MGF of a Geometric distribution, with parameter p:  
+$$
+M_{Geom}(t) = \frac{pe^t}{1 - (1-p)e^t}
+$$
+Let $p = \frac{1}{2}$:  
+$$
+M_{Geom}(t) = \frac{\frac{1}{2}e^t}{1 - (1-\frac{1}{2})e^t} = \frac{e^t}{2 - e^t} = M_X(t)
+$$
+This means X ~ Geom(p = 1/2)  
+**Pr{X ≥ 4}** = $1 - Pr(X < 4) = (1-p)^3$  
+```{r}
+(1-1/2)^3
+```
