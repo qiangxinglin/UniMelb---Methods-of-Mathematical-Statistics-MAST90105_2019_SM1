@@ -94,17 +94,20 @@ Y = 1: event that an adult is diagnosed with diabetes
 Y = 0: event that an adult is diagnosed as not having diabetes  
 P(Y=1|X=1) = 0.95 (correctly diagnosed as having diabetes)  
 P(Y=1|X=0) = 0.02 (incorrectly diagnosed as having diabetes)  
-*P(Y=1)* = P(X=1)P(Y=1|X=1) + P(X=0)P(Y=1|X=0)  
+**P(Y=1)** = P(X=1)P(Y=1|X=1) + P(X=0)P(Y=1|X=0)  
 ```{r}
 "Probability that the community health service will diagnose an adult as having diabetes"
-0.08*0.95 + 0.92*0.02
+py1 = 0.08*0.95 + 0.92*0.02
+py1
 ```
 (b) an adult diagnosed by the health service as having diabetes actually has the
 disease.  
 Using the same notations as in a)  
-*P(Y=1 and X=1)* = P(X=1)P(Y=1|X=1)  
+$$
+P(X=1|Y=1) = \frac{P(Y=1 \cap X=1)}{P(Y=1)} = \frac{P(X=1)P(Y=1|X=1)}{P(Y=1)}
+$$
 ```{r}
-0.08*0.95
+0.08*0.95 / py1
 ```
 
 5. A bag contains 5 coins, one of which has a head on both sides, another one has a tail
