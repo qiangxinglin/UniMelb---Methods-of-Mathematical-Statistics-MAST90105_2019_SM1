@@ -1,0 +1,53 @@
+---
+title: "MAST90105: Lab and Workshop 3"
+output: html_notebook
+---
+
+
+# Lab  
+
+1. An urn contains 17 balls marked LOSE and 3 balls marked WIN. You and an opponent
+take turns selecting at random a single ball from the urn without replacement. The
+person who selects the third WIN ball wins the game. It does not matter who selected
+the first two WIN balls.  
+a. If you draw first, find the probability that you win the game on your second draw.  
+b. If you draw first, find the probability that your opponent wins the game on his
+second draw.  
+c. If you draw first, the probability that you win can be found from
+P(You win if you draw first) = X
+9
+k=1
+
+3
+2
+
+17
+2k−2
+
+
+20
+2k
+ ×
+1
+20 − 2k
+(Why?)
+Note: You could win on your second, third, fourth, ..., or tenth draw, not on your
+first.
+d. If you draw second, the probability that you win can be found from
+P(You win if you draw second) = X
+9
+k=1
+
+3
+2
+
+17
+2k−1
+
+
+20
+2k+1 ×
+1
+19 − 2k
+. (Why?)
+e. Based on your results in (c) and (d), would you prefer to draw first or second?
