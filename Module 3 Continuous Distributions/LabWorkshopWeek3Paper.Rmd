@@ -32,7 +32,9 @@ k=1
 20 − 2k
 (Why?)
 Note: You could win on your second, third, fourth, ..., or tenth draw, not on your
-first.
+first.  
+**Hypergeometric distribution**, with parameters N = 20, K = 3, n = 2k  
+
 d. If you draw second, the probability that you win can be found from
 P(You win if you draw second) = X
 9
@@ -49,5 +51,88 @@ k=1
 2k+1 ×
 1
 19 − 2k
-. (Why?)
+. (Why?)  
+
+
+
 e. Based on your results in (c) and (d), would you prefer to draw first or second?
+Why?  
+
+2. Suppose in a lot of 100 fuses there are 20 defective ones. A sample of 5 fuses are
+randomly selected from the lot without replacement. Let X be the number of defective
+fuses found in the sample.  
+a. Find the probability P(X = 0),  
+b. The cumulative probability P(X ≤ 3),  
+c. The mean or expectation of X, E(X),  
+d. The second moment of X, E(X2
+),  
+e. The variance of X, V ar(X),  
+f. A probability bargraph for the pmf  
+```{r}
+x <- 0:5
+y <- dhyper(x, m=20, n=20, k=5)
+plot(x, y)
+```
+
+3. An urn contains n balls numbered from 1 to n. A random sample of n balls is selected
+from the urn, one at a time. A match occurs if ball numbered i is selected on the ith
+dr
+• If the draws are done with replacement, it can be shown that
+P(at least one match) = 1 −
+
+1 −
+1
+n
+n
+.
+• If the draws are done without replacement, it can be shown that
+P(at least one match) = 1 −
+
+1 −
+1
+1! +
+1
+2! −
+1
+3! + · · · +
+(−1)n
+n!
+
+= 1−
+Xn
+k=0
+(−1)k
+k!
+.  
+a. For each value of n given in the following table, find P(at least one match) and
+write down the results at appropriate places of the table.  
+**Converge to e^k**
+```{r}
+match.f <- function(n, simsize, rep = TRUE) {
+freq = 0
+for (i in 1:simsize) {
+sam = sample(1:n, size = n, replace = rep)
+freq = freq + (sum(sam == 1:n) >= 1)
+}
+freq/simsize
+}
+
+match.f(n = 1, simsize = 1000, rep = TRUE)
+```
+
+b. We can also use R to simulate the processes of drawing n balls with or without
+replacement from a set of n balls numbered from 1 to n. We can then simulate
+the probability of at least one match using the relevant relative frequencies.
+• Create a function match.f in R-Studio by writing a script and executing it
+as follows.
+
+
+
+
+
+
+
+
+
+
+

@@ -1776,13 +1776,79 @@ $(document).ready(function () {
 <li>If you draw first, the probability that you win can be found from P(You win if you draw first) = X 9 k=1</li>
 </ol>
 <p>3 2  17 2k−2 </p>
-<p>20 2k  × 1 20 − 2k (Why?) Note: You could win on your second, third, fourth, …, or tenth draw, not on your first. d. If you draw second, the probability that you win can be found from P(You win if you draw second) = X 9 k=1</p>
+<p>20 2k  × 1 20 − 2k (Why?) Note: You could win on your second, third, fourth, …, or tenth draw, not on your first.<br />
+<strong>Hypergeometric distribution</strong>, with parameters N = 20, K = 3, n = 2k</p>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>If you draw second, the probability that you win can be found from P(You win if you draw second) = X 9 k=1</li>
+</ol>
 <p>3 2  17 2k−1 </p>
-<p>20 2k+1 × 1 19 − 2k . (Why?) e. Based on your results in (c) and (d), would you prefer to draw first or second?</p>
+<p>20 2k+1 × 1 19 − 2k . (Why?)</p>
+<ol start="5" style="list-style-type: lower-alpha">
+<li>Based on your results in (c) and (d), would you prefer to draw first or second? Why?</li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>Suppose in a lot of 100 fuses there are 20 defective ones. A sample of 5 fuses are randomly selected from the lot without replacement. Let X be the number of defective fuses found in the sample.<br />
+</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Find the probability P(X = 0),<br />
+</li>
+<li>The cumulative probability P(X ≤ 3),<br />
+</li>
+<li>The mean or expectation of X, E(X),<br />
+</li>
+<li>The second moment of X, E(X2 ),<br />
+</li>
+<li>The variance of X, V ar(X),<br />
+</li>
+<li>A probability bargraph for the pmf</li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueCA8LSAwOjVcbnkgPC0gZGh5cGVyKHgsIG09MjAsIG49MjAsIGs9NSlcbnBsb3QoeCwgeSlcbmBgYCJ9 -->
+<pre class="r"><code>x &lt;- 0:5
+y &lt;- dhyper(x, m=20, n=20, k=5)
+plot(x, y)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-plot-begin eyJjb25kaXRpb25zIjpbXSwiaGVpZ2h0Ijo0MzIuNjMyOSwic2l6ZV9iZWhhdmlvciI6MCwid2lkdGgiOjcwMH0= -->
+<p><img src="data:image/png;base64,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" /></p>
+<!-- rnb-plot-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="3" style="list-style-type: decimal">
+<li>An urn contains n balls numbered from 1 to n. A random sample of n balls is selected from the urn, one at a time. A match occurs if ball numbered i is selected on the ith dr • If the draws are done with replacement, it can be shown that P(at least one match) = 1 −  1 − 1 n n . • If the draws are done without replacement, it can be shown that P(at least one match) = 1 −  1 − 1 1! + 1 2! − 1 3! + · · · + (−1)n n!  = 1− Xn k=0 (−1)k k! .<br />
+</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>For each value of n given in the following table, find P(at least one match) and write down the results at appropriate places of the table.<br />
+<strong>Converge to e^k</strong></li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWF0Y2guZiA8LSBmdW5jdGlvbihuLCBzaW1zaXplLCByZXAgPSBUUlVFKSB7XG5mcmVxID0gMFxuZm9yIChpIGluIDE6c2ltc2l6ZSkge1xuc2FtID0gc2FtcGxlKDE6biwgc2l6ZSA9IG4sIHJlcGxhY2UgPSByZXApXG5mcmVxID0gZnJlcSArIChzdW0oc2FtID09IDE6bikgPj0gMSlcbn1cbmZyZXEvc2ltc2l6ZVxufVxuXG5tYXRjaC5mKG4gPSAxLCBzaW1zaXplID0gMTAwMCwgcmVwID0gVFJVRSlcbmBgYCJ9 -->
+<pre class="r"><code>match.f &lt;- function(n, simsize, rep = TRUE) {
+freq = 0
+for (i in 1:simsize) {
+sam = sample(1:n, size = n, replace = rep)
+freq = freq + (sum(sam == 1:n) &gt;= 1)
+}
+freq/simsize
+}
+
+match.f(n = 1, simsize = 1000, rep = TRUE)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDFcbiJ9 -->
+<pre><code>[1] 1</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="2" style="list-style-type: lower-alpha">
+<li>We can also use R to simulate the processes of drawing n balls with or without replacement from a set of n balls numbered from 1 to n. We can then simulate the probability of at least one match using the relevant relative frequencies. • Create a function match.f in R-Studio by writing a script and executing it as follows.</li>
+</ol>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiTUFTVDkwMTA1OiBMYWIgYW5kIFdvcmtzaG9wIDMiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCgojIExhYiAgCgoxLiBBbiB1cm4gY29udGFpbnMgMTcgYmFsbHMgbWFya2VkIExPU0UgYW5kIDMgYmFsbHMgbWFya2VkIFdJTi4gWW91IGFuZCBhbiBvcHBvbmVudAp0YWtlIHR1cm5zIHNlbGVjdGluZyBhdCByYW5kb20gYSBzaW5nbGUgYmFsbCBmcm9tIHRoZSB1cm4gd2l0aG91dCByZXBsYWNlbWVudC4gVGhlCnBlcnNvbiB3aG8gc2VsZWN0cyB0aGUgdGhpcmQgV0lOIGJhbGwgd2lucyB0aGUgZ2FtZS4gSXQgZG9lcyBub3QgbWF0dGVyIHdobyBzZWxlY3RlZAp0aGUgZmlyc3QgdHdvIFdJTiBiYWxscy4gIAphLiBJZiB5b3UgZHJhdyBmaXJzdCwgZmluZCB0aGUgcHJvYmFiaWxpdHkgdGhhdCB5b3Ugd2luIHRoZSBnYW1lIG9uIHlvdXIgc2Vjb25kIGRyYXcuICAKYi4gSWYgeW91IGRyYXcgZmlyc3QsIGZpbmQgdGhlIHByb2JhYmlsaXR5IHRoYXQgeW91ciBvcHBvbmVudCB3aW5zIHRoZSBnYW1lIG9uIGhpcwpzZWNvbmQgZHJhdy4gIApjLiBJZiB5b3UgZHJhdyBmaXJzdCwgdGhlIHByb2JhYmlsaXR5IHRoYXQgeW91IHdpbiBjYW4gYmUgZm91bmQgZnJvbQpQKFlvdSB3aW4gaWYgeW91IGRyYXcgZmlyc3QpID0gWAo5Cms9MQoKMwoyCgEKMTcKMmviiJIyCgEKCjIwCjJrCgEgw5cKMQoyMCDiiJIgMmsKKFdoeT8pCk5vdGU6IFlvdSBjb3VsZCB3aW4gb24geW91ciBzZWNvbmQsIHRoaXJkLCBmb3VydGgsIC4uLiwgb3IgdGVudGggZHJhdywgbm90IG9uIHlvdXIKZmlyc3QuCmQuIElmIHlvdSBkcmF3IHNlY29uZCwgdGhlIHByb2JhYmlsaXR5IHRoYXQgeW91IHdpbiBjYW4gYmUgZm91bmQgZnJvbQpQKFlvdSB3aW4gaWYgeW91IGRyYXcgc2Vjb25kKSA9IFgKOQprPTEKCjMKMgoBCjE3CjJr4oiSMQoBCgoyMAoyaysxASDDlwoxCjE5IOKIkiAyawouIChXaHk/KQplLiBCYXNlZCBvbiB5b3VyIHJlc3VsdHMgaW4gKGMpIGFuZCAoZCksIHdvdWxkIHlvdSBwcmVmZXIgdG8gZHJhdyBmaXJzdCBvciBzZWNvbmQ/Cg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiTUFTVDkwMTA1OiBMYWIgYW5kIFdvcmtzaG9wIDMiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCgojIExhYiAgCgoxLiBBbiB1cm4gY29udGFpbnMgMTcgYmFsbHMgbWFya2VkIExPU0UgYW5kIDMgYmFsbHMgbWFya2VkIFdJTi4gWW91IGFuZCBhbiBvcHBvbmVudAp0YWtlIHR1cm5zIHNlbGVjdGluZyBhdCByYW5kb20gYSBzaW5nbGUgYmFsbCBmcm9tIHRoZSB1cm4gd2l0aG91dCByZXBsYWNlbWVudC4gVGhlCnBlcnNvbiB3aG8gc2VsZWN0cyB0aGUgdGhpcmQgV0lOIGJhbGwgd2lucyB0aGUgZ2FtZS4gSXQgZG9lcyBub3QgbWF0dGVyIHdobyBzZWxlY3RlZAp0aGUgZmlyc3QgdHdvIFdJTiBiYWxscy4gIAphLiBJZiB5b3UgZHJhdyBmaXJzdCwgZmluZCB0aGUgcHJvYmFiaWxpdHkgdGhhdCB5b3Ugd2luIHRoZSBnYW1lIG9uIHlvdXIgc2Vjb25kIGRyYXcuICAKYi4gSWYgeW91IGRyYXcgZmlyc3QsIGZpbmQgdGhlIHByb2JhYmlsaXR5IHRoYXQgeW91ciBvcHBvbmVudCB3aW5zIHRoZSBnYW1lIG9uIGhpcwpzZWNvbmQgZHJhdy4gIApjLiBJZiB5b3UgZHJhdyBmaXJzdCwgdGhlIHByb2JhYmlsaXR5IHRoYXQgeW91IHdpbiBjYW4gYmUgZm91bmQgZnJvbQpQKFlvdSB3aW4gaWYgeW91IGRyYXcgZmlyc3QpID0gWAo5Cms9MQoKMwoyCgEKMTcKMmviiJIyCgEKCjIwCjJrCgEgw5cKMQoyMCDiiJIgMmsKKFdoeT8pCk5vdGU6IFlvdSBjb3VsZCB3aW4gb24geW91ciBzZWNvbmQsIHRoaXJkLCBmb3VydGgsIC4uLiwgb3IgdGVudGggZHJhdywgbm90IG9uIHlvdXIKZmlyc3QuICAKKipIeXBlcmdlb21ldHJpYyBkaXN0cmlidXRpb24qKiwgd2l0aCBwYXJhbWV0ZXJzIE4gPSAyMCwgSyA9IDMsIG4gPSAyayAgCgpkLiBJZiB5b3UgZHJhdyBzZWNvbmQsIHRoZSBwcm9iYWJpbGl0eSB0aGF0IHlvdSB3aW4gY2FuIGJlIGZvdW5kIGZyb20KUChZb3Ugd2luIGlmIHlvdSBkcmF3IHNlY29uZCkgPSBYCjkKaz0xCgozCjIKAQoxNwoya+KIkjEKAQoKMjAKMmsrMQEgw5cKMQoxOSDiiJIgMmsKLiAoV2h5PykgIAoKCgplLiBCYXNlZCBvbiB5b3VyIHJlc3VsdHMgaW4gKGMpIGFuZCAoZCksIHdvdWxkIHlvdSBwcmVmZXIgdG8gZHJhdyBmaXJzdCBvciBzZWNvbmQ/CldoeT8gIAoKMi4gU3VwcG9zZSBpbiBhIGxvdCBvZiAxMDAgZnVzZXMgdGhlcmUgYXJlIDIwIGRlZmVjdGl2ZSBvbmVzLiBBIHNhbXBsZSBvZiA1IGZ1c2VzIGFyZQpyYW5kb21seSBzZWxlY3RlZCBmcm9tIHRoZSBsb3Qgd2l0aG91dCByZXBsYWNlbWVudC4gTGV0IFggYmUgdGhlIG51bWJlciBvZiBkZWZlY3RpdmUKZnVzZXMgZm91bmQgaW4gdGhlIHNhbXBsZS4gIAphLiBGaW5kIHRoZSBwcm9iYWJpbGl0eSBQKFggPSAwKSwgIApiLiBUaGUgY3VtdWxhdGl2ZSBwcm9iYWJpbGl0eSBQKFgg4omkIDMpLCAgCmMuIFRoZSBtZWFuIG9yIGV4cGVjdGF0aW9uIG9mIFgsIEUoWCksICAKZC4gVGhlIHNlY29uZCBtb21lbnQgb2YgWCwgRShYMgopLCAgCmUuIFRoZSB2YXJpYW5jZSBvZiBYLCBWIGFyKFgpLCAgCmYuIEEgcHJvYmFiaWxpdHkgYmFyZ3JhcGggZm9yIHRoZSBwbWYgIApgYGB7cn0KeCA8LSAwOjUKeSA8LSBkaHlwZXIoeCwgbT0yMCwgbj0yMCwgaz01KQpwbG90KHgsIHkpCmBgYAoKMy4gQW4gdXJuIGNvbnRhaW5zIG4gYmFsbHMgbnVtYmVyZWQgZnJvbSAxIHRvIG4uIEEgcmFuZG9tIHNhbXBsZSBvZiBuIGJhbGxzIGlzIHNlbGVjdGVkCmZyb20gdGhlIHVybiwgb25lIGF0IGEgdGltZS4gQSBtYXRjaCBvY2N1cnMgaWYgYmFsbCBudW1iZXJlZCBpIGlzIHNlbGVjdGVkIG9uIHRoZSBpdGgKZHIK4oCiIElmIHRoZSBkcmF3cyBhcmUgZG9uZSB3aXRoIHJlcGxhY2VtZW50LCBpdCBjYW4gYmUgc2hvd24gdGhhdApQKGF0IGxlYXN0IG9uZSBtYXRjaCkgPSAxIOKIkgoSCjEg4oiSCjEKbgoTbgouCuKAoiBJZiB0aGUgZHJhd3MgYXJlIGRvbmUgd2l0aG91dCByZXBsYWNlbWVudCwgaXQgY2FuIGJlIHNob3duIHRoYXQKUChhdCBsZWFzdCBvbmUgbWF0Y2gpID0gMSDiiJIKEgoxIOKIkgoxCjEhICsKMQoyISDiiJIKMQozISArIMK3IMK3IMK3ICsKKOKIkjEpbgpuIQoTCj0gMeKIkgpYbgprPTAKKOKIkjEpawprIQouICAKYS4gRm9yIGVhY2ggdmFsdWUgb2YgbiBnaXZlbiBpbiB0aGUgZm9sbG93aW5nIHRhYmxlLCBmaW5kIFAoYXQgbGVhc3Qgb25lIG1hdGNoKSBhbmQKd3JpdGUgZG93biB0aGUgcmVzdWx0cyBhdCBhcHByb3ByaWF0ZSBwbGFjZXMgb2YgdGhlIHRhYmxlLiAgCioqQ29udmVyZ2UgdG8gZV5rKioKYGBge3J9Cm1hdGNoLmYgPC0gZnVuY3Rpb24obiwgc2ltc2l6ZSwgcmVwID0gVFJVRSkgewpmcmVxID0gMApmb3IgKGkgaW4gMTpzaW1zaXplKSB7CnNhbSA9IHNhbXBsZSgxOm4sIHNpemUgPSBuLCByZXBsYWNlID0gcmVwKQpmcmVxID0gZnJlcSArIChzdW0oc2FtID09IDE6bikgPj0gMSkKfQpmcmVxL3NpbXNpemUKfQoKbWF0Y2guZihuID0gMSwgc2ltc2l6ZSA9IDEwMDAsIHJlcCA9IFRSVUUpCmBgYAoKYi4gV2UgY2FuIGFsc28gdXNlIFIgdG8gc2ltdWxhdGUgdGhlIHByb2Nlc3NlcyBvZiBkcmF3aW5nIG4gYmFsbHMgd2l0aCBvciB3aXRob3V0CnJlcGxhY2VtZW50IGZyb20gYSBzZXQgb2YgbiBiYWxscyBudW1iZXJlZCBmcm9tIDEgdG8gbi4gV2UgY2FuIHRoZW4gc2ltdWxhdGUKdGhlIHByb2JhYmlsaXR5IG9mIGF0IGxlYXN0IG9uZSBtYXRjaCB1c2luZyB0aGUgcmVsZXZhbnQgcmVsYXRpdmUgZnJlcXVlbmNpZXMuCuKAoiBDcmVhdGUgYSBmdW5jdGlvbiBtYXRjaC5mIGluIFItU3R1ZGlvIGJ5IHdyaXRpbmcgYSBzY3JpcHQgYW5kIGV4ZWN1dGluZyBpdAphcyBmb2xsb3dzLgoKCgoKCgoKCgoKCg==</div>
 
 
 
