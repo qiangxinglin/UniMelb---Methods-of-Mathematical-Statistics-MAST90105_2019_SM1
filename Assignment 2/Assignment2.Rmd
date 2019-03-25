@@ -8,7 +8,15 @@ output: html_notebook
 1. A low pressure system (low) that forms in the Australian region has a chance of 8% to
     transform into a tropical cyclone.  
 (a) Assume that 20 lows will form in April 2019. Find the probability that two of
-them will transform into a tropical cyclone.
+them will transform into a tropical cyclone.  
+Let X: number of lows that transform into a tropical cyclone (out of 20 lows) ~ Bi(n=20, p=0.08)  
+**P(X = 2)**
+```{r}
+n <- 20
+p <- 0.08
+dbinom(2, size=n, prob=p)
+```
+
 (b) Find the probability that the first low that will transform into a tropical cyclone
 in November 2019 will be the 5th low that will form in this month.
 (c) Find the probability that the second low that will transform into a tropical cyclone
