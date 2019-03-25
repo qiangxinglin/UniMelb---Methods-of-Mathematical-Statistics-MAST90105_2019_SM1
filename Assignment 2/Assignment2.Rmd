@@ -5,3 +5,53 @@ output: html_notebook
 ---
 
 
+1. A low pressure system (low) that forms in the Australian region has a chance of 8% to
+    transform into a tropical cyclone.  
+(a) Assume that 20 lows will form in April 2019. Find the probability that two of
+them will transform into a tropical cyclone.
+(b) Find the probability that the first low that will transform into a tropical cyclone
+in November 2019 will be the 5th low that will form in this month.
+(c) Find the probability that the second low that will transform into a tropical cyclone
+in December 2019 will be the 15th low that will form in this month.
+(d) How many lows are expected to form before two of them transform to tropical
+cyclones?
+(e) Assume that 150 lows in total will form between November 1st, 2019 and April
+30th, 2020. Find the probability that at least 10 of them will transform into
+tropical cyclones.
+- Compute the exact probability
+- Compute this probability using the Poisson approximation
+
+2. The telephone calls received by a call center follow a Poisson process with the rate of
+8 calls per minute.  
+(a) Find the probability that the call center receives exactly 45 calls in 5 minutes.
+(b) Find the probability that the call center receives at least 500 calls in one hour
+and at most 500 calls in the following hour.
+(c) How many calls the call center is expected to receive in 8 hours? Find the standard
+deviation of the number of calls received in 8 hours.
+(d) Assume now that the call center cannot receive more than 10 calls in 1 minute due
+to limited capacity. If more calls arrive, then some of them will not be answered.
+Find the probability that all calls will be answered in 10 minutes. Find the mean
+of the time (in minutes) to the first unanswered call.
+
+3. A random variableXhas a pdf given by  
+f(x) = {Ce^2 x, x < 0 , Ce−x, x≥ 0.  
+(a) Find the normalizing constantC.
+(b) Find the cdf ofX.
+(c) Let− 2 < t < 1. FindMX(t) = E(eXt), the moment generating function ofX.
+(d) UseMX(t)to find the mean and variance ofX,E(X)andVar(X).
+(e) Find the median ofX.
+
+4. LetXandYhave the joint pdf defined by  
+f(x,y) = {C(x+y), 0 < x < 1 , 0 < y < 1 , 0 , otherwise.
+(a) Find the normalizing constantC.
+(b) FindF(x,y) = Pr(X < x,Y < y)for anyx,yand computePr(X < 0. 4 ,Y < 0 .6).
+(c) ComputeμX= E(X),μY= E(Y),σ^2 X= Var(X),σ^2 Y = Var(Y),Cov(X,Y), and
+ρ= Cor(X,Y).
+
+5. LetX andY be jointly normal random variables with parametersE(X) = E(Y) =
+    0 , Var(X) = Var(Y) = 1, andCor(X,Y) =ρ.  
+(a) Findρsuch thatW 1 = 0. 6 X+ 0. 8 Y andW 2 = 0. 8 X+ 0. 6 Y are independent.
+(b) FindPr(X < 1 |X=Y)ifρ= 0. 6.
+
+
+

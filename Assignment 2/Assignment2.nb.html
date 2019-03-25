@@ -1764,9 +1764,63 @@ $(document).ready(function () {
 
 
 <!-- rnb-text-begin -->
+<ol style="list-style-type: decimal">
+<li>A low pressure system (low) that forms in the Australian region has a chance of 8% to transform into a tropical cyclone.<br />
+</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Assume that 20 lows will form in April 2019. Find the probability that two of them will transform into a tropical cyclone.</li>
+<li>Find the probability that the first low that will transform into a tropical cyclone in November 2019 will be the 5th low that will form in this month.</li>
+<li>Find the probability that the second low that will transform into a tropical cyclone in December 2019 will be the 15th low that will form in this month.</li>
+<li>How many lows are expected to form before two of them transform to tropical cyclones?</li>
+<li>Assume that 150 lows in total will form between November 1st, 2019 and April 30th, 2020. Find the probability that at least 10 of them will transform into tropical cyclones.</li>
+</ol>
+<ul>
+<li>Compute the exact probability</li>
+<li>Compute this probability using the Poisson approximation</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>The telephone calls received by a call center follow a Poisson process with the rate of 8 calls per minute.<br />
+</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Find the probability that the call center receives exactly 45 calls in 5 minutes.</li>
+<li>Find the probability that the call center receives at least 500 calls in one hour and at most 500 calls in the following hour.</li>
+<li>How many calls the call center is expected to receive in 8 hours? Find the standard deviation of the number of calls received in 8 hours.</li>
+<li>Assume now that the call center cannot receive more than 10 calls in 1 minute due to limited capacity. If more calls arrive, then some of them will not be answered. Find the probability that all calls will be answered in 10 minutes. Find the mean of the time (in minutes) to the first unanswered call.</li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li>A random variableXhas a pdf given by<br />
+f(x) = {Ce^2 x, x &lt; 0 , Ce−x, x≥ 0.<br />
+</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Find the normalizing constantC.</li>
+<li>Find the cdf ofX.</li>
+<li>Let− 2 &lt; t &lt; 1. FindMX(t) = E(eXt), the moment generating function ofX.</li>
+<li>UseMX(t)to find the mean and variance ofX,E(X)andVar(X).</li>
+<li>Find the median ofX.</li>
+</ol>
+<ol start="4" style="list-style-type: decimal">
+<li>LetXandYhave the joint pdf defined by<br />
+f(x,y) = {C(x+y), 0 &lt; x &lt; 1 , 0 &lt; y &lt; 1 , 0 , otherwise.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Find the normalizing constantC.</li>
+<li>FindF(x,y) = Pr(X &lt; x,Y &lt; y)for anyx,yand computePr(X &lt; 0. 4 ,Y &lt; 0 .6).</li>
+<li>ComputeμX= E(X),μY= E(Y),σ^2 X= Var(X),σ^2 Y = Var(Y),Cov(X,Y), and ρ= Cor(X,Y).</li>
+</ol>
+<ol start="5" style="list-style-type: decimal">
+<li>LetX andY be jointly normal random variables with parametersE(X) = E(Y) = 0 , Var(X) = Var(Y) = 1, andCor(X,Y) =ρ.<br />
+</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Findρsuch thatW 1 = 0. 6 X+ 0. 8 Y andW 2 = 0. 8 X+ 0. 6 Y are independent.</li>
+<li>FindPr(X &lt; 1 |X=Y)ifρ= 0. 6.</li>
+</ol>
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQXNzaWdubWVudCAyIgphdXRob3I6ICJWaW5oIE5ndXllbiAoSUQgMTAyOTUzMSkiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQXNzaWdubWVudCAyIgphdXRob3I6ICJWaW5oIE5ndXllbiAoSUQgMTAyOTUzMSkiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCgoxLiBBIGxvdyBwcmVzc3VyZSBzeXN0ZW0gKGxvdykgdGhhdCBmb3JtcyBpbiB0aGUgQXVzdHJhbGlhbiByZWdpb24gaGFzIGEgY2hhbmNlIG9mIDglIHRvCiAgICB0cmFuc2Zvcm0gaW50byBhIHRyb3BpY2FsIGN5Y2xvbmUuICAKKGEpIEFzc3VtZSB0aGF0IDIwIGxvd3Mgd2lsbCBmb3JtIGluIEFwcmlsIDIwMTkuIEZpbmQgdGhlIHByb2JhYmlsaXR5IHRoYXQgdHdvIG9mCnRoZW0gd2lsbCB0cmFuc2Zvcm0gaW50byBhIHRyb3BpY2FsIGN5Y2xvbmUuCihiKSBGaW5kIHRoZSBwcm9iYWJpbGl0eSB0aGF0IHRoZSBmaXJzdCBsb3cgdGhhdCB3aWxsIHRyYW5zZm9ybSBpbnRvIGEgdHJvcGljYWwgY3ljbG9uZQppbiBOb3ZlbWJlciAyMDE5IHdpbGwgYmUgdGhlIDV0aCBsb3cgdGhhdCB3aWxsIGZvcm0gaW4gdGhpcyBtb250aC4KKGMpIEZpbmQgdGhlIHByb2JhYmlsaXR5IHRoYXQgdGhlIHNlY29uZCBsb3cgdGhhdCB3aWxsIHRyYW5zZm9ybSBpbnRvIGEgdHJvcGljYWwgY3ljbG9uZQppbiBEZWNlbWJlciAyMDE5IHdpbGwgYmUgdGhlIDE1dGggbG93IHRoYXQgd2lsbCBmb3JtIGluIHRoaXMgbW9udGguCihkKSBIb3cgbWFueSBsb3dzIGFyZSBleHBlY3RlZCB0byBmb3JtIGJlZm9yZSB0d28gb2YgdGhlbSB0cmFuc2Zvcm0gdG8gdHJvcGljYWwKY3ljbG9uZXM/CihlKSBBc3N1bWUgdGhhdCAxNTAgbG93cyBpbiB0b3RhbCB3aWxsIGZvcm0gYmV0d2VlbiBOb3ZlbWJlciAxc3QsIDIwMTkgYW5kIEFwcmlsCjMwdGgsIDIwMjAuIEZpbmQgdGhlIHByb2JhYmlsaXR5IHRoYXQgYXQgbGVhc3QgMTAgb2YgdGhlbSB3aWxsIHRyYW5zZm9ybSBpbnRvCnRyb3BpY2FsIGN5Y2xvbmVzLgotIENvbXB1dGUgdGhlIGV4YWN0IHByb2JhYmlsaXR5Ci0gQ29tcHV0ZSB0aGlzIHByb2JhYmlsaXR5IHVzaW5nIHRoZSBQb2lzc29uIGFwcHJveGltYXRpb24KCjIuIFRoZSB0ZWxlcGhvbmUgY2FsbHMgcmVjZWl2ZWQgYnkgYSBjYWxsIGNlbnRlciBmb2xsb3cgYSBQb2lzc29uIHByb2Nlc3Mgd2l0aCB0aGUgcmF0ZSBvZgo4IGNhbGxzIHBlciBtaW51dGUuICAKKGEpIEZpbmQgdGhlIHByb2JhYmlsaXR5IHRoYXQgdGhlIGNhbGwgY2VudGVyIHJlY2VpdmVzIGV4YWN0bHkgNDUgY2FsbHMgaW4gNSBtaW51dGVzLgooYikgRmluZCB0aGUgcHJvYmFiaWxpdHkgdGhhdCB0aGUgY2FsbCBjZW50ZXIgcmVjZWl2ZXMgYXQgbGVhc3QgNTAwIGNhbGxzIGluIG9uZSBob3VyCmFuZCBhdCBtb3N0IDUwMCBjYWxscyBpbiB0aGUgZm9sbG93aW5nIGhvdXIuCihjKSBIb3cgbWFueSBjYWxscyB0aGUgY2FsbCBjZW50ZXIgaXMgZXhwZWN0ZWQgdG8gcmVjZWl2ZSBpbiA4IGhvdXJzPyBGaW5kIHRoZSBzdGFuZGFyZApkZXZpYXRpb24gb2YgdGhlIG51bWJlciBvZiBjYWxscyByZWNlaXZlZCBpbiA4IGhvdXJzLgooZCkgQXNzdW1lIG5vdyB0aGF0IHRoZSBjYWxsIGNlbnRlciBjYW5ub3QgcmVjZWl2ZSBtb3JlIHRoYW4gMTAgY2FsbHMgaW4gMSBtaW51dGUgZHVlCnRvIGxpbWl0ZWQgY2FwYWNpdHkuIElmIG1vcmUgY2FsbHMgYXJyaXZlLCB0aGVuIHNvbWUgb2YgdGhlbSB3aWxsIG5vdCBiZSBhbnN3ZXJlZC4KRmluZCB0aGUgcHJvYmFiaWxpdHkgdGhhdCBhbGwgY2FsbHMgd2lsbCBiZSBhbnN3ZXJlZCBpbiAxMCBtaW51dGVzLiBGaW5kIHRoZSBtZWFuCm9mIHRoZSB0aW1lIChpbiBtaW51dGVzKSB0byB0aGUgZmlyc3QgdW5hbnN3ZXJlZCBjYWxsLgoKMy4gQSByYW5kb20gdmFyaWFibGVYaGFzIGEgcGRmIGdpdmVuIGJ5ICAKZih4KSA9IHtDZV4yIHgsIHggPCAwICwgQ2XiiJJ4LCB44omlIDAuICAKKGEpIEZpbmQgdGhlIG5vcm1hbGl6aW5nIGNvbnN0YW50Qy4KKGIpIEZpbmQgdGhlIGNkZiBvZlguCihjKSBMZXTiiJIgMiA8IHQgPCAxLiBGaW5kTVgodCkgPSBFKGVYdCksIHRoZSBtb21lbnQgZ2VuZXJhdGluZyBmdW5jdGlvbiBvZlguCihkKSBVc2VNWCh0KXRvIGZpbmQgdGhlIG1lYW4gYW5kIHZhcmlhbmNlIG9mWCxFKFgpYW5kVmFyKFgpLgooZSkgRmluZCB0aGUgbWVkaWFuIG9mWC4KCjQuIExldFhhbmRZaGF2ZSB0aGUgam9pbnQgcGRmIGRlZmluZWQgYnkgIApmKHgseSkgPSB7Qyh4K3kpLCAwIDwgeCA8IDEgLCAwIDwgeSA8IDEgLCAwICwgb3RoZXJ3aXNlLgooYSkgRmluZCB0aGUgbm9ybWFsaXppbmcgY29uc3RhbnRDLgooYikgRmluZEYoeCx5KSA9IFByKFggPCB4LFkgPCB5KWZvciBhbnl4LHlhbmQgY29tcHV0ZVByKFggPCAwLiA0ICxZIDwgMCAuNikuCihjKSBDb21wdXRlzrxYPSBFKFgpLM68WT0gRShZKSzPg14yIFg9IFZhcihYKSzPg14yIFkgPSBWYXIoWSksQ292KFgsWSksIGFuZArPgT0gQ29yKFgsWSkuCgo1LiBMZXRYIGFuZFkgYmUgam9pbnRseSBub3JtYWwgcmFuZG9tIHZhcmlhYmxlcyB3aXRoIHBhcmFtZXRlcnNFKFgpID0gRShZKSA9CiAgICAwICwgVmFyKFgpID0gVmFyKFkpID0gMSwgYW5kQ29yKFgsWSkgPc+BLiAgCihhKSBGaW5kz4FzdWNoIHRoYXRXIDEgPSAwLiA2IFgrIDAuIDggWSBhbmRXIDIgPSAwLiA4IFgrIDAuIDYgWSBhcmUgaW5kZXBlbmRlbnQuCihiKSBGaW5kUHIoWCA8IDEgfFg9WSlpZs+BPSAwLiA2LgoKCgo=</div>
 
 
 
