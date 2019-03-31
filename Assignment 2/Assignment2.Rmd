@@ -18,9 +18,21 @@ dbinom(2, size=n, prob=p)
 ```
 
 (b) Find the probability that the first low that will transform into a tropical cyclone
-in November 2019 will be the 5th low that will form in this month.
+in November 2019 will be the 5th low that will form in this month.  
+Let Y: number of lows until first low that transforms into a tropical cyclone ~ Geom(p=0.08)  
+**P(Y = 5)**
+```{r}
+p <- 0.08
+k <- 5 # number of trials until first success
+dgeom(k-1, prob=p)
+```
+
 (c) Find the probability that the second low that will transform into a tropical cyclone
-in December 2019 will be the 15th low that will form in this month.
+in December 2019 will be the 15th low that will form in this month.  
+```{r}
+
+```
+
 (d) How many lows are expected to form before two of them transform to tropical
 cyclones?
 (e) Assume that 150 lows in total will form between November 1st, 2019 and April
