@@ -1764,6 +1764,14 @@ $(document).ready(function () {
 
 
 <!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBQcmVsaW1pbmFyaWVzXG5ybShsaXN0PWxzKCkpXG5gYGAifQ== -->
+<pre class="r"><code># Preliminaries
+rm(list=ls())</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <ol style="list-style-type: decimal">
 <li>A low pressure system (low) that forms in the Australian region has a chance of 8% to transform into a tropical cyclone.<br />
 </li>
@@ -1803,30 +1811,203 @@ dgeom(k-1, prob=p)</code></pre>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <ol start="3" style="list-style-type: lower-alpha">
-<li>Find the probability that the second low that will transform into a tropical cyclone in December 2019 will be the 15th low that will form in this month.</li>
+<li>Find the probability that the second low that will transform into a tropical cyclone in December 2019 will be the 15th low that will form in this month.<br />
+P(2nd low that turns into cyclone is 15th low) = P(1 low turns into cyclone out of 14 lows and 15th low turns into cyclone) Let X: number of cyclones formed from 14 lows ~ Bi(n=14, p=0.08) Y: indicator for whether or not a low turns into cyclone ~ Ber(p=0.08) <span class="math display">\[
+P(X=14 \cap Y=1) = P(X=14) P(Y=1) \text{ (assuming independence between formation of cyclone from each low)}
+\]</span></li>
 </ol>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubiA8LSAxNFxucCA8LSAwLjA4XG5rIDwtIDFcbmRiaW5vbShrLCBzaXplPW4sIHByb2I9cCkgKiBwXG5gYGAifQ== -->
+<pre class="r"><code>n &lt;- 14
+p &lt;- 0.08
+k &lt;- 1
+dbinom(k, size=n, prob=p) * p</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuMDMwMzA3NDhcbiJ9 -->
+<pre><code>[1] 0.03030748</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <ol start="4" style="list-style-type: lower-alpha">
-<li>How many lows are expected to form before two of them transform to tropical cyclones?</li>
-<li>Assume that 150 lows in total will form between November 1st, 2019 and April 30th, 2020. Find the probability that at least 10 of them will transform into tropical cyclones.</li>
+<li>How many lows are expected to form before two of them transform to tropical cyclones?<br />
+Let Z: number of lows formed before 2 of them transform to cyclones (or until 2nd cyclone) <span class="math display">\[
+Z = Z_1 + Z_2
+\]</span> where: <span class="math inline">\(Z_1\)</span>: number of lows until 1st cyclone ~ Geom(p=0.08) <span class="math inline">\(Z_2\)</span>: number of lows from 1st cyclone to 2nd cyclone ~ Geom(p=0.08) <span class="math display">\[
+E(Z) = E(Z_1) + E(Z_2) = 2E(Z_1)
+\]</span></li>
 </ol>
-<ul>
-<li>Compute the exact probability</li>
-<li>Compute this probability using the Poisson approximation</li>
-</ul>
-<ol start="2" style="list-style-type: decimal">
-<li>The telephone calls received by a call center follow a Poisson process with the rate of 8 calls per minute.<br />
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucCA8LSAwLjA4XG4yICogMS9wXG5gYGAifQ== -->
+<pre class="r"><code>p &lt;- 0.08
+2 * 1/p</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDI1XG4ifQ== -->
+<pre><code>[1] 25</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="5" style="list-style-type: lower-alpha">
+<li>Assume that 150 lows in total will form between November 1st, 2019 and April 30th, 2020. Find the probability that at least 10 of them will transform into tropical cyclones.<br />
 </li>
 </ol>
-<ol style="list-style-type: lower-alpha">
-<li>Find the probability that the call center receives exactly 45 calls in 5 minutes.</li>
-<li>Find the probability that the call center receives at least 500 calls in one hour and at most 500 calls in the following hour.</li>
-<li>How many calls the call center is expected to receive in 8 hours? Find the standard deviation of the number of calls received in 8 hours.</li>
-<li>Assume now that the call center cannot receive more than 10 calls in 1 minute due to limited capacity. If more calls arrive, then some of them will not be answered. Find the probability that all calls will be answered in 10 minutes. Find the mean of the time (in minutes) to the first unanswered call.</li>
+<ul>
+<li>Compute the exact probability<br />
+Let W: number of cyclones formed out of 150 lows ~ Bi(n=150, p=0.08)<br />
+<span class="math display">\[
+P(W \geq 10) = 1 - P(W \leq 9) = 1 - F_W(9)
+\]</span></li>
+</ul>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubiA8LSAxNTBcbnAgPC0gMC4wOFxuayA8LSA5XG4xIC0gcGJpbm9tKGssIHNpemU9biwgcHJvYj1wKSBcbmBgYCJ9 -->
+<pre class="r"><code>n &lt;- 150
+p &lt;- 0.08
+k &lt;- 9
+1 - pbinom(k, size=n, prob=p) </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuNzY4NTMxNVxuIn0= -->
+<pre><code>[1] 0.7685315</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ul>
+<li>Compute this probability using the Poisson approximation<br />
+W ~ Poiss(<span class="math inline">\(\lambda\)</span>)<br />
+where: <span class="math inline">\(\lambda\)</span> = np = 150 * 0.08<br />
+<strong>P(W &gt;= 10)</strong></li>
+</ul>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGFtYmRhIDwtIDE1MCAqIDAuMDhcbmsgPC0gOVxuMSAtIHBwb2lzKGssIGxhbWJkYT1sYW1iZGEpXG5gYGAifQ== -->
+<pre class="r"><code>lambda &lt;- 150 * 0.08
+k &lt;- 9
+1 - ppois(k, lambda=lambda)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuNzU3NjA3OFxuIn0= -->
+<pre><code>[1] 0.7576078</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="2" style="list-style-type: decimal">
+<li>The telephone calls received by a call center follow a Poisson process with the rate of 8 calls per minute.</li>
 </ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2FsbF9yYXRlIDwtIDggIyBwZXIgbWludXRlXG5gYGAifQ== -->
+<pre class="r"><code>call_rate &lt;- 8 # per minute</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol style="list-style-type: lower-alpha">
+<li>Find the probability that the call center receives exactly 45 calls in 5 minutes.<br />
+X: number of calls in 5 minutes ~ Poiss(<span class="math inline">\(\lambda = 8*5\)</span>)<br />
+<strong>P(X=45)</strong></li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGFtYmRhIDwtIDUgKiBjYWxsX3JhdGVcbmsgPC0gNDVcbmRwb2lzKGssIGxhbWJkYT1sYW1iZGEpXG5gYGAifQ== -->
+<pre class="r"><code>lambda &lt;- 5 * call_rate
+k &lt;- 45
+dpois(k, lambda=lambda)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuMDQzOTY1MTRcbiJ9 -->
+<pre><code>[1] 0.04396514</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Find the probability that the call center receives at least 500 calls in one hour and at most 500 calls in the following hour.<br />
+Y: number of calls in an hour (60 minutes) ~ Poiss(<span class="math inline">\(\lambda = 60*8\)</span>)<br />
+<strong>Probability of interest</strong> = P(Y &gt;= 500) P(Y &lt;= 500) = (1 - P(Y &lt;= 499)) P(Y &lt;= 500)</li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGFtYmRhIDwtIDYwICogY2FsbF9yYXRlXG5rMSA8LSA0OTlcbmsyIDwtIDUwMFxuKDEgLSBwcG9pcyhrMSwgbGFtYmRhPWxhbWJkYSkpICogcHBvaXMoazIsIGxhbWJkYT1sYW1iZGEpXG5gYGAifQ== -->
+<pre class="r"><code>lambda &lt;- 60 * call_rate
+k1 &lt;- 499
+k2 &lt;- 500
+(1 - ppois(k1, lambda=lambda)) * ppois(k2, lambda=lambda)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuMTUzNzg0MVxuIn0= -->
+<pre><code>[1] 0.1537841</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="3" style="list-style-type: lower-alpha">
+<li>How many calls the call center is expected to receive in 8 hours? Find the standard deviation of the number of calls received in 8 hours.<br />
+Z: number of calls in 8 hours ~ Poiss(<span class="math inline">\(\lambda = 8*60*8\)</span>)<br />
+<strong>E(Z)</strong> = <span class="math inline">\(\lambda\)</span><br />
+<strong>Standard deviation</strong> = <span class="math inline">\(\sigma = \sqrt{\lambda}\)</span></li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGFtYmRhIDwtIDggKiA2MCAqIGNhbGxfcmF0ZVxuXCJFeHBlY3RlZCB2YWx1ZVwiXG5gYGAifQ== -->
+<pre class="r"><code>lambda &lt;- 8 * 60 * call_rate
+&quot;Expected value&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiRXhwZWN0ZWQgdmFsdWVcIlxuIn0= -->
+<pre><code>[1] &quot;Expected value&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGFtYmRhXG5gYGAifQ== -->
+<pre class="r"><code>lambda</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDM4NDBcbiJ9 -->
+<pre><code>[1] 3840</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXCJTdGFuZGFyZCBkZXZpYXRpb25cIlxuYGBgIn0= -->
+<pre class="r"><code>&quot;Standard deviation&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiU3RhbmRhcmQgZGV2aWF0aW9uXCJcbiJ9 -->
+<pre><code>[1] &quot;Standard deviation&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3FydChsYW1iZGEpXG5gYGAifQ== -->
+<pre class="r"><code>sqrt(lambda)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDYxLjk2NzczXG4ifQ== -->
+<pre><code>[1] 61.96773</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="4" style="list-style-type: lower-alpha">
+<li>Assume now that the call center cannot receive more than 10 calls in 1 minute due to limited capacity. If more calls arrive, then some of them will not be answered. Find the probability that all calls will be answered in 10 minutes. Find the mean of the time (in minutes) to the first unanswered call.<br />
+W: number of calls in 1 minute ~ Poiss(<span class="math inline">\(\lambda = 8\)</span>)<br />
+<strong>P(all calls will be answered in 10 minutes)</strong> = P(Number of calls in 1st minute &lt;= 10) P(Number of calls in 2nd munite &lt;= 10) … P(Number of calls in 10th minute &lt;= 10)<br />
+= <span class="math inline">\(\big( P(W \leq 10) \big)^{10}\)</span></li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGFtYmRhIDwtIGNhbGxfcmF0ZVxuayA8LSAxMFxuKHBwb2lzKGssIGxhbWJkYT1sYW1iZGEpKV4xMFxuYGBgIn0= -->
+<pre class="r"><code>lambda &lt;- call_rate
+k &lt;- 10
+(ppois(k, lambda=lambda))^10</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuMTMwNzA1NVxuIn0= -->
+<pre><code>[1] 0.1307055</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>P(first unanswered call arrives in each minute)<br />
+= P(time to 11th call &lt;= 1 minute)<br />
+= 1 - P(time to 11th call &gt; 1 minute)<br />
+= 1 - P(10 calls or less in 1 minute)<br />
+= 1 - P(W &lt;= 10) = p<br />
+K: number of minutes to the first unanswered call ~ Geom(p)<br />
+<strong>E(K)</strong> = <span class="math inline">\(\frac{1}{p}\)</span></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGFtYmRhIDwtIGNhbGxfcmF0ZVxuayA8LSAxMFxucCA8LSAxIC0gcHBvaXMoaywgbGFtYmRhPWxhbWJkYSlcbjEvcFxuYGBgIn0= -->
+<pre class="r"><code>lambda &lt;- call_rate
+k &lt;- 10
+p &lt;- 1 - ppois(k, lambda=lambda)
+1/p</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDUuNDMxNDExXG4ifQ== -->
+<pre><code>[1] 5.431411</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <ol start="3" style="list-style-type: decimal">
 <li>A random variableXhas a pdf given by<br />
 f(x) = {Ce^2 x, x &lt; 0 , Ce−x, x≥ 0.<br />
@@ -1858,7 +2039,7 @@ f(x,y) = {C(x+y), 0 &lt; x &lt; 1 , 0 &lt; y &lt; 1 , 0 , otherwise.</li>
 </ol>
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQXNzaWdubWVudCAyIgphdXRob3I6ICJWaW5oIE5ndXllbiAoSUQgMTAyOTUzMSkiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCgoxLiBBIGxvdyBwcmVzc3VyZSBzeXN0ZW0gKGxvdykgdGhhdCBmb3JtcyBpbiB0aGUgQXVzdHJhbGlhbiByZWdpb24gaGFzIGEgY2hhbmNlIG9mIDglIHRvCiAgICB0cmFuc2Zvcm0gaW50byBhIHRyb3BpY2FsIGN5Y2xvbmUuICAKKGEpIEFzc3VtZSB0aGF0IDIwIGxvd3Mgd2lsbCBmb3JtIGluIEFwcmlsIDIwMTkuIEZpbmQgdGhlIHByb2JhYmlsaXR5IHRoYXQgdHdvIG9mCnRoZW0gd2lsbCB0cmFuc2Zvcm0gaW50byBhIHRyb3BpY2FsIGN5Y2xvbmUuICAKTGV0IFg6IG51bWJlciBvZiBsb3dzIHRoYXQgdHJhbnNmb3JtIGludG8gYSB0cm9waWNhbCBjeWNsb25lIChvdXQgb2YgMjAgbG93cykgfiBCaShuPTIwLCBwPTAuMDgpICAKKipQKFggPSAyKSoqCmBgYHtyfQpuIDwtIDIwCnAgPC0gMC4wOApkYmlub20oMiwgc2l6ZT1uLCBwcm9iPXApCmBgYAoKKGIpIEZpbmQgdGhlIHByb2JhYmlsaXR5IHRoYXQgdGhlIGZpcnN0IGxvdyB0aGF0IHdpbGwgdHJhbnNmb3JtIGludG8gYSB0cm9waWNhbCBjeWNsb25lCmluIE5vdmVtYmVyIDIwMTkgd2lsbCBiZSB0aGUgNXRoIGxvdyB0aGF0IHdpbGwgZm9ybSBpbiB0aGlzIG1vbnRoLiAgCkxldCBZOiBudW1iZXIgb2YgbG93cyB1bnRpbCBmaXJzdCBsb3cgdGhhdCB0cmFuc2Zvcm1zIGludG8gYSB0cm9waWNhbCBjeWNsb25lIH4gR2VvbShwPTAuMDgpICAKKipQKFkgPSA1KSoqCmBgYHtyfQpwIDwtIDAuMDgKayA8LSA1ICMgbnVtYmVyIG9mIHRyaWFscyB1bnRpbCBmaXJzdCBzdWNjZXNzCmRnZW9tKGstMSwgcHJvYj1wKQpgYGAKCihjKSBGaW5kIHRoZSBwcm9iYWJpbGl0eSB0aGF0IHRoZSBzZWNvbmQgbG93IHRoYXQgd2lsbCB0cmFuc2Zvcm0gaW50byBhIHRyb3BpY2FsIGN5Y2xvbmUKaW4gRGVjZW1iZXIgMjAxOSB3aWxsIGJlIHRoZSAxNXRoIGxvdyB0aGF0IHdpbGwgZm9ybSBpbiB0aGlzIG1vbnRoLiAgCmBgYHtyfQoKYGBgCgooZCkgSG93IG1hbnkgbG93cyBhcmUgZXhwZWN0ZWQgdG8gZm9ybSBiZWZvcmUgdHdvIG9mIHRoZW0gdHJhbnNmb3JtIHRvIHRyb3BpY2FsCmN5Y2xvbmVzPwooZSkgQXNzdW1lIHRoYXQgMTUwIGxvd3MgaW4gdG90YWwgd2lsbCBmb3JtIGJldHdlZW4gTm92ZW1iZXIgMXN0LCAyMDE5IGFuZCBBcHJpbAozMHRoLCAyMDIwLiBGaW5kIHRoZSBwcm9iYWJpbGl0eSB0aGF0IGF0IGxlYXN0IDEwIG9mIHRoZW0gd2lsbCB0cmFuc2Zvcm0gaW50bwp0cm9waWNhbCBjeWNsb25lcy4KLSBDb21wdXRlIHRoZSBleGFjdCBwcm9iYWJpbGl0eQotIENvbXB1dGUgdGhpcyBwcm9iYWJpbGl0eSB1c2luZyB0aGUgUG9pc3NvbiBhcHByb3hpbWF0aW9uCgoyLiBUaGUgdGVsZXBob25lIGNhbGxzIHJlY2VpdmVkIGJ5IGEgY2FsbCBjZW50ZXIgZm9sbG93IGEgUG9pc3NvbiBwcm9jZXNzIHdpdGggdGhlIHJhdGUgb2YKOCBjYWxscyBwZXIgbWludXRlLiAgCihhKSBGaW5kIHRoZSBwcm9iYWJpbGl0eSB0aGF0IHRoZSBjYWxsIGNlbnRlciByZWNlaXZlcyBleGFjdGx5IDQ1IGNhbGxzIGluIDUgbWludXRlcy4KKGIpIEZpbmQgdGhlIHByb2JhYmlsaXR5IHRoYXQgdGhlIGNhbGwgY2VudGVyIHJlY2VpdmVzIGF0IGxlYXN0IDUwMCBjYWxscyBpbiBvbmUgaG91cgphbmQgYXQgbW9zdCA1MDAgY2FsbHMgaW4gdGhlIGZvbGxvd2luZyBob3VyLgooYykgSG93IG1hbnkgY2FsbHMgdGhlIGNhbGwgY2VudGVyIGlzIGV4cGVjdGVkIHRvIHJlY2VpdmUgaW4gOCBob3Vycz8gRmluZCB0aGUgc3RhbmRhcmQKZGV2aWF0aW9uIG9mIHRoZSBudW1iZXIgb2YgY2FsbHMgcmVjZWl2ZWQgaW4gOCBob3Vycy4KKGQpIEFzc3VtZSBub3cgdGhhdCB0aGUgY2FsbCBjZW50ZXIgY2Fubm90IHJlY2VpdmUgbW9yZSB0aGFuIDEwIGNhbGxzIGluIDEgbWludXRlIGR1ZQp0byBsaW1pdGVkIGNhcGFjaXR5LiBJZiBtb3JlIGNhbGxzIGFycml2ZSwgdGhlbiBzb21lIG9mIHRoZW0gd2lsbCBub3QgYmUgYW5zd2VyZWQuCkZpbmQgdGhlIHByb2JhYmlsaXR5IHRoYXQgYWxsIGNhbGxzIHdpbGwgYmUgYW5zd2VyZWQgaW4gMTAgbWludXRlcy4gRmluZCB0aGUgbWVhbgpvZiB0aGUgdGltZSAoaW4gbWludXRlcykgdG8gdGhlIGZpcnN0IHVuYW5zd2VyZWQgY2FsbC4KCjMuIEEgcmFuZG9tIHZhcmlhYmxlWGhhcyBhIHBkZiBnaXZlbiBieSAgCmYoeCkgPSB7Q2VeMiB4LCB4IDwgMCAsIENl4oiSeCwgeOKJpSAwLiAgCihhKSBGaW5kIHRoZSBub3JtYWxpemluZyBjb25zdGFudEMuCihiKSBGaW5kIHRoZSBjZGYgb2ZYLgooYykgTGV04oiSIDIgPCB0IDwgMS4gRmluZE1YKHQpID0gRShlWHQpLCB0aGUgbW9tZW50IGdlbmVyYXRpbmcgZnVuY3Rpb24gb2ZYLgooZCkgVXNlTVgodCl0byBmaW5kIHRoZSBtZWFuIGFuZCB2YXJpYW5jZSBvZlgsRShYKWFuZFZhcihYKS4KKGUpIEZpbmQgdGhlIG1lZGlhbiBvZlguCgo0LiBMZXRYYW5kWWhhdmUgdGhlIGpvaW50IHBkZiBkZWZpbmVkIGJ5ICAKZih4LHkpID0ge0MoeCt5KSwgMCA8IHggPCAxICwgMCA8IHkgPCAxICwgMCAsIG90aGVyd2lzZS4KKGEpIEZpbmQgdGhlIG5vcm1hbGl6aW5nIGNvbnN0YW50Qy4KKGIpIEZpbmRGKHgseSkgPSBQcihYIDwgeCxZIDwgeSlmb3IgYW55eCx5YW5kIGNvbXB1dGVQcihYIDwgMC4gNCAsWSA8IDAgLjYpLgooYykgQ29tcHV0Zc68WD0gRShYKSzOvFk9IEUoWSksz4NeMiBYPSBWYXIoWCksz4NeMiBZID0gVmFyKFkpLENvdihYLFkpLCBhbmQKz4E9IENvcihYLFkpLgoKNS4gTGV0WCBhbmRZIGJlIGpvaW50bHkgbm9ybWFsIHJhbmRvbSB2YXJpYWJsZXMgd2l0aCBwYXJhbWV0ZXJzRShYKSA9IEUoWSkgPQogICAgMCAsIFZhcihYKSA9IFZhcihZKSA9IDEsIGFuZENvcihYLFkpID3PgS4gIAooYSkgRmluZM+Bc3VjaCB0aGF0VyAxID0gMC4gNiBYKyAwLiA4IFkgYW5kVyAyID0gMC4gOCBYKyAwLiA2IFkgYXJlIGluZGVwZW5kZW50LgooYikgRmluZFByKFggPCAxIHxYPVkpaWbPgT0gMC4gNi4KCgoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQXNzaWdubWVudCAyIgphdXRob3I6ICJWaW5oIE5ndXllbiAoSUQgMTAyOTUzMSkiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCgpgYGB7cn0KIyBQcmVsaW1pbmFyaWVzCnJtKGxpc3Q9bHMoKSkKYGBgCgoxLiBBIGxvdyBwcmVzc3VyZSBzeXN0ZW0gKGxvdykgdGhhdCBmb3JtcyBpbiB0aGUgQXVzdHJhbGlhbiByZWdpb24gaGFzIGEgY2hhbmNlIG9mIDglIHRvCiAgICB0cmFuc2Zvcm0gaW50byBhIHRyb3BpY2FsIGN5Y2xvbmUuICAKKGEpIEFzc3VtZSB0aGF0IDIwIGxvd3Mgd2lsbCBmb3JtIGluIEFwcmlsIDIwMTkuIEZpbmQgdGhlIHByb2JhYmlsaXR5IHRoYXQgdHdvIG9mCnRoZW0gd2lsbCB0cmFuc2Zvcm0gaW50byBhIHRyb3BpY2FsIGN5Y2xvbmUuICAKTGV0IFg6IG51bWJlciBvZiBsb3dzIHRoYXQgdHJhbnNmb3JtIGludG8gYSB0cm9waWNhbCBjeWNsb25lIChvdXQgb2YgMjAgbG93cykgfiBCaShuPTIwLCBwPTAuMDgpICAKKipQKFggPSAyKSoqCmBgYHtyfQpuIDwtIDIwCnAgPC0gMC4wOApkYmlub20oMiwgc2l6ZT1uLCBwcm9iPXApCmBgYAoKKGIpIEZpbmQgdGhlIHByb2JhYmlsaXR5IHRoYXQgdGhlIGZpcnN0IGxvdyB0aGF0IHdpbGwgdHJhbnNmb3JtIGludG8gYSB0cm9waWNhbCBjeWNsb25lCmluIE5vdmVtYmVyIDIwMTkgd2lsbCBiZSB0aGUgNXRoIGxvdyB0aGF0IHdpbGwgZm9ybSBpbiB0aGlzIG1vbnRoLiAgCkxldCBZOiBudW1iZXIgb2YgbG93cyB1bnRpbCBmaXJzdCBsb3cgdGhhdCB0cmFuc2Zvcm1zIGludG8gYSB0cm9waWNhbCBjeWNsb25lIH4gR2VvbShwPTAuMDgpICAKKipQKFkgPSA1KSoqCmBgYHtyfQpwIDwtIDAuMDgKayA8LSA1ICMgbnVtYmVyIG9mIHRyaWFscyB1bnRpbCBmaXJzdCBzdWNjZXNzCmRnZW9tKGstMSwgcHJvYj1wKQpgYGAKCihjKSBGaW5kIHRoZSBwcm9iYWJpbGl0eSB0aGF0IHRoZSBzZWNvbmQgbG93IHRoYXQgd2lsbCB0cmFuc2Zvcm0gaW50byBhIHRyb3BpY2FsIGN5Y2xvbmUKaW4gRGVjZW1iZXIgMjAxOSB3aWxsIGJlIHRoZSAxNXRoIGxvdyB0aGF0IHdpbGwgZm9ybSBpbiB0aGlzIG1vbnRoLiAgClAoMm5kIGxvdyB0aGF0IHR1cm5zIGludG8gY3ljbG9uZSBpcyAxNXRoIGxvdykgPSBQKDEgbG93IHR1cm5zIGludG8gY3ljbG9uZSBvdXQgb2YgMTQgbG93cyBhbmQgMTV0aCBsb3cgdHVybnMgaW50byBjeWNsb25lKQpMZXQgWDogbnVtYmVyIG9mIGN5Y2xvbmVzIGZvcm1lZCBmcm9tIDE0IGxvd3MgfiBCaShuPTE0LCBwPTAuMDgpClk6IGluZGljYXRvciBmb3Igd2hldGhlciBvciBub3QgYSBsb3cgdHVybnMgaW50byBjeWNsb25lIH4gQmVyKHA9MC4wOCkKJCQKUChYPTE0IFxjYXAgWT0xKSA9IFAoWD0xNCkgUChZPTEpIFx0ZXh0eyAoYXNzdW1pbmcgaW5kZXBlbmRlbmNlIGJldHdlZW4gZm9ybWF0aW9uIG9mIGN5Y2xvbmUgZnJvbSBlYWNoIGxvdyl9CiQkCmBgYHtyfQpuIDwtIDE0CnAgPC0gMC4wOAprIDwtIDEKZGJpbm9tKGssIHNpemU9biwgcHJvYj1wKSAqIHAKYGBgCgooZCkgSG93IG1hbnkgbG93cyBhcmUgZXhwZWN0ZWQgdG8gZm9ybSBiZWZvcmUgdHdvIG9mIHRoZW0gdHJhbnNmb3JtIHRvIHRyb3BpY2FsCmN5Y2xvbmVzPyAgCkxldCBaOiBudW1iZXIgb2YgbG93cyBmb3JtZWQgYmVmb3JlIDIgb2YgdGhlbSB0cmFuc2Zvcm0gdG8gY3ljbG9uZXMgKG9yIHVudGlsIDJuZCBjeWNsb25lKQokJApaID0gWl8xICsgWl8yCiQkCndoZXJlOgokWl8xJDogbnVtYmVyIG9mIGxvd3MgdW50aWwgMXN0IGN5Y2xvbmUgfiBHZW9tKHA9MC4wOCkKJFpfMiQ6IG51bWJlciBvZiBsb3dzIGZyb20gMXN0IGN5Y2xvbmUgdG8gMm5kIGN5Y2xvbmUgfiBHZW9tKHA9MC4wOCkKJCQKRShaKSA9IEUoWl8xKSArIEUoWl8yKSA9IDJFKFpfMSkKJCQKYGBge3J9CnAgPC0gMC4wOAoyICogMS9wCmBgYAoKKGUpIEFzc3VtZSB0aGF0IDE1MCBsb3dzIGluIHRvdGFsIHdpbGwgZm9ybSBiZXR3ZWVuIE5vdmVtYmVyIDFzdCwgMjAxOSBhbmQgQXByaWwKMzB0aCwgMjAyMC4gRmluZCB0aGUgcHJvYmFiaWxpdHkgdGhhdCBhdCBsZWFzdCAxMCBvZiB0aGVtIHdpbGwgdHJhbnNmb3JtIGludG8KdHJvcGljYWwgY3ljbG9uZXMuICAKLSBDb21wdXRlIHRoZSBleGFjdCBwcm9iYWJpbGl0eSAgCkxldCBXOiBudW1iZXIgb2YgY3ljbG9uZXMgZm9ybWVkIG91dCBvZiAxNTAgbG93cyB+IEJpKG49MTUwLCBwPTAuMDgpICAKJCQKUChXIFxnZXEgMTApID0gMSAtIFAoVyBcbGVxIDkpID0gMSAtIEZfVyg5KQokJApgYGB7cn0KbiA8LSAxNTAKcCA8LSAwLjA4CmsgPC0gOQoxIC0gcGJpbm9tKGssIHNpemU9biwgcHJvYj1wKSAKYGBgCgotIENvbXB1dGUgdGhpcyBwcm9iYWJpbGl0eSB1c2luZyB0aGUgUG9pc3NvbiBhcHByb3hpbWF0aW9uICAKVyB+IFBvaXNzKCRcbGFtYmRhJCkgIAp3aGVyZTogJFxsYW1iZGEkID0gbnAgPSAxNTAgKiAwLjA4ICAKKipQKFcgPj0gMTApKiogIApgYGB7cn0KbGFtYmRhIDwtIDE1MCAqIDAuMDgKayA8LSA5CjEgLSBwcG9pcyhrLCBsYW1iZGE9bGFtYmRhKQpgYGAKCjIuIFRoZSB0ZWxlcGhvbmUgY2FsbHMgcmVjZWl2ZWQgYnkgYSBjYWxsIGNlbnRlciBmb2xsb3cgYSBQb2lzc29uIHByb2Nlc3Mgd2l0aCB0aGUgcmF0ZSBvZgo4IGNhbGxzIHBlciBtaW51dGUuICAKYGBge3J9CmNhbGxfcmF0ZSA8LSA4ICMgcGVyIG1pbnV0ZQpgYGAKKGEpIEZpbmQgdGhlIHByb2JhYmlsaXR5IHRoYXQgdGhlIGNhbGwgY2VudGVyIHJlY2VpdmVzIGV4YWN0bHkgNDUgY2FsbHMgaW4gNSBtaW51dGVzLiAgClg6IG51bWJlciBvZiBjYWxscyBpbiA1IG1pbnV0ZXMgfiBQb2lzcygkXGxhbWJkYSA9IDgqNSQpICAKKipQKFg9NDUpKiogIApgYGB7cn0KbGFtYmRhIDwtIDUgKiBjYWxsX3JhdGUKayA8LSA0NQpkcG9pcyhrLCBsYW1iZGE9bGFtYmRhKQpgYGAKCihiKSBGaW5kIHRoZSBwcm9iYWJpbGl0eSB0aGF0IHRoZSBjYWxsIGNlbnRlciByZWNlaXZlcyBhdCBsZWFzdCA1MDAgY2FsbHMgaW4gb25lIGhvdXIKYW5kIGF0IG1vc3QgNTAwIGNhbGxzIGluIHRoZSBmb2xsb3dpbmcgaG91ci4gIApZOiBudW1iZXIgb2YgY2FsbHMgaW4gYW4gaG91ciAoNjAgbWludXRlcykgfiBQb2lzcygkXGxhbWJkYSA9IDYwKjgkKSAgCioqUHJvYmFiaWxpdHkgb2YgaW50ZXJlc3QqKiA9IFAoWSA+PSA1MDApIFAoWSA8PSA1MDApID0gKDEgLSBQKFkgPD0gNDk5KSkgUChZIDw9IDUwMCkgIApgYGB7cn0KbGFtYmRhIDwtIDYwICogY2FsbF9yYXRlCmsxIDwtIDQ5OQprMiA8LSA1MDAKKDEgLSBwcG9pcyhrMSwgbGFtYmRhPWxhbWJkYSkpICogcHBvaXMoazIsIGxhbWJkYT1sYW1iZGEpCmBgYAoKKGMpIEhvdyBtYW55IGNhbGxzIHRoZSBjYWxsIGNlbnRlciBpcyBleHBlY3RlZCB0byByZWNlaXZlIGluIDggaG91cnM/IEZpbmQgdGhlIHN0YW5kYXJkCmRldmlhdGlvbiBvZiB0aGUgbnVtYmVyIG9mIGNhbGxzIHJlY2VpdmVkIGluIDggaG91cnMuICAKWjogbnVtYmVyIG9mIGNhbGxzIGluIDggaG91cnMgfiBQb2lzcygkXGxhbWJkYSA9IDgqNjAqOCQpICAKKipFKFopKiogPSAkXGxhbWJkYSQgIAoqKlN0YW5kYXJkIGRldmlhdGlvbioqID0gJFxzaWdtYSA9IFxzcXJ0e1xsYW1iZGF9JCAgCmBgYHtyfQpsYW1iZGEgPC0gOCAqIDYwICogY2FsbF9yYXRlCiJFeHBlY3RlZCB2YWx1ZSIKbGFtYmRhCiJTdGFuZGFyZCBkZXZpYXRpb24iCnNxcnQobGFtYmRhKQpgYGAKCihkKSBBc3N1bWUgbm93IHRoYXQgdGhlIGNhbGwgY2VudGVyIGNhbm5vdCByZWNlaXZlIG1vcmUgdGhhbiAxMCBjYWxscyBpbiAxIG1pbnV0ZSBkdWUKdG8gbGltaXRlZCBjYXBhY2l0eS4gSWYgbW9yZSBjYWxscyBhcnJpdmUsIHRoZW4gc29tZSBvZiB0aGVtIHdpbGwgbm90IGJlIGFuc3dlcmVkLgpGaW5kIHRoZSBwcm9iYWJpbGl0eSB0aGF0IGFsbCBjYWxscyB3aWxsIGJlIGFuc3dlcmVkIGluIDEwIG1pbnV0ZXMuIEZpbmQgdGhlIG1lYW4Kb2YgdGhlIHRpbWUgKGluIG1pbnV0ZXMpIHRvIHRoZSBmaXJzdCB1bmFuc3dlcmVkIGNhbGwuICAKVzogbnVtYmVyIG9mIGNhbGxzIGluIDEgbWludXRlIH4gUG9pc3MoJFxsYW1iZGEgPSA4JCkgIAoqKlAoYWxsIGNhbGxzIHdpbGwgYmUgYW5zd2VyZWQgaW4gMTAgbWludXRlcykqKiA9IFAoTnVtYmVyIG9mIGNhbGxzIGluIDFzdCBtaW51dGUgPD0gMTApIFAoTnVtYmVyIG9mIGNhbGxzIGluIDJuZCBtdW5pdGUgPD0gMTApIC4uLiBQKE51bWJlciBvZiBjYWxscyBpbiAxMHRoIG1pbnV0ZSA8PSAxMCkgIAo9ICRcYmlnKCBQKFcgXGxlcSAxMCkgXGJpZyleezEwfSQgIApgYGB7cn0KbGFtYmRhIDwtIGNhbGxfcmF0ZQprIDwtIDEwCihwcG9pcyhrLCBsYW1iZGE9bGFtYmRhKSleMTAKYGBgClAoZmlyc3QgdW5hbnN3ZXJlZCBjYWxsIGFycml2ZXMgaW4gZWFjaCBtaW51dGUpICAKPSBQKHRpbWUgdG8gMTF0aCBjYWxsIDw9IDEgbWludXRlKSAgCj0gMSAtIFAodGltZSB0byAxMXRoIGNhbGwgPiAxIG1pbnV0ZSkgIAo9IDEgLSBQKDEwIGNhbGxzIG9yIGxlc3MgaW4gMSBtaW51dGUpICAKPSAxIC0gUChXIDw9IDEwKQo9IHAgIApLOiBudW1iZXIgb2YgbWludXRlcyB0byB0aGUgZmlyc3QgdW5hbnN3ZXJlZCBjYWxsIH4gR2VvbShwKSAgCioqRShLKSoqID0gJFxmcmFjezF9e3B9JCAgCmBgYHtyfQpsYW1iZGEgPC0gY2FsbF9yYXRlCmsgPC0gMTAKcCA8LSAxIC0gcHBvaXMoaywgbGFtYmRhPWxhbWJkYSkKMS9wCmBgYAoKMy4gQSByYW5kb20gdmFyaWFibGVYaGFzIGEgcGRmIGdpdmVuIGJ5ICAKZih4KSA9IHtDZV4yIHgsIHggPCAwICwgQ2XiiJJ4LCB44omlIDAuICAKKGEpIEZpbmQgdGhlIG5vcm1hbGl6aW5nIGNvbnN0YW50Qy4KKGIpIEZpbmQgdGhlIGNkZiBvZlguCihjKSBMZXTiiJIgMiA8IHQgPCAxLiBGaW5kTVgodCkgPSBFKGVYdCksIHRoZSBtb21lbnQgZ2VuZXJhdGluZyBmdW5jdGlvbiBvZlguCihkKSBVc2VNWCh0KXRvIGZpbmQgdGhlIG1lYW4gYW5kIHZhcmlhbmNlIG9mWCxFKFgpYW5kVmFyKFgpLgooZSkgRmluZCB0aGUgbWVkaWFuIG9mWC4KCjQuIExldFhhbmRZaGF2ZSB0aGUgam9pbnQgcGRmIGRlZmluZWQgYnkgIApmKHgseSkgPSB7Qyh4K3kpLCAwIDwgeCA8IDEgLCAwIDwgeSA8IDEgLCAwICwgb3RoZXJ3aXNlLgooYSkgRmluZCB0aGUgbm9ybWFsaXppbmcgY29uc3RhbnRDLgooYikgRmluZEYoeCx5KSA9IFByKFggPCB4LFkgPCB5KWZvciBhbnl4LHlhbmQgY29tcHV0ZVByKFggPCAwLiA0ICxZIDwgMCAuNikuCihjKSBDb21wdXRlzrxYPSBFKFgpLM68WT0gRShZKSzPg14yIFg9IFZhcihYKSzPg14yIFkgPSBWYXIoWSksQ292KFgsWSksIGFuZArPgT0gQ29yKFgsWSkuCgo1LiBMZXRYIGFuZFkgYmUgam9pbnRseSBub3JtYWwgcmFuZG9tIHZhcmlhYmxlcyB3aXRoIHBhcmFtZXRlcnNFKFgpID0gRShZKSA9CiAgICAwICwgVmFyKFgpID0gVmFyKFkpID0gMSwgYW5kQ29yKFgsWSkgPc+BLiAgCihhKSBGaW5kz4FzdWNoIHRoYXRXIDEgPSAwLiA2IFgrIDAuIDggWSBhbmRXIDIgPSAwLiA4IFgrIDAuIDYgWSBhcmUgaW5kZXBlbmRlbnQuCihiKSBGaW5kUHIoWCA8IDEgfFg9WSlpZs+BPSAwLiA2LgoKCgo=</div>
 
 
 
