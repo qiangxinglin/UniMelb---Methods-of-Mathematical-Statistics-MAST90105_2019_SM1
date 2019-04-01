@@ -156,8 +156,46 @@ p <- 1 - ppois(k, lambda=lambda)
 
 3. A random variableXhas a pdf given by  
 f(x) = {Ce^2 x, x < 0 , Ce−x, x≥ 0.  
-(a) Find the normalizing constantC.
-(b) Find the cdf ofX.
+(a) Find the normalizing constantC.  
+$$
+\begin{split}
+\int_{-\infty}^{\infty} f(x) dx &= \int_{-\infty}^{0} f(x) dx + \int_{0}^{\infty} f(x) dx \\
+&= \int_{-\infty}^{0} Ce^{2x} dx + \int_{0}^{\infty} Ce^{-x} dx \\
+&= \frac{1}{2}Ce^{2x}\Big|_{-\infty}^{0} - Ce^{-x}\Big|_{0}^{\infty} \\
+&= \frac{1}{2}C + C \\
+&= \frac{3}{2}C
+\end{split}
+$$
+Setting $\int_{-\infty}^{\infty} f(x) dx = 1$ yields:  
+$$
+C = \frac{2}{3}
+$$
+
+(b) Find the cdf ofX.  
+$$
+\begin{split}
+F(x) &= \int_{-\infty}^{x} f(x) dx \\
+&= \left\{ \begin{array}{cl}
+\int_{-\infty}^{x} Ce^{2x} dx & \ ; \ x < 0 \\
+\int_{-\infty}^{0} Ce^{2x} dx + \int_{0}^{x} Ce^{-x} dx & \ ; \ x \geq 0 \end{array} \right. \\
+&= \left\{ \begin{array}{cl}
+\frac{1}{2}Ce^{2x}\Big|_{-\infty}^{x} & \ ; \ x < 0 \\
+\frac{1}{2}Ce^{2x}\Big|_{-\infty}^{0} - Ce^{-x}\Big|_{0}^{x} & \ ; \ x \geq 0 \end{array} \right. \\
+&= \left\{ \begin{array}{cl}
+\frac{1}{2}Ce^{2x} & \ ; \ x < 0 \\
+\frac{1}{2}C - C(e^{-x} - 1) & \ ; \ x \geq 0 \end{array} \right. \\
+&= \left\{ \begin{array}{cl}
+\frac{1}{2}Ce^{2x} & \ ; \ x < 0 \\
+- Ce^{-x} + \frac{3}{2}C & \ ; \ x \geq 0 \end{array} \right. \\
+&= \left\{ \begin{array}{cl}
+\frac{1}{3}e^{2x} & \ ; \ x < 0 \\
+- \frac{2}{3}e^{-x} + 1 & \ ; \ x \geq 0 \end{array} \right.
+\end{split}
+$$
+```{r}
+
+```
+
 (c) Let− 2 < t < 1. FindMX(t) = E(eXt), the moment generating function ofX.
 (d) UseMX(t)to find the mean and variance ofX,E(X)andVar(X).
 (e) Find the median ofX.
