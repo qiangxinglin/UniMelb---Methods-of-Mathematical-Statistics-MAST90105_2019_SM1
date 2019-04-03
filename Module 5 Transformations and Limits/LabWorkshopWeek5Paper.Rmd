@@ -1,0 +1,31 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+# Estimate Pi
+```{r}
+# Approximate Pi
+func1 <- function(N) {
+  x <- runif(N)
+  y <- runif(N)
+  W <- sum(x^2 + y^2 < 1)
+  4*W/N
+}
+
+N <- 1e6
+func1(N)
+```
+
+# ggplot2
+```{r}
+x <- seq(0, 100, 0.1)
+y1 <- dgamma(x, shape=0.1, scale=5)
+plot(x, y1, type = "l")
+```
+
+
+
+
+
