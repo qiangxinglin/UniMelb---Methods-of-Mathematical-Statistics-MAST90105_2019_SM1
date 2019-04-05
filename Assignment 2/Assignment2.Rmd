@@ -173,7 +173,7 @@ $$
 
 (b) Find the cdf ofX.  
 $$
-\begin{split}
+\begin{align}
 F(x) &= \int_{-\infty}^{x} f(x) dx \\
 &= \left\{ \begin{array}{cl}
 \int_{-\infty}^{x} Ce^{2x} dx & \ ; \ x < 0 \\
@@ -186,11 +186,11 @@ F(x) &= \int_{-\infty}^{x} f(x) dx \\
 \frac{1}{2}C - C(e^{-x} - 1) & \ ; \ x \geq 0 \end{array} \right. \\
 &= \left\{ \begin{array}{cl}
 \frac{1}{2}Ce^{2x} & \ ; \ x < 0 \\
-- Ce^{-x} + \frac{3}{2}C & \ ; \ x \geq 0 \end{array} \right. \\
+-Ce^{-x} + \frac{3}{2}C & \ ; \ x \geq 0 \end{array} \right. \\
 &= \left\{ \begin{array}{cl}
 \frac{1}{3}e^{2x} & \ ; \ x < 0 \\
-- \frac{2}{3}e^{-x} + 1 & \ ; \ x \geq 0 \end{array} \right.
-\end{split}
+-\frac{2}{3}e^{-x} + 1 & \ ; \ x \geq 0 \end{array} \right. \\
+\end{align}
 $$
 
 (c) Let− 2 < t < 1. FindMX(t) = E(eXt), the moment generating function ofX.  
@@ -241,16 +241,136 @@ E(X^2) = M_X^{(2)}(0) &= \frac{2}{3}\Big(2(2)^{-3} - 2(-1)^{-3}\Big) \\
 &= \frac{3}{2} \\
 \end{split}
 $$
-```{r}
+$$
+\begin{split}
+var(X) &= E(X^2) - [E(X)]^2 \\
+&= \frac{3}{2} - \bigg(\frac{1}{2}\bigg)^2 \\
+&= \frac{5}{4} \\
+\end{split}
+$$
 
+(e) Find the median ofX.  
+$$
+\begin{split}
+F(x) &= \left\{ \begin{array}{cl}
+\frac{1}{3}e^{2x} & \ ; \ x < 0 \\
+-\frac{2}{3}e^{-x} + 1 & \ ; \ x \geq 0 \end{array} \right.
+\end{split}
+$$
+Let $x_m$: median of X  
+$$
+\begin{split}
+F(x_m) &= \frac{1}{2}
+\end{split}
+$$
+Substitute x=0 into F(x):  
+$$
+\begin{split}
+F(0) &= \frac{1}{3}
+\end{split}
+$$
+We have:  
+$$
+\begin{split}
+F(x_m) > F(0) \text{ } \bigg(\frac{1}{2} > \frac{1}{3}\bigg) \\
+\text{and } F(x) \text{ non-decreasing} \\
+\end{split}
+$$
+This implies:  
+$$
+x_m > 0 \\
+\Rightarrow F(x_m) = -\frac{2}{3}e^{-x} + 1 = \frac{1}{2} \\
+\Rightarrow x_m = -log\bigg(\frac{3}{4}\bigg)
+$$
+```{r}
+-log(3/4)
 ```
 
-(e) Find the median ofX.
-
 4. LetXandYhave the joint pdf defined by  
-f(x,y) = {C(x+y), 0 < x < 1 , 0 < y < 1 , 0 , otherwise.
-(a) Find the normalizing constantC.
-(b) FindF(x,y) = Pr(X < x,Y < y)for anyx,yand computePr(X < 0. 4 ,Y < 0 .6).
+f(x,y) = {C(x+y), 0 < x < 1 , 0 < y < 1 , 0 , otherwise.  
+(a) Find the normalizing constantC.  
+![Support of join pdf](support.png)
+$$
+\begin{split}
+\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} f(x, y) dxdy &= \int_{0}^{1}\int_{0}^{1} f(x, y) dxdy \quad \text{(integrate over support)} \\
+&= \int_{0}^{1}\int_{0}^{1} C(x+y) dxdy \\
+&= C\int_{0}^{1}\int_{0}^{1} (x+y) dxdy \\
+&= C\int_{0}^{1} \Big(\frac{x^2}{2}+yx\Big)\bigg|_0^1 dy \\
+&= C\int_{0}^{1} \Big(\frac{1}{2}+y\Big) dy \\
+&= C\Big(\frac{1}{2}y+\frac{y^2}{2}\Big)\bigg|_0^1 \\
+&= 1
+\end{split}
+$$
+Set $\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} f(x, y) dxdy = 1$:
+$$
+C = 1
+$$
+
+(b) FindF(x,y) = Pr(X < x,Y < y)for anyx,yand computePr(X < 0. 4 ,Y < 0 .6).  
+$$
+\begin{split}
+F(x, y) = Pr(X < x,Y < y) &= \int_{-\infty}^{y}\int_{-\infty}^{x} f(\tilde{x}, \tilde{y}) d\tilde{x}d\tilde{y} \\
+\end{split}
+$$
+![Support of cdf](support1.png)
+**x <= 0 or y <= 0**
+$$
+F(x, y) = Pr(X < x,Y < y) = 0
+$$
+**0 < x,y < 1**
+$$
+\begin{split}
+F(x, y) = Pr(X < x,Y < y) &= \int_{0}^{y}\int_{0}^{x} (\tilde{x} + \tilde{y}) d\tilde{x}d\tilde{y} \\
+&= \int_{0}^{y} \Big(\frac{\tilde{x}^2}{2}+\tilde{y}\tilde{x}\Big)\bigg|_0^x d\tilde{y} \\
+&= \int_{0}^{y} \Big(\frac{x^2}{2}+\tilde{y}x\Big) d\tilde{y} \\
+&= \Big(\frac{x^2}{2}\tilde{y}+\frac{x}{2}\tilde{y}^2\Big)\bigg|_0^y \\
+&= \Big(\frac{x^2}{2}y+\frac{x}{2}y^2\Big) \\
+&= \frac{1}{2}xy(x+y) \\
+\end{split}
+$$
+**x >= 1, 0 < y < 1**
+$$
+\begin{split}
+F(x, y) = Pr(X < x,Y < y) &= \int_{0}^{1}\int_{0}^{y} (\tilde{x} + \tilde{y}) d\tilde{y}d\tilde{x} \\
+&= \int_{0}^{1} \Big(\tilde{x}\tilde{y}+\frac{\tilde{y}^2}{2}\Big)\bigg|_0^y d\tilde{x} \\
+&= \int_{0}^{1} \Big(\tilde{x}y+\frac{y^2}{2}\Big) d\tilde{x} \\
+&= \Big(\frac{\tilde{x}^2}{2}y+\tilde{x}\frac{y^2}{2}\Big)\bigg|_0^1 \\
+&= \frac{y}{2}+\frac{y^2}{2} \\
+&= \frac{1}{2}y(y+1) \\
+\end{split}
+$$
+**0<x<1, y>=1**
+By symmetry,
+$$
+\begin{split}
+F(x, y) = Pr(X < x,Y < y) &= \frac{1}{2}x(x+1) \\
+\end{split}
+$$
+**x>=1, y>=1**
+$$
+\begin{split}
+F(x, y) = Pr(X < x,Y < y) &= 1 \\
+\end{split}
+$$
+**Pr(X < x,Y < y)for any x,y**
+$$
+\begin{split}
+F(x, y) = Pr(X < x,Y < y) &= \left\{ \begin{array}{cl}
+0 & \ ; \ x \leq 0 \text{ or } y \leq 0 \\
+\frac{1}{2}xy(x+y) & \ ; \ 0 < x,y < 1 \\
+\frac{1}{2}y(y+1) & \ ; \ x \geq 1 \text{, } 0 < y < 1 \\
+\frac{1}{2}x(x+1) & \ ; \ 0<x<1 \text{, } y \geq 1 \\
+1 & \ ; \ x \geq 1 \text{, } y \geq 1 \end{array} \right. \\
+\end{split}
+$$
+**Pr(X < 0. 4 ,Y < 0 .6)**
+$$
+Pr(X < 0. 4 ,Y < 0 .6) = \frac{1}{2}xy(x+y)\Big|_{x=0.4,y=0.6}
+$$
+```{r}
+1/2 * 0.4 * 0.6 * (0.4+0.6)
+```
+
 (c) ComputeμX= E(X),μY= E(Y),σ^2 X= Var(X),σ^2 Y = Var(Y),Cov(X,Y), and
 ρ= Cor(X,Y).
 
