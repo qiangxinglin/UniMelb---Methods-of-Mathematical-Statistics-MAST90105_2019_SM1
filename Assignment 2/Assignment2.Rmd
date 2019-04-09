@@ -298,7 +298,7 @@ $$
 &= C\int_{0}^{1} \Big(\frac{x^2}{2}+yx\Big)\bigg|_0^1 dy \\
 &= C\int_{0}^{1} \Big(\frac{1}{2}+y\Big) dy \\
 &= C\Big(\frac{1}{2}y+\frac{y^2}{2}\Big)\bigg|_0^1 \\
-&= 1
+&= C
 \end{split}
 $$
 Set $\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} f(x, y) dxdy = 1$:
