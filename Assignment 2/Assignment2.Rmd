@@ -372,12 +372,164 @@ $$
 ```
 
 (c) ComputeμX= E(X),μY= E(Y),σ^2 X= Var(X),σ^2 Y = Var(Y),Cov(X,Y), and
-ρ= Cor(X,Y).
+ρ= Cor(X,Y).  
+Marginal distributions:  
+$$
+\begin{align}
+f_X(x) &= \int_{-\infty}^{\infty} f_{XY}(x,y) dy \\
+&= \int_{0}^{1}(x+y) dy \\
+&= \bigg(xy + \frac{y^2}{2}\bigg)\bigg|_0^1 \\
+&= x + \frac{1}{2}, \text{ (for 0<x<1)} \\
+f_Y(y) &= y + \frac{1}{2}, \text{ (for 0<y<1)} \text{ (by symmetry)}\\
+\end{align}
+$$
+**Means**
+$$
+\begin{align}
+\mu_X = E(X) &= \int_{-\infty}^{\infty}xf_X(x)dx \\
+&= \int_{0}^{1}x\bigg(x + \frac{1}{2}\bigg)dx \\
+&= \int_{0}^{1}\bigg(x^2 + \frac{1}{2}x\bigg)dx \\
+&= \bigg(\frac{x^3}{3} + \frac{x^2}{4}\bigg)\bigg|_0^1 \\
+&= \frac{1}{3} + \frac{1}{4} \\
+&= \frac{7}{12} \\
+\mu_Y = E(Y) &= \int_{-\infty}^{\infty}yf_Y(y)dy \\
+&= \int_{0}^{1}y\bigg(y + \frac{1}{2}\bigg)dy \\
+&= \frac{7}{12} \text{ (by symmetry)} \\
+\end{align}
+$$
+**Variances**
+$$
+\begin{align}
+E(X^2) &= \int_{-\infty}^{\infty}x^2f_X(x)dx \\
+&= \int_{0}^{1}x^2\bigg(x + \frac{1}{2}\bigg)dx \\
+&= \int_{0}^{1}\bigg(x^3 + \frac{1}{2}x^2\bigg)dx \\
+&= \bigg(\frac{x^4}{4} + \frac{x^3}{6}\bigg)\bigg|_0^1 \\
+&= \frac{1}{4} + \frac{1}{6} \\
+&= \frac{5}{12} \\
+E(Y^2) &= \frac{5}{12} \text{ (by symmetry)} \\
+\end{align}
+$$
+$$
+\begin{align}
+\sigma_X^2 = var(X) &= E(X^2) - [E(X)]^2 \\
+&= \frac{5}{12} - \bigg(\frac{7}{12}\bigg)^2 \\
+&= \frac{11}{144} \\
+\sigma_Y^2 = var(Y) &= E(Y^2) - [E(Y)]^2 \\
+&= \frac{5}{12} - \bigg(\frac{7}{12}\bigg)^2 \\
+&= \frac{11}{144} \\
+\end{align}
+$$
+```{r}
+5/12 - (7/12)^2
+```
+**Covariance**
+$$
+\begin{align}
+E(XY) &= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}xy f_{XY}(x,y)dxdy \\
+&= \int_{0}^{1}\int_{0}^{1}xy (x+y)dxdy \\
+&= \int_{0}^{1}\int_{0}^{1}(x^2y+xy^2)dxdy \\
+&= \int_{0}^{1}\bigg(\frac{x^3}{3}y+\frac{x^2}{2}y^2\bigg)\bigg|_0^1dy \\
+&= \int_{0}^{1}\bigg(\frac{1}{3}y+\frac{1}{2}y^2\bigg)dy \\
+&= \bigg(\frac{y^2}{6}+\frac{y^3}{6}\bigg)\bigg|_0^1 \\
+&= \bigg(\frac{1}{6}+\frac{1}{6}\bigg) \\
+&= \frac{1}{3} \\
+cov(X,Y) &= E(XY) - E(X)E(Y) \\
+&= \frac{1}{3} - \bigg(\frac{7}{12}\bigg)^2 \\
+&= -\frac{1}{144} \\
+\rho = cor(X,Y) &= \frac{cov(X,Y)}{\sigma_X\sigma_Y} \\
+&= \frac{-\frac{1}{144}}{\sqrt{\frac{11}{144}}\sqrt{\frac{11}{144}}} \\
+&= \frac{-\frac{1}{144}}{\frac{11}{144}} \\
+&= -\frac{1}{11}
+\end{align}
+$$
 
 5. LetX andY be jointly normal random variables with parametersE(X) = E(Y) =
     0 , Var(X) = Var(Y) = 1, andCor(X,Y) =ρ.  
-(a) Findρsuch thatW 1 = 0. 6 X+ 0. 8 Y andW 2 = 0. 8 X+ 0. 6 Y are independent.
-(b) FindPr(X < 1 |X=Y)ifρ= 0. 6.
+(a) Findρsuch thatW 1 = 0. 6 X+ 0. 8 Y andW 2 = 0. 8 X+ 0. 6 Y are independent.  
+X, Y bivariate normal => any linear combination of X, Y is normal  
+$W_1, W_2$ are linear combinations of X, Y => any linear combination of $W_1, W_2$ is a linear combination of X, Y  
+=> any linear combination of $W_1, W_2$ is normal => $W_1, W_2$ bivariate normal  
+In order for $W_1, W_2$ to be independent, cov($W_1, W_2$) = 0  
+cov($W_1, W_2$):  
+$$
+\begin{align}
+E(W_1W_2) &= E((0.6X+0.8Y)(0.8X+0.6Y)) \\
+&= E(0.48X^2+XY+0.48Y^2) \\
+&= 0.48E(X^2)+E(XY)+0.48E(Y^2) \\
+E(X^2) &= var(X) + [E(X)]^2 = 1 \\
+E(Y^2) &= var(Y) + [E(Y)]^2 = 1 \\
+E(XY) &= cov(X,Y) + E(X)E(Y) = \rho \sigma_X \sigma_Y + E(X)E(Y) =\rho \\
+E(W_1W_2) &= \rho+0.96 \\
+\end{align}
+$$
+$$
+\begin{align}
+E(W_1) &= E(0.6X+0.8Y) \\
+&= 0.6E(X)+0.8E(Y) \\
+&= 0 \\
+E(W_2) &= 0 \quad (similarly)\\
+\end{align}
+$$
+$$
+\begin{align}
+cov(W_1,W_2) &= E(W_1W_2) - E(W_1)E(W_2) \\
+&= E(W_1W_2) \\
+&= \rho+0.96 \\
+\end{align}
+$$
+Set $cov(W_1,W_2) = 0$:
+$$
+\rho = -0.96
+$$
 
-
-
+(b) FindPr(X < 1 |X=Y)ifρ= 0. 6.  
+Let Z = X - Y ~ N($\mu_Z$, $\sigma_Z$)  
+$$
+\begin{align}
+\mu_Z &= 0 \\
+\sigma_Z^2 &= E(Z^2) - [E(Z)]^2 \\
+&= E(Z^2) \quad (E(Z) = 0) \\
+&= E((X-Y)^2) \\
+&= E(X^2-2XY+Y^2) \\
+&= E(X^2)-2E(XY)+E(Y^2) \\
+&= 1 - 2\rho + 1 \\
+\end{align}
+$$
+```{r}
+var_z <- 2 - 2*0.6
+var_z
+```
+$$
+\begin{align}
+cov(Z,X) &= E(ZX) - E(Z)E(X) \\
+&= E(ZX) \quad (E(X)=0) \\
+&= E((X - Y)X) \\
+&= E(X^2 - XY) \\
+&= E(X^2) - E(XY) \\
+&= 1 - 0.6 \\
+\rho_{XZ} &= \frac{cov(X,Z)}{\sigma_X\sigma_Z}\\
+\end{align}
+$$
+```{r}
+cov_zx <- 1 - 0.6
+cov_zx
+cor_zx <- cov_zx/sqrt(var_z)
+cor_zx
+```
+Z, X are bivariate normal
+$$
+\begin{align}
+X|X = Y &\sim X|X-Y=0 \\
+&\sim X|Z=0 \\
+&\sim N(\mu_X + \frac{\sigma_X}{\sigma_Z}\rho_{XZ}(0-\mu_Z), (1-\rho_{XZ}^2)\sigma_X^2) \\
+&\sim N(0, (1-\rho_{XZ}^2)\sigma_X^2) \\
+\end{align}
+$$
+```{r}
+cond_var <- (1-cor_zx^2)*1
+cond_var
+```
+**Pr(X < 1|X = Y )**  
+```{r}
+pnorm(1, mean = 0, sd = sqrt(cond_var))
+```
