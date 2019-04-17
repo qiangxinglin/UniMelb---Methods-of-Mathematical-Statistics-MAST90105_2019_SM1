@@ -1,0 +1,93 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+# Preliminaries
+rm(list=ls())
+```
+
+```{r}
+tasmania = read.csv("EditedRainfall.csv")
+```
+
+```{r}
+View(tasmania)
+dim(tasmania) # check data dimension
+names(tasmania[, 1:5]) # names of the first 5 columns
+year = tasmania[, 1] # create a vector for year
+s1 = tasmania[, 2] # create a vector for station 1 (Burnie)
+s2 = tasmania[, 3] # create a vector for station 2 (Cape Grim)
+```
+
+```{r}
+summary(s1) # 5-number summary plus sample mean
+sd(s1)
+IQR(s1) # IQR and sample standard deviaion
+# sample percentiles using Type 6 and 7
+# approximations
+quantile(s1, type = 6)
+quantile(s1, type = 7)
+summary(s2)
+sd(s2, na.rm = TRUE)
+IQR(s2, na.rm = TRUE)
+```
+
+```{r}
+hist(s1, freq = FALSE, xlab = "Extreme rainfall (Burnie, Tas)")
+smooth.density = density(s1) # fits a smooth curve
+points(smooth.density, type = "l", lty = 2, col = 2) # adds a smooth curve
+```
+
+```{r}
+boxplot(s1, s2, names = c("Burnie Is", "Cape Grim"),
+col = c("yellow", "orange"))
+```
+
+```{r}
+ecdf1 = ecdf(s1)
+ecdf2 = ecdf(s2)
+plot(ecdf1)
+plot(ecdf2, col = 2, add = TRUE)
+```
+
+```{r}
+qqnorm(s1, main = "Normal QQ plot for S1") # normal QQ plot
+qqline(s1)
+
+qqnorm(s2, main = "Normal QQ plot for S2") # normal QQ plot
+qqline(s2)
+```
+
+```{r}
+Finv = function(p) {
+-log(-log(p))
+} # quantile function
+p = (1:20)/21
+y = sort(s1) # order statistics
+x = Finv(p) # theoretical quantiles
+plot(x, y, ylab = "Sample quantiles", xlab = "EV quantiles")
+# the next command computes and plots the 'best
+# fitting line' (more details in next weeks)
+fit = lm(y ~ x)
+abline(fit)
+```
+
+```{r}
+dnorm(0)
+dnorm(0) * sqrt(2 * pi)
+dnorm(0, mean = 4, sd = 2)
+dnorm(c(-1, 0, 1))
+x = seq(-5, 5, by = 0.1)
+y = dnorm(x)
+plot(x, y, typ = "l")
+y = dnorm(x, mean = 2.5, sd = 0.5)
+plot(x, y, typ = "l")
+```
+
+```{r}
+x <- seq(0.001, 0.009)
+```
+
