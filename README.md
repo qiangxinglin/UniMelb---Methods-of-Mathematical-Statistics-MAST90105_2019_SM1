@@ -15,7 +15,7 @@ This subject introduces probability and the theory underlying modern statistical
 * Be able to carry out many standard statistical procedures using a statistical computing package.
 * Develop the ability to fit probability models to data by both estimating and testing hypotheses about model parameters.
 
-# Run a Jupyter notebook in Google Colaboratory
+# Run Jupyter notebooks in Google Colaboratory
 The following ways can be used to load a GitHub-hosted notebook into [Google Colaboratory](https://colab.research.google.com/notebooks/welcome.ipynb#recent=true).
 * Use this GitHub repository's url (subsequent GitHub sign-in is required) to open the notebook directly from GitHub.
 * Click on the [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]() badge on the top of the GitHub notebook displayed on the website (subsequent GitHub sign-in is required).
