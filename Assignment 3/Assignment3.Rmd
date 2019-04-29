@@ -1,0 +1,63 @@
+---
+title: "Assignment 3"
+author: "Vinh Nguyen (ID 1029531)"
+output: html_notebook
+---
+
+
+1. Let X1, . . . , Xn and Y1, . . . , Ym are repeated measurements of the nitrogen dioxide
+obtained by device A and device B, respectively. Measurement errors are different for
+these two devices and we assume that the measurements X1, . . . , Xn, Y1, . . . , Ym are
+all mutually independent and Xi ∼ N(µ, σ2
+), Yj ∼ N(µ, 2σ
+2
+) for i = 1, . . . , n and
+j = 1, . . . , m. We want to estimate unknown parameters µ and σ
+2 using the likelihood
+approach.
+(a) Write down the joint pdf of X1, . . . , Xn, Y1, . . . , Ym and simplify it.
+$$
+\begin{align}
+f_{X_1, X_2, \dots, X_n, Y_1, Y_2, \dots, Y_m}(x_1, x_2, \dots, x_n, y_1, y_2, \dots, y_m) &= f_{X_1}(x_1)\dots f_{X_n}(x_n) f_{Y_1}(y_1)\dots f_{Y_m}(y_m) \text{ (independence)} \\
+&= \prod_{i=1}^{n}f_{X_i}(x_i) \prod_{i=1}^{m}f_{Y_i}(y_i) \\
+&= \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{1}{2}\frac{(x_i - \mu)^{2}}{\sigma^{2}}} \prod_{i=1}^{m} \frac{1}{\sqrt{2\pi}\sqrt{2}\sigma} e^{-\frac{1}{2}\frac{(y_i - \mu)^{2}}{2\sigma^{2}}} \\
+
+
+&= \bigg(\frac{1}{\sqrt{2\pi}\sigma}\bigg)^n e^{\sum_{i=1}^{n} -\frac{1}{2}\frac{(x_i - \mu)^{2}}{\sigma^{2}}}  \bigg(\frac{1}{\sqrt{2\pi}\sqrt{2}\sigma}\bigg)^m e^{\sum_{i=1}^{m} -\frac{1}{2}\frac{(y_i - \mu)^{2}}{2\sigma^{2}}} \\
+
+
+
+&= \frac{1}{\Big(\sqrt{2}\Big)^m \Big(\sqrt{2\pi}\Big)^{n+m} \sigma^{n+m}} e^{-\frac{1}{2}\bigg(n\frac{(x_i - \mu)^{2}}{\sigma^{2}}} e^{-\frac{1}{2}m\frac{(y_i - \mu)^{2}}{2\sigma^{2}}} \\
+
+
+
+
+&= \bigg(\frac{1}{\sigma\sqrt{2\pi}}\bigg)^n \bigg(e^{-(x - \mu)^{2}/(2\sigma^{2}) }\bigg)^n \bigg(\frac{1}{\sqrt{2}\sigma\sqrt{2\pi}}\bigg)^m \bigg(e^{-(y - \mu)^{2}/(4\sigma^{2}) }\bigg)^m \\
+&= \frac{1}{\Big(\sigma\sqrt{2\pi}\Big)^n} e^{-n(x - \mu)^{2}/(2\sigma^{2}) } \frac{1}{\Big(\sqrt{2}\sigma\sqrt{2\pi}\Big)^m} e^{-m(y - \mu)^{2}/(4\sigma^{2}) } \\
+&= \frac{1}{\Big(\sigma\sqrt{2\pi}\Big)^n} \frac{1}{\Big(\sqrt{2}\sigma\sqrt{2\pi}\Big)^m} e^{-n(x - \mu)^{2}/(2\sigma^{2}) } e^{-m(y - \mu)^{2}/(4\sigma^{2}) } \\
+&= \frac{1}{\sigma^n (2\pi)^{\frac{n}{2}} 2^{\frac{m}{2}}\sigma^m (2\pi)^\frac{m}{2}} e^{-n(x - \mu)^{2}/(2\sigma^{2}) -m(y - \mu)^{2}/(4\sigma^{2})} \\
+&= \frac{1}{2^{\frac{m}{2}} (2\pi)^{\frac{n+m}{2}} \sigma^{n+m}} e^{-\frac{1}{2}\frac{n(x - \mu)^{2}}{\sigma^{2}} -\frac{1}{2}\frac{m(y - \mu)^{2}}{2\sigma^{2}}} \\
+&= \frac{1}{2^{\frac{m}{2}} (2\pi)^{\frac{n+m}{2}} \sigma^{n+m}} e^{-\frac{1}{2} \bigg(\frac{n(x - \mu)^{2}}{\sigma^{2}} + \frac{m(y - \mu)^{2}}{2\sigma^{2}}\bigg)} \\
+\end{align}
+$$
+
+(b) Find the maximum likelihood estimators for µ and σ
+2
+(You are not required to
+demonstrate that the stationary points are maxima).
+
+
+(c) Let n = 10 and m = 8. Use the following data to find estimates of µ and σ
+2
+:
+X: 3.39 2.19 2.18 1.57 1.30 3.52 2.41 2.00 2.87 3.17
+Y: 1.01 1.97 3.51 1.53 1.88 2.34 1.14 1.29
+
+
+
+
+
+
+
+
+
