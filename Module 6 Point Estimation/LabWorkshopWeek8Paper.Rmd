@@ -1,0 +1,22 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(MASS)
+library(evd)
+```
+
+```{r}
+tasmania=read.csv("EditedRainfall.csv")
+s1 = tasmania[, 2] # create a vector for station 1 (Burnie)
+s2 = tasmania[, 3] # create a vector for station 2 (Cape Grim)
+```
+
+```{r}
+gumbel.fit = fitdistr(x = s1, densfun = "dgumbel", start = list(loc = 50,
+scale = 10), lower = 1e-04)
+```
+
