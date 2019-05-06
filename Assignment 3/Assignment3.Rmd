@@ -199,19 +199,76 @@ c, −1 < 0 < x,
 (a) Find the method of moments estimator for c. Is it an unbiased estimator?  
 $$
 \begin{align}
-E[X] = &= \int_{-\infty}^{\infty} xf(x; c)dx \\
-&= \int_{-1}^{1} x \bigg(ax^2 + bx + \frac{1}{2} - \frac{a}{3}\bigg) dx \\
-&= \int_{-1}^{1} \bigg(ax^3 + bx^2 + \bigg(\frac{1}{2} - \frac{a}{3}\bigg)x\bigg)dx \\
-&= \bigg[\frac{1}{4}ax^4 + \frac{1}{3}bx^3 + \frac{1}{2}\bigg(\frac{1}{2} - \frac{a}{3}\bigg)x^2\bigg]\Bigg|_{-1}^{1} \\
-&= \bigg[\frac{1}{4}a + \frac{1}{3}b + \frac{1}{2}\bigg(\frac{1}{2} - \frac{a}{3}\bigg)\bigg] - \bigg[\frac{1}{4}a - \frac{1}{3}b + \frac{1}{2}\bigg(\frac{1}{2} - \frac{a}{3}\bigg)\bigg] \\
-&= \frac{2}{3}b \\
+E[X] &= \int_{-\infty}^{\infty} xf(x; c)dx \\
+&= \int_{-1}^{0} xc dx + \int_{0}^{3} x\frac{1-c}{3} dx \\
+&= \frac{1}{2}cx^2\Big|_{-1}^{0} + \frac{1}{6} (1-c) x^2 \Big|_{0}^{3} \\
+&= \frac{1}{2}c(-1) + \frac{1}{6} (1-c) 9 \\
+&= -2c + \frac{3}{2} \\
+E[X] & \stackrel{set}{=} \overline{X} \\
+-2c + \frac{3}{2} &= \overline{X} \\
+\hat{c} &= -\frac{1}{2} \overline{X} + \frac{3}{4} \\
 \end{align}
 $$
 
-(b) Find the variance of the method of moments estimator as a function of c.
+(b) Find the variance of the method of moments estimator as a function of c.  
+$$
+\begin{align}
+var(\hat{c}) &= var\bigg(-\frac{1}{2} \overline{X} + \frac{3}{4}\bigg) \\
+&= \frac{1}{4} var(\overline{X}) \\
+&= \frac{1}{4} \frac{1}{n} var(X_1) \quad (X_1, \dots , X_n \text{ i.i.d}) \\
+\end{align}
+$$
+Calculate $var(X_1)$
+$$
+\begin{align}
+var(X_1) &= E[X_1^2] - (E[X_1])^2 \\
+E[X_1^2] &= \int_{-\infty}^{\infty} x^2 f(x; c) dx \\
+&= \int_{-1}^{0} x^2 c dx + \int_{0}^{3} x^2 \frac{1-c}{3} dx \\
+&= \frac{1}{3}cx^3\Big|_{-1}^{0} + \frac{1}{9} (1-c) x^3 \Big|_{0}^{3} \\
+&= -\frac{8}{3}c + 3 \\
+var(X_1) &= -\frac{8}{3}c + 3 - \bigg(-2c + \frac{3}{2}\bigg)^2 \quad (\text{plugging } E[X_1^2], E[X_1] \text{ in}) \\
+&= -\frac{8}{3}c + 3 - \bigg(4c^2 - 6c + \frac{9}{4}\bigg) \\
+&= -4c^2 + \frac{10}{3}c + \frac{3}{4} \\
+\end{align}
+$$
+**Variance of the method of moments estimator**  
+$$
+\begin{align}
+var(\hat{c}) &= \frac{1}{4n} \bigg(-4c^2 + \frac{10}{3}c + \frac{3}{4}\bigg) \quad (X_1, \dots , X_n \text{ i.i.d}) \\
+\end{align}
+$$
+
 (c) Let M be the number of variables Xi such that −1 < Xi < 0 and n − M be the
 number of variables Xi such that 0 ≤ Xi < 3. Write down the likelihood function
-for these data and find the maximum likelihood estimator of c.
+for these data and find the maximum likelihood estimator of c.  
+Let $Y_i$: variable ${X_i}$ such that $−1 < X_i < 0$ $\Rightarrow f_{Y_i}(y) = c \ ,\ −1 < y < 0$
+$Z_i$: variable ${X_i}$ such that $0 ≤ X_i < 3$ $\Rightarrow f_{Z_i}(z) = \frac{1-c}{3} \ ,\ 0 ≤ z < 3$
+Likelihood function
+$$
+\begin{align}
+L(c) &= \prod_{i=1}^{n} f_{X_{i}}(x_i; c) \\
+&= \prod_{i=1}^{m} f_{Y_{i}}(y_i) \prod_{i=1}^{n-m} f_{Z_{i}}(z_i) \quad (−1 < y_i < 0,\ 0 ≤ z_i < 3) \\
+&= c^m \bigg(\frac{1-c}{3}\bigg)^{n-m} \\
+&= \frac{1}{3^{n-m}} c^m (1-c)^{n-m} \\
+lnL(c) &= ln\bigg(\frac{1}{3^{n-m}}\bigg) + mlnc + (n-m)ln(1-c) \\
+\end{align}
+$$
+Maximum likelihood estimator  
+$$
+\begin{align}
+\frac{\partial lnL(c)}{\partial c} &= m\frac{1}{c} - (n-m)\frac{1}{1-c} \stackrel{set}{=} 0 \\
+m\frac{1}{c} &= (n-m)\frac{1}{1-c} \quad (c \neq 0, 1) \\
+c &= \frac{m}{n} \\
+\end{align}
+$$
+$$
+\begin{align}
+\frac{\partial^2 lnL(c)}{(\partial c)^2} &= m\frac{1}{c} - (n-m)\frac{1}{1-c} \stackrel{set}{=} 0 \\
+m\frac{1}{c} &= (n-m)\frac{1}{1-c} \quad (c \neq 0, 1) \\
+c &= \frac{m}{n} \\
+\end{align}
+$$
+
 (d) Is the maximum likelihood estimator of c unbiased? Find the variance of this
 estimator as a function of c. Hint: M follows a Binomial distribution Binom(n, p)
 with probability of success p = Pr(X < 0) where the pdf of X is f(x; c).
