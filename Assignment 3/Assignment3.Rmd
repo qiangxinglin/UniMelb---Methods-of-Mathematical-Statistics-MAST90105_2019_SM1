@@ -5,6 +5,10 @@ output: html_notebook
 ---
 
 
+```{r}
+# Preliminaries
+rm(list=ls())
+```
 1. Let X1, . . . , Xn and Y1, . . . , Ym are repeated measurements of the nitrogen dioxide
 obtained by device A and device B, respectively. Measurement errors are different for
 these two devices and we assume that the measurements X1, . . . , Xn, Y1, . . . , Ym are
@@ -209,6 +213,16 @@ E[X] & \stackrel{set}{=} \overline{X} \\
 \hat{c} &= -\frac{1}{2} \overline{X} + \frac{3}{4} \\
 \end{align}
 $$
+$$
+\begin{align}
+E(\hat{c}) &= E\bigg(-\frac{1}{2} \overline{X} + \frac{3}{4}\bigg) \\
+&= -\frac{1}{2} E(\overline{X}) + \frac{3}{4} \\
+&= -\frac{1}{2} E(X) + \frac{3}{4} \quad (\overline{X} \text{ is an unbiased estimator for } parameter E(X)) \\
+&= -\frac{1}{2} \bigg(-2c + \frac{3}{2}\bigg) + \frac{3}{4} \\
+&= c \\
+\Rightarrow \hat{c} & \text{ unbiased} \\
+\end{align}
+$$
 
 (b) Find the variance of the method of moments estimator as a function of c.  
 $$
@@ -234,7 +248,7 @@ $$
 **Variance of the method of moments estimator**  
 $$
 \begin{align}
-var(\hat{c}) &= \frac{1}{4n} \bigg(-4c^2 + \frac{10}{3}c + \frac{3}{4}\bigg) \quad (X_1, \dots , X_n \text{ i.i.d}) \\
+var(\hat{c}) &= \frac{1}{4n} \bigg(-4c^2 + \frac{10}{3}c + \frac{3}{4}\bigg) \\
 \end{align}
 $$
 
@@ -247,34 +261,118 @@ Likelihood function
 $$
 \begin{align}
 L(c) &= \prod_{i=1}^{n} f_{X_{i}}(x_i; c) \\
-&= \prod_{i=1}^{m} f_{Y_{i}}(y_i) \prod_{i=1}^{n-m} f_{Z_{i}}(z_i) \quad (−1 < y_i < 0,\ 0 ≤ z_i < 3) \\
-&= c^m \bigg(\frac{1-c}{3}\bigg)^{n-m} \\
-&= \frac{1}{3^{n-m}} c^m (1-c)^{n-m} \\
-lnL(c) &= ln\bigg(\frac{1}{3^{n-m}}\bigg) + mlnc + (n-m)ln(1-c) \\
+&= \prod_{i=1}^{M} f_{Y_{i}}(y_i) \prod_{i=1}^{n-M} f_{Z_{i}}(z_i) \quad (−1 < y_i < 0,\ 0 ≤ z_i < 3) \\
+&= c^M \bigg(\frac{1-c}{3}\bigg)^{n-M} \\
+&= \frac{1}{3^{n-M}} c^M (1-c)^{n-M} \\
+lnL(c) &= ln\bigg(\frac{1}{3^{n-M}}\bigg) + Mlnc + (n-M)ln(1-c) \\
 \end{align}
 $$
 Maximum likelihood estimator  
 $$
 \begin{align}
-\frac{\partial lnL(c)}{\partial c} &= m\frac{1}{c} - (n-m)\frac{1}{1-c} \stackrel{set}{=} 0 \\
-m\frac{1}{c} &= (n-m)\frac{1}{1-c} \quad (c \neq 0, 1) \\
-c &= \frac{m}{n} \\
-\end{align}
-$$
-$$
-\begin{align}
-\frac{\partial^2 lnL(c)}{(\partial c)^2} &= m\frac{1}{c} - (n-m)\frac{1}{1-c} \stackrel{set}{=} 0 \\
-m\frac{1}{c} &= (n-m)\frac{1}{1-c} \quad (c \neq 0, 1) \\
-c &= \frac{m}{n} \\
+\frac{\partial lnL(c)}{\partial c} &= M\frac{1}{c} - (n-M)\frac{1}{1-c} \stackrel{set}{=} 0 \\
+M\frac{1}{c} &= (n-M)\frac{1}{1-c} \quad (c \neq 0, 1) \\
+c &= \frac{1}{n} M \\
+\frac{\partial^2 lnL(c)}{(\partial c)^2} &= -M\frac{1}{c^2} + (n-M)\frac{1}{(1-c)^2} < 0 \ ,\ \forall c \neq 0, 1;\ n \geq M \\
+\Rightarrow \hat{c} &= \frac{1}{n} M \\
 \end{align}
 $$
 
 (d) Is the maximum likelihood estimator of c unbiased? Find the variance of this
 estimator as a function of c. Hint: M follows a Binomial distribution Binom(n, p)
-with probability of success p = Pr(X < 0) where the pdf of X is f(x; c).
+with probability of success p = Pr(X < 0) where the pdf of X is f(x; c).  
+$$
+\begin{align}
+E(\hat{c}) &= \frac{1}{n} E(M) \\
+\end{align}
+$$
+Calculate $p = P(−1 < X_i < 0)$
+$$
+\begin{align}
+p &= \int_{-1}^{0} f(x; c) dx \\
+&= \int_{-1}^{0} c dx \\
+&= c \\
+\end{align}
+$$
+$M \sim Bi(n, p=c) \Rightarrow E(M) = np = nc$
+$$
+\begin{align}
+E(\hat{c}) &= \frac{1}{n} nc \\
+&= c \\
+\Rightarrow \hat{c} & \text{ unbiased}
+\end{align}
+$$
+Variance of $\hat{c}$  
+$$
+\begin{align}
+var(\hat{c}) &= var\bigg(\frac{1}{n} M\bigg) \\
+&= \frac{1}{n^2} var(M) \\
+&= \frac{1}{n^2} nc(1-c) \\
+&= \frac{1}{n} c(1-c) \\
+\end{align}
+$$
+
 (e) Does the exact variance of the method of moments and maximum likelihood
 estimators of c attain its Cramer-Rao lower bound for 0 < c < 1? Why or why
-not?
+not?  
+Distribution of $-\frac{\partial^2}{(\partial c)^2} ln f(X;c)$ (for 0 < c < 1)  
+$$
+\begin{align}
+ln f(x;c) &= \left\{
+\begin{array}{cl}
+lnc &, −1 < x < 0 \\
+ln(1-c) - ln3 &, 0 ≤ x < 3 \\
+\end{array}
+\right. \\
+\frac{\partial}{\partial c} ln f(x;c) &= \left\{
+\begin{array}{cl}
+\frac{1}{c} &, −1 < x < 0 \\
+-\frac{1}{1-c} &, 0 ≤ x < 3 \\
+\end{array}
+\right. \\
+\frac{\partial^2}{(\partial c)^2} ln f(x;c) &= \left\{
+\begin{array}{cl}
+-\frac{1}{c^2} &, −1 < x < 0 \\
+-\frac{1}{(1-c)^2} &, 0 ≤ x < 3 \\
+\end{array}
+\right. \\
+\end{align}
+$$
+$$
+\begin{align}
+-\frac{\partial^2}{(\partial c)^2} ln f(X;c) &= \left\{
+\begin{array}{cl}
+\frac{1}{c^2} &, \text{ with probability } P(−1 < X < 0) = c \\
+\frac{1}{(1-c)^2} &, \text{ with probability } P(0 ≤ X < 3) = 1-c \\
+\end{array}
+\right. \\
+\end{align}
+$$
+Fisher Information (for 0 < c < 1)  
+$$
+\begin{align}
+I(c) &= E\bigg(-\frac{\partial^2}{(\partial c)^2} ln f(X;c)\bigg) \\
+&= \frac{1}{c^2}c + \frac{1}{(1-c)^2} (1-c) \\
+&= \frac{1}{c(1-c)} \\
+\end{align}
+$$
+Cramer-Rao Lower Bound  
+$$
+\begin{align}
+\frac{1}{nI(c)} = \frac{1}{n} c(1-c) \\
+\end{align}
+$$
+Variances of Method of Moments and Maximum Likelihood estimators  
+$$
+\begin{align}
+var(\hat{c}_{MM}) &= \frac{1}{4n} \bigg(-4c^2 + \frac{10}{3}c + \frac{3}{4}\bigg) \\
+&= \frac{1}{n} \bigg(-c^2 + \frac{5}{6}c + \frac{3}{16}\bigg) \\
+&\neq \frac{1}{n} c(1-c) = \frac{1}{nI(c)} \\
+\Rightarrow var(\hat{c}_{MM}) &> \frac{1}{nI(c)} \\
+var(\hat{c}_{MLE}) &= \frac{1}{n} c(1-c) = \frac{1}{nI(c)} \\
+\end{align}
+$$
+
 
 
 
