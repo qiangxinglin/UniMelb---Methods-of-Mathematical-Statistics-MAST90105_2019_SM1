@@ -7,6 +7,7 @@ output: html_notebook
 
 ```{r}
 # Preliminaries
+.rs.restartR()
 rm(list=ls())
 ```
 1. Let X1, . . . , Xn and Y1, . . . , Ym are repeated measurements of the nitrogen dioxide
@@ -64,7 +65,7 @@ $$
 \hat{\mu} = \frac{2\sum_{i=1}^{n} X_i + \sum_{i=1}^{m} Y_i}{2n + m} \\
 \end{align}
 $$
-Maximum likelihood estimator for σ^2:
+Maximum likelihood estimator for σ^2:  
 $$
 \begin{align}
 \frac{\partial ln(L(\mu, \sigma))}{\partial (\sigma^2)} &= -(n+m)\frac{1}{\sigma} \frac{1}{2 \sigma} - \frac{1}{\sigma^4} \sum_{i=1}^{n} -\frac{1}{2}(x_i - \mu)^{2} - \frac{1}{\sigma^4} \sum_{i=1}^{m} -\frac{1}{2}\frac{(y_i - \mu)^{2}}{2} \\
@@ -373,7 +374,104 @@ var(\hat{c}_{MLE}) &= \frac{1}{n} c(1-c) = \frac{1}{nI(c)} \\
 \end{align}
 $$
 
+4. Consider the cumulative distribution function (cdf)
+F(x; θ) = (
+0, x ≤ 1,
+1 − x
+−θ
+, x > 1.
+Assume that the prior density of the unknown parameter θ > 0 is
+f(θ) = (
+0.2e
+−0.2θ
+, θ > 0,
+0, otherwise.
+(a) Let X1, X2, X3 be a random sample from F(x; θ). The observed data are x1 =
+1.5, x2 = 1.2, x3 = 2.0. Find the posterior distribution of θ given the observed
+data. Hint: x
+k = e
+k ln x
+.  
+PDF of $X_i|\Theta$  
+$$
+\begin{align}
+f_{X_i|\Theta}(x_i|\theta) = \frac{dF_{X_i|\Theta}(x_i|\theta)}{dx_i} &= \frac{d}{dx_i} \left\{
+\begin{array}{cl}
+0 & ; x_i \leq 1 \\
+1 - x_i^{-\theta} & ; x_i > 1 \\
+\end{array}
+\right. \\
+&= \left\{
+\begin{array}{cl}
+0 & ; x_i \leq 1 \\
+\theta x_i^{-\theta-1} & ; x_i > 1 \\
+\end{array}
+\right. \\
+\end{align}
+$$
+**Posterior distribution of θ**  
+Let $X = (X_1, X_2, X_3) \Rightarrow f_X(x) = f_{X_1, X_2, X_3}(x_1, x_2, x_3)$  
+$$
+\begin{align}
+f_{\Theta|X}(\theta|x) &= \frac{f_{\Theta}(\theta) f_{X|\Theta}(x|\theta)}{f_X(x)} \\
+\end{align}
+$$
+$$
+\begin{align}
+f_{X|\Theta}(x|\theta) &= f_{X_1|\Theta}(x_1|\theta)\ f_{X_2|\Theta}(x_2|\theta)\ f_{X_3|\Theta}(x_3|\theta) \quad (\text{assuming }X_1, X_2, X_3 \ i.i.d) \\
+&= \theta x_1^{-\theta-1}\ \theta x_2^{-\theta-1}\ \theta x_3^{-\theta-1} \quad (x_1, x_2, x_3 > 1) \\
+&= \theta^3 (x_1 x_2 x_3)^{-\theta-1} \\
+\end{align}
+$$
+$$
+\begin{align}
+f_{\Theta|X}(\theta|x) &= \frac{1}{f_X(x)} 0.2e^{-0.2\theta}\ \theta^3 (x_1 x_2 x_3)^{-\theta-1} \quad (\theta > 0, x_1, x_2, x_3 > 1) \\
+&= \frac{1}{f_X(x)} 0.2 \theta^3 e^{-0.2\theta}\ \big(e^{ln(x_1 x_2 x_3)}\big)^{-\theta-1} \quad \big(x_1 x_2 x_3 = e^{ln(x_1 x_2 x_3)}\big) \\
+&= \frac{1}{f_X(x)} 0.2 e^{-ln(x_1 x_2 x_3)} \theta^3 e^{-(0.2 + ln(x_1 x_2 x_3))\theta} \\
+&= C \theta^3 e^{-(0.2 + ln(x_1 x_2 x_3))\theta} \quad (\text{C not dependent on } \theta) \\
+&\equiv C \theta^{\alpha-1} e^{-\beta\theta} \quad (\text{α > 0 shape, β > 0 rate}) \\
+\Rightarrow \Theta|X=x &\sim Gamma(\alpha=4, \beta=0.2 + ln(x_1 x_2 x_3)) \\
+\end{align}
+$$
+**Posterior distribution of θ given the observed data**  
+$$
+\begin{align}
+\Theta|X=(1.5, 1.2, 2.0) &\sim Gamma(\alpha=4, \beta=1.480934) \quad (\text{α > 0 shape, β > 0 rate}) \\
+\end{align}
+$$
+```{r}
+"Beta"
+log(1.5* 1.2* 2.0) +0.2
+```
 
+(b) Find the posterior mean of θ. Find the posterior probability Pr(2 < θ < 5).  
+$$
+\begin{align}
+\Theta|X=x &\sim Gamma(\alpha=4, \beta=0.2 + ln(x_1 x_2 x_3)) \quad (\text{α > 0 shape, β > 0 rate},\ x_1, x_2, x_3 > 1) \\
+\end{align}
+$$
+**Posterior mean of θ**  
+$$
+\begin{align}
+E(\Theta|X=x) &= \frac{\alpha}{\beta} = \frac{4}{0.2 + ln(x_1 x_2 x_3)}
+\end{align}
+$$
+CDF of posterior distribution  
+$\Theta|X=x$ denotes the waiting time for the $4^{th}$ event to occur, then:  
+$$
+\begin{align}
+F_{\Theta|X}(\theta|x) = P(\Theta<\theta|X=x) &= P(Y \geq 4|X=x) \quad (\text{where } Y|X=x \sim Pois(\theta \beta))\\
+&= 1 - P(Y \leq 3|X=x) \\
+&= 1 - e^{-\theta \beta} \sum_{k=0}^{3}\dfrac{(\theta \beta)^{k}}{k!} \\
+\end{align}
+$$
 
-
-
+**Posterior probability Pr(2 < θ < 5)**  
+$$
+\begin{align}
+P(2<\Theta<5|X=x) &= F_{\Theta|X}(5|x) - F_{\Theta|X}(2|x) \\
+&= \Bigg(1 - e^{-5 \beta} \sum_{k=0}^{3}\dfrac{(5 \beta)^{k}}{k!}\Bigg) - \Bigg(1 - e^{-2 \beta} \sum_{k=0}^{3}\dfrac{(2 \beta)^{k}}{k!}\Bigg) \\
+&= e^{-2 \beta} \sum_{k=0}^{3}\dfrac{(2 \beta)^{k}}{k!} - e^{-5 \beta} \sum_{k=0}^{3}\dfrac{(5 \beta)^{k}}{k!} \\
+&= e^{-2 \beta} \bigg(1 + 2\beta + 2\beta^2 + \frac{4}{3}\beta^3\bigg) - e^{-5 \beta} \bigg(1 + 5\beta + \frac{25}{2}\beta^2 + \frac{125}{6}\beta^3\bigg) \quad (\beta=0.2 + ln(x_1 x_2 x_3)) \\
+\end{align}
+$$
