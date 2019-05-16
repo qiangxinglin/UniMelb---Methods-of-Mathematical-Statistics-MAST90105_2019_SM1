@@ -1,0 +1,65 @@
+---
+title: "Assignment 3"
+author: "Vinh Nguyen (ID 1029531)"
+output: html_notebook
+---
+
+
+```{r}
+# Preliminaries
+.rs.restartR()
+rm(list=ls())
+```
+
+## Problem 1.  
+Carbon monoxide concentrations (in µg/m3
+) are measured on 6 different days in city
+A and on 4 different days in city B. The following measurements have been obtained
+in cities A and B, respectively: 3.9, 4,7, 7.1, 6.9, 4.3, 6.3 and 7.3, 6.9, 7.6, 9.1. We
+assume that these two samples are independent.
+(a) Assume that both samples are from normally distributed populations. We also
+assume that the same type of measurement device was used in both cities so that
+the measurement error (variance) is the same for both samples. Construct the
+95% confidence interval for δ = µA−µB where µA and µB are mean concentrations
+of carbon monoxide in cities A and B, respectively.  
+Let $X_1, X_2, \dots , X_6$: monoxide concentrations (in µg/m3
+) are measured on 6 different days in city A; $\overline{X}$: sample mean  
+$Y_1, Y_2, \dots , Y_4$: monoxide concentrations (in µg/m3
+) are measured on 4 different days in city B; $\overline{Y}$: sample mean  
+Estimator for δ = µA−µB:  
+$$
+\begin{align}
+\hat{\delta} &= \overline{X} - \overline{Y} \sim N(\mu_\hat{\delta}, \sigma^2_\hat{\delta}) \\
+\end{align}
+$$
+where $\overline{X}, \overline{Y}$ normally distributed ($\X_i, Y_i$ normal)  
+$$
+\begin{align}
+\mu_\hat{\delta} &= E(\overline{X} - \overline{Y}) \\
+&= E(\overline{X}) - E(\overline{Y}) \\
+&= \mu_A - \mu_B \\
+\sigma^2_\hat{\delta} &= var(\overline{X} - \overline{Y}) \\
+&= var(\overline{X}) + var(\overline{Y}) \\
+&= \frac{1}{6}\sigma^2 + \frac{1}{4}\sigma^2 \\
+&= \bigg(\frac{1}{6} + \frac{1}{4}\bigg)\sigma^2 \quad (\sigma^2 = var(X_i) = var(Y_i)) \\
+\end{align}
+$$
+$$
+\begin{align}
+\hat{\delta} &\sim N\bigg(\mu_A - \mu_B, \bigg(\frac{1}{6} + \frac{1}{4}\bigg)\sigma^2\bigg) \\
+\Rightarrow Z = \frac{\hat{\delta} - (\mu_A - \mu_B)}{\sqrt{\bigg(\frac{1}{6} + \frac{1}{4}\bigg)\sigma^2}} &\sim N(0, 1) \\
+\end{align}
+$$
+
+
+
+(b) Do we reject H0 : δ = 0 in favor of H1 : δ 6= 0 at the 5% significance level? Why
+or why not? Find the p-value of this test.
+(c) Now assume that both samples are from normally distributed populations, as
+before, but two different measurement devices were used and their measurements
+errors are known. We assume that the variances are 2 and 1, respectively, for the
+two samples. Construct the 95% confidence interval for δ.
+(d) Compare confidence intervals you obtained in (a) and (c). Which one is narrower?
+Briefly explain why.
+(e) Show that (3.9, 7.1) is an approximate 97% confidence interval for the median
+concentration of carbon monoxide in city A.
