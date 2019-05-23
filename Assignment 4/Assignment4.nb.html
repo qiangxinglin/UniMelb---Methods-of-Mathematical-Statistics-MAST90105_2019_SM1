@@ -1766,42 +1766,208 @@ $(document).ready(function () {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBQcmVsaW1pbmFyaWVzXG4ucnMucmVzdGFydFIoKVxucm0obGlzdD1scygpKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBQcmVsaW1pbmFyaWVzXG4ucnMucmVzdGFydFIoKVxuYGBgIn0= -->
 <pre class="r"><code># Preliminaries
-.rs.restartR()
-rm(list=ls())</code></pre>
+.rs.restartR()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTlVMTFxuIn0= -->
+<pre><code>NULL</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucm0obGlzdD1scygpKVxuYGBgIn0= -->
+<pre class="r"><code>rm(list=ls())</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <div id="problem-1." class="section level2">
 <h2>Problem 1.</h2>
 <p>Carbon monoxide concentrations (in µg/m3 ) are measured on 6 different days in city A and on 4 different days in city B. The following measurements have been obtained in cities A and B, respectively: 3.9, 4,7, 7.1, 6.9, 4.3, 6.3 and 7.3, 6.9, 7.6, 9.1. We assume that these two samples are independent. (a) Assume that both samples are from normally distributed populations. We also assume that the same type of measurement device was used in both cities so that the measurement error (variance) is the same for both samples. Construct the 95% confidence interval for δ = µA−µB where µA and µB are mean concentrations of carbon monoxide in cities A and B, respectively.<br />
-Let <span class="math inline">\(X_1, X_2, \dots , X_6\)</span>: monoxide concentrations (in µg/m3 ) are measured on 6 different days in city A; <span class="math inline">\(\overline{X}\)</span>: sample mean<br />
-<span class="math inline">\(Y_1, Y_2, \dots , Y_4\)</span>: monoxide concentrations (in µg/m3 ) are measured on 4 different days in city B; <span class="math inline">\(\overline{Y}\)</span>: sample mean<br />
+Let <span class="math inline">\(X_1, X_2, \dots , X_6\)</span>: monoxide concentrations (in µg/m3 ) are measured on 6 different days in city A; <span class="math inline">\(\overline{X}\)</span>: sample mean in A<br />
+<span class="math inline">\(Y_1, Y_2, \dots , Y_4\)</span>: monoxide concentrations (in µg/m3 ) are measured on 4 different days in city B; <span class="math inline">\(\overline{Y}\)</span>: sample mean in B<br />
 Estimator for δ = µA−µB:<br />
 <span class="math display">\[
 \begin{align}
-\hat{\delta} &amp;= \overline{X} - \overline{Y} \sim N(\mu_\hat{\delta}, \sigma^2_\hat{\delta}) \\
+\hat{\Delta} &amp;= \overline{X} - \overline{Y} \sim N(\mu_\hat{\Delta}, \sigma^2_\hat{\Delta}) \\
 \end{align}
-\]</span> where <span class="math inline">\(\overline{X}, \overline{Y}\)</span> normally distributed (<span class="math inline">\(\X_i, Y_i\)</span> normal)<br />
+\]</span> where <span class="math inline">\(\overline{X}, \overline{Y}\)</span> normally distributed (<span class="math inline">\(X_i, Y_i\)</span> normal)<br />
 <span class="math display">\[
 \begin{align}
-\mu_\hat{\delta} &amp;= E(\overline{X} - \overline{Y}) \\
+\mu_\hat{\Delta} &amp;= E(\overline{X} - \overline{Y}) \\
 &amp;= E(\overline{X}) - E(\overline{Y}) \\
 &amp;= \mu_A - \mu_B \\
-\sigma^2_\hat{\delta} &amp;= var(\overline{X} - \overline{Y}) \\
+\sigma^2_\hat{\Delta} &amp;= var(\overline{X} - \overline{Y}) \\
 &amp;= var(\overline{X}) + var(\overline{Y}) \\
 &amp;= \frac{1}{6}\sigma^2 + \frac{1}{4}\sigma^2 \\
 &amp;= \bigg(\frac{1}{6} + \frac{1}{4}\bigg)\sigma^2 \quad (\sigma^2 = var(X_i) = var(Y_i)) \\
 \end{align}
 \]</span> <span class="math display">\[
 \begin{align}
-\hat{\delta} &amp;\sim N\bigg(\mu_A - \mu_B, \bigg(\frac{1}{6} + \frac{1}{4}\bigg)\sigma^2\bigg) \\
-\Rightarrow Z = \frac{\hat{\delta} - (\mu_A - \mu_B)}{\sqrt{\bigg(\frac{1}{6} + \frac{1}{4}\bigg)\sigma^2}} &amp;\sim N(0, 1) \\
+\hat{\Delta} &amp;\sim N\bigg(\mu_A - \mu_B, \bigg(\frac{1}{6} + \frac{1}{4}\bigg)\sigma^2\bigg) \\
+\end{align}
+\]</span> Standard normal variable:<br />
+<span class="math display">\[
+\begin{align}
+Z = \frac{\hat{\Delta} - (\mu_A - \mu_B)}{\sqrt{\bigg(\frac{1}{6} + \frac{1}{4}\bigg)\sigma^2}} &amp;\sim N(0, 1) \\
+\end{align}
+\]</span> Chi-squared variable:<br />
+<span class="math display">\[
+\begin{align}
+U = 5\frac{S_X}{\sigma^2} + 3\frac{S_Y}{\sigma^2} &amp;\sim \chi^2_8 \\
+\end{align}
+\]</span> where <span class="math inline">\(S_X, S_Y\)</span> are sample variances in cities A and B respectively.<br />
+Student’s t-distribution:<br />
+<span class="math display">\[
+\begin{align}
+T &amp;= \frac{Z}{\sqrt{\frac{U}{8}}} \\
+&amp;= \frac{\frac{\hat{\Delta} - (\mu_A - \mu_B)}{\sqrt{\big(\frac{1}{6} + \frac{1}{4}\big)\sigma^2}}}{\sqrt{\frac{5\frac{S_X}{\sigma^2} + 3\frac{S_Y}{\sigma^2}}{8}}} \\
+&amp;= \frac{\hat{\Delta} - (\mu_A - \mu_B)}{\sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}} \sim t_8 \\
+\end{align}
+\]</span> <strong>95% confidence interval</strong><br />
+<span class="math display">\[
+\begin{align}
+P(−t_0 ≤ T ≤ t_0) &amp;= 0.95 \\
+P\Bigg(−t_0 ≤ \frac{\hat{\Delta} - (\mu_A - \mu_B)}{\sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}} ≤ t_0\Bigg) &amp;= 0.95 \\
+P\Bigg(\hat{\Delta} - t_0 \sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y} \leq \mu_A - \mu_B \leq \hat{\Delta} + t_0 \sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}\Bigg) &amp;= 0.95 \\
+\end{align}
+\]</span> <span class="math display">\[
+\begin{align}
+\Rightarrow CI_{0.95} = \Bigg[\hat{\Delta} - t_0 \sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}, \hat{\Delta} + t_0 \sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}\Bigg] \quad (\hat{\Delta} = \overline{X} - \overline{Y}, t_0 = q_{0.025}) \\
 \end{align}
 \]</span></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueCA8LSBjKDMuOSwgNC43LCA3LjEsIDYuOSwgNC4zLCA2LjMpXG55IDwtIGMoNy4zLCA2LjksIDcuNiwgOS4xKVxuXG54X21lYW4gPC0gbWVhbih4KVxueV9tZWFuIDwtIG1lYW4oeSlcbnhfdmFyIDwtIHZhcih4KVxueV92YXIgPC0gdmFyKHkpXG50MCA8LSBxY2hpc3EoMC4wMjUsIGRmID0gOClcblxuXCJFc3RpbWF0ZSBvZiBjb25maWRlbmNlIGludGVydmFsXCJcbmBgYCJ9 -->
+<pre class="r"><code>x &lt;- c(3.9, 4.7, 7.1, 6.9, 4.3, 6.3)
+y &lt;- c(7.3, 6.9, 7.6, 9.1)
+
+x_mean &lt;- mean(x)
+y_mean &lt;- mean(y)
+x_var &lt;- var(x)
+y_var &lt;- var(y)
+t0 &lt;- qchisq(0.025, df = 8)
+
+&quot;Estimate of confidence interval&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiRXN0aW1hdGUgb2YgY29uZmlkZW5jZSBpbnRlcnZhbFwiXG4ifQ== -->
+<pre><code>[1] &quot;Estimate of confidence interval&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueF9tZWFuIC0geV9tZWFuIC0gdDAgKiBzcXJ0KDI1Lzk2KnhfdmFyICsgNS8zMip5X3ZhcikgIyBsb3dlciBib3VuZFxuYGBgIn0= -->
+<pre class="r"><code>x_mean - y_mean - t0 * sqrt(25/96*x_var + 5/32*y_var) # lower bound</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIC0zLjk1NDcwNFxuIn0= -->
+<pre><code>[1] -3.954704</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueF9tZWFuICsgeV9tZWFuIC0gdDAgKiBzcXJ0KDI1Lzk2KnhfdmFyICsgNS8zMip5X3ZhcikgIyB1cHBlciBib3VuZFxuYGBgIn0= -->
+<pre class="r"><code>x_mean + y_mean - t0 * sqrt(25/96*x_var + 5/32*y_var) # upper bound</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDExLjQ5NTNcbiJ9 -->
+<pre><code>[1] 11.4953</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <ol start="2" style="list-style-type: lower-alpha">
-<li>Do we reject H0 : δ = 0 in favor of H1 : δ 6= 0 at the 5% significance level? Why or why not? Find the p-value of this test.</li>
+<li>Do we reject H0 : δ = 0 in favor of H1 : δ 6= 0 at the 5% significance level? Why or why not? Find the p-value of this test.<br />
+<span class="math display">\[
+\begin{align}
+\hat{\Delta} &amp;= \overline{X} - \overline{Y} \sim N\bigg(\mu_A - \mu_B, \frac{5}{12} \sigma^2\bigg) \\
+\end{align}
+\]</span> Decision rule:<br />
+<span class="math display">\[
+\begin{align}
+|\hat{\Delta}| &amp;= |\overline{X} - \overline{Y}| &gt; c \Rightarrow \text{reject } H_0 \\
+\end{align}
+\]</span> Probability of Type I error:<br />
+<span class="math display">\[
+\begin{align}
+P(|\overline{X} - \overline{Y}| &gt; c \ |\ \mu_A - \mu_B = 0) &amp;= \alpha \quad, \quad c \geq 0 \\
+P(\overline{X} - \overline{Y} &lt; -c\ \cup\ \overline{X} - \overline{Y} &gt; c \ |\ \mu_A - \mu_B = 0) &amp;= \alpha \quad , \quad \overline{X} - \overline{Y}\ |\ \mu_A - \mu_B = 0 \sim N\bigg(0, \frac{5}{12} \sigma^2\bigg) \\
+2P(\overline{X} - \overline{Y} &gt; c \ |\ \mu_A - \mu_B = 0) &amp;= \alpha \\
+P(\overline{X} - \overline{Y} &gt; c \ |\ \mu_A - \mu_B = 0) &amp;= \frac{\alpha}{2} \\
+P\Bigg(\frac{\overline{X} - \overline{Y}}{\sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}} &gt; \frac{c}{\sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}} \ \Bigg|\ \mu_A - \mu_B = 0\Bigg) &amp;= \frac{\alpha}{2} \\
+P\Bigg(T &gt; \frac{c}{\sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}} \ \Bigg|\ \mu_A - \mu_B = 0\Bigg) &amp;= \frac{\alpha}{2} \quad , \quad T \sim t_8 \\
+\frac{c}{\sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}} &amp;= q_{1-\frac{\alpha}{2}} \\
+c &amp;= q_{1-\frac{\alpha}{2}} \sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y} \\
+\end{align}
+\]</span> <strong>Rewrite decision rule</strong><br />
+<span class="math display">\[
+\begin{align}
+|\overline{X} - \overline{Y}| &amp;&gt; q_{1-\frac{\alpha}{2}} \sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y} \Rightarrow \text{reject } H_0 \\
+\frac{|\overline{X} - \overline{Y}|}{\sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}} &amp;&gt; q_{1-\frac{\alpha}{2}} \Rightarrow \text{reject } H_0 \\
+|T| = \Bigg|\frac{\overline{X} - \overline{Y}}{\sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}}\Bigg| &amp;&gt; q_{1-\frac{\alpha}{2}} \Rightarrow \text{reject } H_0 \quad (T \sim t_8) \\
+\end{align}
+\]</span></li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXCJ0LXF1YW50aWxlXCJcbmBgYCJ9 -->
+<pre class="r"><code>&quot;t-quantile&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwidC1xdWFudGlsZVwiXG4ifQ== -->
+<pre><code>[1] &quot;t-quantile&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudF9xdWFudGlsZSA8LSBxdCgxLTAuMDUvMiwgZGY9OClcbnRfcXVhbnRpbGVcbmBgYCJ9 -->
+<pre class="r"><code>t_quantile &lt;- qt(1-0.05/2, df=8)
+t_quantile</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIuMzA2MDA0XG4ifQ== -->
+<pre><code>[1] 2.306004</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><strong>Reject H0?</strong></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXCJ0ZXN0LXN0YXRpc3RpY1wiXG5gYGAifQ== -->
+<pre class="r"><code>&quot;test-statistic&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwidGVzdC1zdGF0aXN0aWNcIlxuIn0= -->
+<pre><code>[1] &quot;test-statistic&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudF9zdGF0IDwtIHhfbWVhbiAtIHlfbWVhbiAvIHNxcnQoMjUvOTYqeF92YXIgKyA1LzMyKnlfdmFyKSAjIHQtc3RhdGlzdGljXG50ZXN0X3N0YXQgPC0gYWJzKHRfc3RhdClcbnRlc3Rfc3RhdFxuYGBgIn0= -->
+<pre class="r"><code>t_stat &lt;- x_mean - y_mean / sqrt(25/96*x_var + 5/32*y_var) # t-statistic
+test_stat &lt;- abs(t_stat)
+test_stat</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDQuMDE3NDY5XG4ifQ== -->
+<pre><code>[1] 4.017469</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXCJSZWplY3Q/XCJcbmBgYCJ9 -->
+<pre class="r"><code>&quot;Reject?&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiUmVqZWN0P1wiXG4ifQ== -->
+<pre><code>[1] &quot;Reject?&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGVzdF9zdGF0ID4gdF9xdWFudGlsZVxuYGBgIn0= -->
+<pre class="r"><code>test_stat &gt; t_quantile</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFRSVUVcbiJ9 -->
+<pre><code>[1] TRUE</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><strong>p-value</strong><br />
+<span class="math display">\[
+\begin{align}
+P\Bigg(|T| \geq \Bigg|\frac{\overline{x} - \overline{y}}{\sqrt{\frac{25}{96} s_X + \frac{5}{32} s_Y}}\Bigg| \ |\ \mu_A - \mu_B = 0\Bigg) &amp;= 2P\Bigg(T \geq \Bigg|\frac{\overline{x} - \overline{y}}{\sqrt{\frac{25}{96} s_X + \frac{5}{32} s_Y}}\Bigg| \ |\ \mu_A - \mu_B = 0\Bigg) \quad (T \sim t_8) \\
+\end{align}
+\]</span></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXCJwLXZhbHVlXCJcbmBgYCJ9 -->
+<pre class="r"><code>&quot;p-value&quot;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwicC12YWx1ZVwiXG4ifQ== -->
+<pre><code>[1] &quot;p-value&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucF92YWwgPC0gcHQodGVzdF9zdGF0LCBkZj04LCBsb3dlci50YWlsID0gRkFMU0UpXG5wX3ZhbFxuYGBgIn0= -->
+<pre class="r"><code>p_val &lt;- pt(test_stat, df=8, lower.tail = FALSE)
+p_val</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuMDAxOTI3MzZcbiJ9 -->
+<pre><code>[1] 0.00192736</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="3" style="list-style-type: lower-alpha">
 <li>Now assume that both samples are from normally distributed populations, as before, but two different measurement devices were used and their measurements errors are known. We assume that the variances are 2 and 1, respectively, for the two samples. Construct the 95% confidence interval for δ.</li>
 <li>Compare confidence intervals you obtained in (a) and (c). Which one is narrower? Briefly explain why.</li>
 <li>Show that (3.9, 7.1) is an approximate 97% confidence interval for the median concentration of carbon monoxide in city A.</li>
@@ -1809,7 +1975,7 @@ Estimator for δ = µA−µB:<br />
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQXNzaWdubWVudCAzIgphdXRob3I6ICJWaW5oIE5ndXllbiAoSUQgMTAyOTUzMSkiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCgpgYGB7cn0KIyBQcmVsaW1pbmFyaWVzCi5ycy5yZXN0YXJ0UigpCnJtKGxpc3Q9bHMoKSkKYGBgCgojIyBQcm9ibGVtIDEuICAKQ2FyYm9uIG1vbm94aWRlIGNvbmNlbnRyYXRpb25zIChpbiDCtWcvbTMKKSBhcmUgbWVhc3VyZWQgb24gNiBkaWZmZXJlbnQgZGF5cyBpbiBjaXR5CkEgYW5kIG9uIDQgZGlmZmVyZW50IGRheXMgaW4gY2l0eSBCLiBUaGUgZm9sbG93aW5nIG1lYXN1cmVtZW50cyBoYXZlIGJlZW4gb2J0YWluZWQKaW4gY2l0aWVzIEEgYW5kIEIsIHJlc3BlY3RpdmVseTogMy45LCA0LDcsIDcuMSwgNi45LCA0LjMsIDYuMyBhbmQgNy4zLCA2LjksIDcuNiwgOS4xLiBXZQphc3N1bWUgdGhhdCB0aGVzZSB0d28gc2FtcGxlcyBhcmUgaW5kZXBlbmRlbnQuCihhKSBBc3N1bWUgdGhhdCBib3RoIHNhbXBsZXMgYXJlIGZyb20gbm9ybWFsbHkgZGlzdHJpYnV0ZWQgcG9wdWxhdGlvbnMuIFdlIGFsc28KYXNzdW1lIHRoYXQgdGhlIHNhbWUgdHlwZSBvZiBtZWFzdXJlbWVudCBkZXZpY2Ugd2FzIHVzZWQgaW4gYm90aCBjaXRpZXMgc28gdGhhdAp0aGUgbWVhc3VyZW1lbnQgZXJyb3IgKHZhcmlhbmNlKSBpcyB0aGUgc2FtZSBmb3IgYm90aCBzYW1wbGVzLiBDb25zdHJ1Y3QgdGhlCjk1JSBjb25maWRlbmNlIGludGVydmFsIGZvciDOtCA9IMK1QeKIksK1QiB3aGVyZSDCtUEgYW5kIMK1QiBhcmUgbWVhbiBjb25jZW50cmF0aW9ucwpvZiBjYXJib24gbW9ub3hpZGUgaW4gY2l0aWVzIEEgYW5kIEIsIHJlc3BlY3RpdmVseS4gIApMZXQgJFhfMSwgWF8yLCBcZG90cyAsIFhfNiQ6IG1vbm94aWRlIGNvbmNlbnRyYXRpb25zIChpbiDCtWcvbTMKKSBhcmUgbWVhc3VyZWQgb24gNiBkaWZmZXJlbnQgZGF5cyBpbiBjaXR5IEE7ICRcb3ZlcmxpbmV7WH0kOiBzYW1wbGUgbWVhbiAgCiRZXzEsIFlfMiwgXGRvdHMgLCBZXzQkOiBtb25veGlkZSBjb25jZW50cmF0aW9ucyAoaW4gwrVnL20zCikgYXJlIG1lYXN1cmVkIG9uIDQgZGlmZmVyZW50IGRheXMgaW4gY2l0eSBCOyAkXG92ZXJsaW5le1l9JDogc2FtcGxlIG1lYW4gIApFc3RpbWF0b3IgZm9yIM60ID0gwrVB4oiSwrVCOiAgCiQkClxiZWdpbnthbGlnbn0KXGhhdHtcZGVsdGF9ICY9IFxvdmVybGluZXtYfSAtIFxvdmVybGluZXtZfSBcc2ltIE4oXG11X1xoYXR7XGRlbHRhfSwgXHNpZ21hXjJfXGhhdHtcZGVsdGF9KSBcXApcZW5ke2FsaWdufQokJAp3aGVyZSAkXG92ZXJsaW5le1h9LCBcb3ZlcmxpbmV7WX0kIG5vcm1hbGx5IGRpc3RyaWJ1dGVkICgkXFhfaSwgWV9pJCBub3JtYWwpICAKJCQKXGJlZ2lue2FsaWdufQpcbXVfXGhhdHtcZGVsdGF9ICY9IEUoXG92ZXJsaW5le1h9IC0gXG92ZXJsaW5le1l9KSBcXAomPSBFKFxvdmVybGluZXtYfSkgLSBFKFxvdmVybGluZXtZfSkgXFwKJj0gXG11X0EgLSBcbXVfQiBcXApcc2lnbWFeMl9caGF0e1xkZWx0YX0gJj0gdmFyKFxvdmVybGluZXtYfSAtIFxvdmVybGluZXtZfSkgXFwKJj0gdmFyKFxvdmVybGluZXtYfSkgKyB2YXIoXG92ZXJsaW5le1l9KSBcXAomPSBcZnJhY3sxfXs2fVxzaWdtYV4yICsgXGZyYWN7MX17NH1cc2lnbWFeMiBcXAomPSBcYmlnZyhcZnJhY3sxfXs2fSArIFxmcmFjezF9ezR9XGJpZ2cpXHNpZ21hXjIgXHF1YWQgKFxzaWdtYV4yID0gdmFyKFhfaSkgPSB2YXIoWV9pKSkgXFwKXGVuZHthbGlnbn0KJCQKJCQKXGJlZ2lue2FsaWdufQpcaGF0e1xkZWx0YX0gJlxzaW0gTlxiaWdnKFxtdV9BIC0gXG11X0IsIFxiaWdnKFxmcmFjezF9ezZ9ICsgXGZyYWN7MX17NH1cYmlnZylcc2lnbWFeMlxiaWdnKSBcXApcUmlnaHRhcnJvdyBaID0gXGZyYWN7XGhhdHtcZGVsdGF9IC0gKFxtdV9BIC0gXG11X0IpfXtcc3FydHtcYmlnZyhcZnJhY3sxfXs2fSArIFxmcmFjezF9ezR9XGJpZ2cpXHNpZ21hXjJ9fSAmXHNpbSBOKDAsIDEpIFxcClxlbmR7YWxpZ259CiQkCgoKCihiKSBEbyB3ZSByZWplY3QgSDAgOiDOtCA9IDAgaW4gZmF2b3Igb2YgSDEgOiDOtCA2PSAwIGF0IHRoZSA1JSBzaWduaWZpY2FuY2UgbGV2ZWw/IFdoeQpvciB3aHkgbm90PyBGaW5kIHRoZSBwLXZhbHVlIG9mIHRoaXMgdGVzdC4KKGMpIE5vdyBhc3N1bWUgdGhhdCBib3RoIHNhbXBsZXMgYXJlIGZyb20gbm9ybWFsbHkgZGlzdHJpYnV0ZWQgcG9wdWxhdGlvbnMsIGFzCmJlZm9yZSwgYnV0IHR3byBkaWZmZXJlbnQgbWVhc3VyZW1lbnQgZGV2aWNlcyB3ZXJlIHVzZWQgYW5kIHRoZWlyIG1lYXN1cmVtZW50cwplcnJvcnMgYXJlIGtub3duLiBXZSBhc3N1bWUgdGhhdCB0aGUgdmFyaWFuY2VzIGFyZSAyIGFuZCAxLCByZXNwZWN0aXZlbHksIGZvciB0aGUKdHdvIHNhbXBsZXMuIENvbnN0cnVjdCB0aGUgOTUlIGNvbmZpZGVuY2UgaW50ZXJ2YWwgZm9yIM60LgooZCkgQ29tcGFyZSBjb25maWRlbmNlIGludGVydmFscyB5b3Ugb2J0YWluZWQgaW4gKGEpIGFuZCAoYykuIFdoaWNoIG9uZSBpcyBuYXJyb3dlcj8KQnJpZWZseSBleHBsYWluIHdoeS4KKGUpIFNob3cgdGhhdCAoMy45LCA3LjEpIGlzIGFuIGFwcHJveGltYXRlIDk3JSBjb25maWRlbmNlIGludGVydmFsIGZvciB0aGUgbWVkaWFuCmNvbmNlbnRyYXRpb24gb2YgY2FyYm9uIG1vbm94aWRlIGluIGNpdHkgQS4=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQXNzaWdubWVudCAzIgphdXRob3I6ICJWaW5oIE5ndXllbiAoSUQgMTAyOTUzMSkiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCgpgYGB7cn0KIyBQcmVsaW1pbmFyaWVzCi5ycy5yZXN0YXJ0UigpCnJtKGxpc3Q9bHMoKSkKYGBgCgojIyBQcm9ibGVtIDEuICAKQ2FyYm9uIG1vbm94aWRlIGNvbmNlbnRyYXRpb25zIChpbiDCtWcvbTMKKSBhcmUgbWVhc3VyZWQgb24gNiBkaWZmZXJlbnQgZGF5cyBpbiBjaXR5CkEgYW5kIG9uIDQgZGlmZmVyZW50IGRheXMgaW4gY2l0eSBCLiBUaGUgZm9sbG93aW5nIG1lYXN1cmVtZW50cyBoYXZlIGJlZW4gb2J0YWluZWQKaW4gY2l0aWVzIEEgYW5kIEIsIHJlc3BlY3RpdmVseTogMy45LCA0LDcsIDcuMSwgNi45LCA0LjMsIDYuMyBhbmQgNy4zLCA2LjksIDcuNiwgOS4xLiBXZQphc3N1bWUgdGhhdCB0aGVzZSB0d28gc2FtcGxlcyBhcmUgaW5kZXBlbmRlbnQuCihhKSBBc3N1bWUgdGhhdCBib3RoIHNhbXBsZXMgYXJlIGZyb20gbm9ybWFsbHkgZGlzdHJpYnV0ZWQgcG9wdWxhdGlvbnMuIFdlIGFsc28KYXNzdW1lIHRoYXQgdGhlIHNhbWUgdHlwZSBvZiBtZWFzdXJlbWVudCBkZXZpY2Ugd2FzIHVzZWQgaW4gYm90aCBjaXRpZXMgc28gdGhhdAp0aGUgbWVhc3VyZW1lbnQgZXJyb3IgKHZhcmlhbmNlKSBpcyB0aGUgc2FtZSBmb3IgYm90aCBzYW1wbGVzLiBDb25zdHJ1Y3QgdGhlCjk1JSBjb25maWRlbmNlIGludGVydmFsIGZvciDOtCA9IMK1QeKIksK1QiB3aGVyZSDCtUEgYW5kIMK1QiBhcmUgbWVhbiBjb25jZW50cmF0aW9ucwpvZiBjYXJib24gbW9ub3hpZGUgaW4gY2l0aWVzIEEgYW5kIEIsIHJlc3BlY3RpdmVseS4gIApMZXQgJFhfMSwgWF8yLCBcZG90cyAsIFhfNiQ6IG1vbm94aWRlIGNvbmNlbnRyYXRpb25zIChpbiDCtWcvbTMKKSBhcmUgbWVhc3VyZWQgb24gNiBkaWZmZXJlbnQgZGF5cyBpbiBjaXR5IEE7ICRcb3ZlcmxpbmV7WH0kOiBzYW1wbGUgbWVhbiBpbiBBICAKJFlfMSwgWV8yLCBcZG90cyAsIFlfNCQ6IG1vbm94aWRlIGNvbmNlbnRyYXRpb25zIChpbiDCtWcvbTMKKSBhcmUgbWVhc3VyZWQgb24gNCBkaWZmZXJlbnQgZGF5cyBpbiBjaXR5IEI7ICRcb3ZlcmxpbmV7WX0kOiBzYW1wbGUgbWVhbiBpbiBCICAKRXN0aW1hdG9yIGZvciDOtCA9IMK1QeKIksK1QjogIAokJApcYmVnaW57YWxpZ259ClxoYXR7XERlbHRhfSAmPSBcb3ZlcmxpbmV7WH0gLSBcb3ZlcmxpbmV7WX0gXHNpbSBOKFxtdV9caGF0e1xEZWx0YX0sIFxzaWdtYV4yX1xoYXR7XERlbHRhfSkgXFwKXGVuZHthbGlnbn0KJCQKd2hlcmUgJFxvdmVybGluZXtYfSwgXG92ZXJsaW5le1l9JCBub3JtYWxseSBkaXN0cmlidXRlZCAoJFhfaSwgWV9pJCBub3JtYWwpICAKJCQKXGJlZ2lue2FsaWdufQpcbXVfXGhhdHtcRGVsdGF9ICY9IEUoXG92ZXJsaW5le1h9IC0gXG92ZXJsaW5le1l9KSBcXAomPSBFKFxvdmVybGluZXtYfSkgLSBFKFxvdmVybGluZXtZfSkgXFwKJj0gXG11X0EgLSBcbXVfQiBcXApcc2lnbWFeMl9caGF0e1xEZWx0YX0gJj0gdmFyKFxvdmVybGluZXtYfSAtIFxvdmVybGluZXtZfSkgXFwKJj0gdmFyKFxvdmVybGluZXtYfSkgKyB2YXIoXG92ZXJsaW5le1l9KSBcXAomPSBcZnJhY3sxfXs2fVxzaWdtYV4yICsgXGZyYWN7MX17NH1cc2lnbWFeMiBcXAomPSBcYmlnZyhcZnJhY3sxfXs2fSArIFxmcmFjezF9ezR9XGJpZ2cpXHNpZ21hXjIgXHF1YWQgKFxzaWdtYV4yID0gdmFyKFhfaSkgPSB2YXIoWV9pKSkgXFwKXGVuZHthbGlnbn0KJCQKJCQKXGJlZ2lue2FsaWdufQpcaGF0e1xEZWx0YX0gJlxzaW0gTlxiaWdnKFxtdV9BIC0gXG11X0IsIFxiaWdnKFxmcmFjezF9ezZ9ICsgXGZyYWN7MX17NH1cYmlnZylcc2lnbWFeMlxiaWdnKSBcXApcZW5ke2FsaWdufQokJApTdGFuZGFyZCBub3JtYWwgdmFyaWFibGU6ICAKJCQKXGJlZ2lue2FsaWdufQpaID0gXGZyYWN7XGhhdHtcRGVsdGF9IC0gKFxtdV9BIC0gXG11X0IpfXtcc3FydHtcYmlnZyhcZnJhY3sxfXs2fSArIFxmcmFjezF9ezR9XGJpZ2cpXHNpZ21hXjJ9fSAmXHNpbSBOKDAsIDEpIFxcClxlbmR7YWxpZ259CiQkCkNoaS1zcXVhcmVkIHZhcmlhYmxlOiAgCiQkClxiZWdpbnthbGlnbn0KVSA9IDVcZnJhY3tTX1h9e1xzaWdtYV4yfSArIDNcZnJhY3tTX1l9e1xzaWdtYV4yfSAmXHNpbSBcY2hpXjJfOCBcXApcZW5ke2FsaWdufQokJAp3aGVyZSAkU19YLCBTX1kkIGFyZSBzYW1wbGUgdmFyaWFuY2VzIGluIGNpdGllcyBBIGFuZCBCIHJlc3BlY3RpdmVseS4gIApTdHVkZW50J3MgdC1kaXN0cmlidXRpb246ICAKJCQKXGJlZ2lue2FsaWdufQpUICY9IFxmcmFje1p9e1xzcXJ0e1xmcmFje1V9ezh9fX0gXFwKJj0gXGZyYWN7XGZyYWN7XGhhdHtcRGVsdGF9IC0gKFxtdV9BIC0gXG11X0IpfXtcc3FydHtcYmlnKFxmcmFjezF9ezZ9ICsgXGZyYWN7MX17NH1cYmlnKVxzaWdtYV4yfX19e1xzcXJ0e1xmcmFjezVcZnJhY3tTX1h9e1xzaWdtYV4yfSArIDNcZnJhY3tTX1l9e1xzaWdtYV4yfX17OH19fSBcXAomPSBcZnJhY3tcaGF0e1xEZWx0YX0gLSAoXG11X0EgLSBcbXVfQil9e1xzcXJ0e1xmcmFjezI1fXs5Nn0gU19YICsgXGZyYWN7NX17MzJ9IFNfWX19IFxzaW0gdF84IFxcClxlbmR7YWxpZ259CiQkCioqOTUlIGNvbmZpZGVuY2UgaW50ZXJ2YWwqKiAgCiQkClxiZWdpbnthbGlnbn0KUCjiiJJ0XzAg4omkIFQg4omkIHRfMCkgJj0gMC45NSBcXApQXEJpZ2co4oiSdF8wIOKJpCBcZnJhY3tcaGF0e1xEZWx0YX0gLSAoXG11X0EgLSBcbXVfQil9e1xzcXJ0e1xmcmFjezI1fXs5Nn0gU19YICsgXGZyYWN7NX17MzJ9IFNfWX19IOKJpCB0XzBcQmlnZykgJj0gMC45NSBcXApQXEJpZ2coXGhhdHtcRGVsdGF9IC0gdF8wIFxzcXJ0e1xmcmFjezI1fXs5Nn0gU19YICsgXGZyYWN7NX17MzJ9IFNfWX0gXGxlcSBcbXVfQSAtIFxtdV9CIFxsZXEgXGhhdHtcRGVsdGF9ICsgdF8wIFxzcXJ0e1xmcmFjezI1fXs5Nn0gU19YICsgXGZyYWN7NX17MzJ9IFNfWX1cQmlnZykgJj0gMC45NSBcXApcZW5ke2FsaWdufQokJAokJApcYmVnaW57YWxpZ259ClxSaWdodGFycm93IENJX3swLjk1fSA9IFxCaWdnW1xoYXR7XERlbHRhfSAtIHRfMCBcc3FydHtcZnJhY3syNX17OTZ9IFNfWCArIFxmcmFjezV9ezMyfSBTX1l9LCBcaGF0e1xEZWx0YX0gKyB0XzAgXHNxcnR7XGZyYWN7MjV9ezk2fSBTX1ggKyBcZnJhY3s1fXszMn0gU19ZfVxCaWdnXSBccXVhZCAoXGhhdHtcRGVsdGF9ID0gXG92ZXJsaW5le1h9IC0gXG92ZXJsaW5le1l9LCB0XzAgPSBxX3swLjAyNX0pIFxcClxlbmR7YWxpZ259CiQkCmBgYHtyfQp4IDwtIGMoMy45LCA0LjcsIDcuMSwgNi45LCA0LjMsIDYuMykKeSA8LSBjKDcuMywgNi45LCA3LjYsIDkuMSkKCnhfbWVhbiA8LSBtZWFuKHgpCnlfbWVhbiA8LSBtZWFuKHkpCnhfdmFyIDwtIHZhcih4KQp5X3ZhciA8LSB2YXIoeSkKdDAgPC0gcWNoaXNxKDAuMDI1LCBkZiA9IDgpCgoiRXN0aW1hdGUgb2YgY29uZmlkZW5jZSBpbnRlcnZhbCIKeF9tZWFuIC0geV9tZWFuIC0gdDAgKiBzcXJ0KDI1Lzk2KnhfdmFyICsgNS8zMip5X3ZhcikgIyBsb3dlciBib3VuZAp4X21lYW4gKyB5X21lYW4gLSB0MCAqIHNxcnQoMjUvOTYqeF92YXIgKyA1LzMyKnlfdmFyKSAjIHVwcGVyIGJvdW5kCmBgYAoKKGIpIERvIHdlIHJlamVjdCBIMCA6IM60ID0gMCBpbiBmYXZvciBvZiBIMSA6IM60IDY9IDAgYXQgdGhlIDUlIHNpZ25pZmljYW5jZSBsZXZlbD8gV2h5Cm9yIHdoeSBub3Q/IEZpbmQgdGhlIHAtdmFsdWUgb2YgdGhpcyB0ZXN0LiAgCiQkClxiZWdpbnthbGlnbn0KXGhhdHtcRGVsdGF9ICY9IFxvdmVybGluZXtYfSAtIFxvdmVybGluZXtZfSBcc2ltIE5cYmlnZyhcbXVfQSAtIFxtdV9CLCBcZnJhY3s1fXsxMn0gXHNpZ21hXjJcYmlnZykgXFwKXGVuZHthbGlnbn0KJCQKRGVjaXNpb24gcnVsZTogIAokJApcYmVnaW57YWxpZ259CnxcaGF0e1xEZWx0YX18ICY9IHxcb3ZlcmxpbmV7WH0gLSBcb3ZlcmxpbmV7WX18ID4gYyBcUmlnaHRhcnJvdyBcdGV4dHtyZWplY3QgfSBIXzAgXFwKXGVuZHthbGlnbn0KJCQKUHJvYmFiaWxpdHkgb2YgVHlwZSBJIGVycm9yOiAgCiQkClxiZWdpbnthbGlnbn0KUCh8XG92ZXJsaW5le1h9IC0gXG92ZXJsaW5le1l9fCA+IGMgXCB8XCBcbXVfQSAtIFxtdV9CID0gMCkgJj0gXGFscGhhIFxxdWFkLCBccXVhZCBjIFxnZXEgMCBcXApQKFxvdmVybGluZXtYfSAtIFxvdmVybGluZXtZfSA8IC1jXCBcY3VwXCBcb3ZlcmxpbmV7WH0gLSBcb3ZlcmxpbmV7WX0gPiBjIFwgfFwgXG11X0EgLSBcbXVfQiA9IDApICY9IFxhbHBoYSBccXVhZCAsIFxxdWFkIFxvdmVybGluZXtYfSAtIFxvdmVybGluZXtZfVwgfFwgXG11X0EgLSBcbXVfQiA9IDAgXHNpbSBOXGJpZ2coMCwgXGZyYWN7NX17MTJ9IFxzaWdtYV4yXGJpZ2cpIFxcCjJQKFxvdmVybGluZXtYfSAtIFxvdmVybGluZXtZfSA+IGMgXCB8XCBcbXVfQSAtIFxtdV9CID0gMCkgJj0gXGFscGhhIFxcClAoXG92ZXJsaW5le1h9IC0gXG92ZXJsaW5le1l9ID4gYyBcIHxcIFxtdV9BIC0gXG11X0IgPSAwKSAmPSBcZnJhY3tcYWxwaGF9ezJ9IFxcClBcQmlnZyhcZnJhY3tcb3ZlcmxpbmV7WH0gLSBcb3ZlcmxpbmV7WX19e1xzcXJ0e1xmcmFjezI1fXs5Nn0gU19YICsgXGZyYWN7NX17MzJ9IFNfWX19ID4gXGZyYWN7Y317XHNxcnR7XGZyYWN7MjV9ezk2fSBTX1ggKyBcZnJhY3s1fXszMn0gU19ZfX0gXCBcQmlnZ3xcIFxtdV9BIC0gXG11X0IgPSAwXEJpZ2cpICY9IFxmcmFje1xhbHBoYX17Mn0gXFwKUFxCaWdnKFQgPiBcZnJhY3tjfXtcc3FydHtcZnJhY3syNX17OTZ9IFNfWCArIFxmcmFjezV9ezMyfSBTX1l9fSBcIFxCaWdnfFwgXG11X0EgLSBcbXVfQiA9IDBcQmlnZykgJj0gXGZyYWN7XGFscGhhfXsyfSBccXVhZCAsIFxxdWFkIFQgXHNpbSB0XzggXFwKXGZyYWN7Y317XHNxcnR7XGZyYWN7MjV9ezk2fSBTX1ggKyBcZnJhY3s1fXszMn0gU19ZfX0gJj0gcV97MS1cZnJhY3tcYWxwaGF9ezJ9fSBcXApjICY9IHFfezEtXGZyYWN7XGFscGhhfXsyfX0gXHNxcnR7XGZyYWN7MjV9ezk2fSBTX1ggKyBcZnJhY3s1fXszMn0gU19ZfSBcXApcZW5ke2FsaWdufQokJAoqKlJld3JpdGUgZGVjaXNpb24gcnVsZSoqICAKJCQKXGJlZ2lue2FsaWdufQp8XG92ZXJsaW5le1h9IC0gXG92ZXJsaW5le1l9fCAmPiBxX3sxLVxmcmFje1xhbHBoYX17Mn19IFxzcXJ0e1xmcmFjezI1fXs5Nn0gU19YICsgXGZyYWN7NX17MzJ9IFNfWX0gXFJpZ2h0YXJyb3cgXHRleHR7cmVqZWN0IH0gSF8wIFxcClxmcmFje3xcb3ZlcmxpbmV7WH0gLSBcb3ZlcmxpbmV7WX18fXtcc3FydHtcZnJhY3syNX17OTZ9IFNfWCArIFxmcmFjezV9ezMyfSBTX1l9fSAmPiBxX3sxLVxmcmFje1xhbHBoYX17Mn19IFxSaWdodGFycm93IFx0ZXh0e3JlamVjdCB9IEhfMCBcXAp8VHwgPSBcQmlnZ3xcZnJhY3tcb3ZlcmxpbmV7WH0gLSBcb3ZlcmxpbmV7WX19e1xzcXJ0e1xmcmFjezI1fXs5Nn0gU19YICsgXGZyYWN7NX17MzJ9IFNfWX19XEJpZ2d8ICY+IHFfezEtXGZyYWN7XGFscGhhfXsyfX0gXFJpZ2h0YXJyb3cgXHRleHR7cmVqZWN0IH0gSF8wIFxxdWFkIChUIFxzaW0gdF84KSBcXApcZW5ke2FsaWdufQokJApgYGB7cn0KInQtcXVhbnRpbGUiCnRfcXVhbnRpbGUgPC0gcXQoMS0wLjA1LzIsIGRmPTgpCnRfcXVhbnRpbGUKYGBgCioqUmVqZWN0IEgwPyoqICAKYGBge3J9CiJ0ZXN0LXN0YXRpc3RpYyIKdF9zdGF0IDwtIHhfbWVhbiAtIHlfbWVhbiAvIHNxcnQoMjUvOTYqeF92YXIgKyA1LzMyKnlfdmFyKSAjIHQtc3RhdGlzdGljCnRlc3Rfc3RhdCA8LSBhYnModF9zdGF0KQp0ZXN0X3N0YXQKCiJSZWplY3Q/Igp0ZXN0X3N0YXQgPiB0X3F1YW50aWxlCmBgYAoqKnAtdmFsdWUqKiAgCiQkClxiZWdpbnthbGlnbn0KUFxCaWdnKHxUfCBcZ2VxIFxCaWdnfFxmcmFje1xvdmVybGluZXt4fSAtIFxvdmVybGluZXt5fX17XHNxcnR7XGZyYWN7MjV9ezk2fSBzX1ggKyBcZnJhY3s1fXszMn0gc19ZfX1cQmlnZ3wgXCB8XCBcbXVfQSAtIFxtdV9CID0gMFxCaWdnKSAmPSAyUFxCaWdnKFQgXGdlcSBcQmlnZ3xcZnJhY3tcb3ZlcmxpbmV7eH0gLSBcb3ZlcmxpbmV7eX19e1xzcXJ0e1xmcmFjezI1fXs5Nn0gc19YICsgXGZyYWN7NX17MzJ9IHNfWX19XEJpZ2d8IFwgfFwgXG11X0EgLSBcbXVfQiA9IDBcQmlnZykgXHF1YWQgKFQgXHNpbSB0XzgpIFxcClxlbmR7YWxpZ259CiQkCmBgYHtyfQoicC12YWx1ZSIKcF92YWwgPC0gcHQodGVzdF9zdGF0LCBkZj04LCBsb3dlci50YWlsID0gRkFMU0UpCnBfdmFsCmBgYAoKKGMpIE5vdyBhc3N1bWUgdGhhdCBib3RoIHNhbXBsZXMgYXJlIGZyb20gbm9ybWFsbHkgZGlzdHJpYnV0ZWQgcG9wdWxhdGlvbnMsIGFzCmJlZm9yZSwgYnV0IHR3byBkaWZmZXJlbnQgbWVhc3VyZW1lbnQgZGV2aWNlcyB3ZXJlIHVzZWQgYW5kIHRoZWlyIG1lYXN1cmVtZW50cwplcnJvcnMgYXJlIGtub3duLiBXZSBhc3N1bWUgdGhhdCB0aGUgdmFyaWFuY2VzIGFyZSAyIGFuZCAxLCByZXNwZWN0aXZlbHksIGZvciB0aGUKdHdvIHNhbXBsZXMuIENvbnN0cnVjdCB0aGUgOTUlIGNvbmZpZGVuY2UgaW50ZXJ2YWwgZm9yIM60LgooZCkgQ29tcGFyZSBjb25maWRlbmNlIGludGVydmFscyB5b3Ugb2J0YWluZWQgaW4gKGEpIGFuZCAoYykuIFdoaWNoIG9uZSBpcyBuYXJyb3dlcj8KQnJpZWZseSBleHBsYWluIHdoeS4KKGUpIFNob3cgdGhhdCAoMy45LCA3LjEpIGlzIGFuIGFwcHJveGltYXRlIDk3JSBjb25maWRlbmNlIGludGVydmFsIGZvciB0aGUgbWVkaWFuCmNvbmNlbnRyYXRpb24gb2YgY2FyYm9uIG1vbm94aWRlIGluIGNpdHkgQS4=</div>
 
 
 

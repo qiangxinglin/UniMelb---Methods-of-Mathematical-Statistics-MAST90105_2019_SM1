@@ -23,22 +23,22 @@ the measurement error (variance) is the same for both samples. Construct the
 95% confidence interval for δ = µA−µB where µA and µB are mean concentrations
 of carbon monoxide in cities A and B, respectively.  
 Let $X_1, X_2, \dots , X_6$: monoxide concentrations (in µg/m3
-) are measured on 6 different days in city A; $\overline{X}$: sample mean  
+) are measured on 6 different days in city A; $\overline{X}$: sample mean in A  
 $Y_1, Y_2, \dots , Y_4$: monoxide concentrations (in µg/m3
-) are measured on 4 different days in city B; $\overline{Y}$: sample mean  
+) are measured on 4 different days in city B; $\overline{Y}$: sample mean in B  
 Estimator for δ = µA−µB:  
 $$
 \begin{align}
-\hat{\delta} &= \overline{X} - \overline{Y} \sim N(\mu_\hat{\delta}, \sigma^2_\hat{\delta}) \\
+\hat{\Delta} &= \overline{X} - \overline{Y} \sim N(\mu_\hat{\Delta}, \sigma^2_\hat{\Delta}) \\
 \end{align}
 $$
-where $\overline{X}, \overline{Y}$ normally distributed ($\X_i, Y_i$ normal)  
+where $\overline{X}, \overline{Y}$ normally distributed ($X_i, Y_i$ normal)  
 $$
 \begin{align}
-\mu_\hat{\delta} &= E(\overline{X} - \overline{Y}) \\
+\mu_\hat{\Delta} &= E(\overline{X} - \overline{Y}) \\
 &= E(\overline{X}) - E(\overline{Y}) \\
 &= \mu_A - \mu_B \\
-\sigma^2_\hat{\delta} &= var(\overline{X} - \overline{Y}) \\
+\sigma^2_\hat{\Delta} &= var(\overline{X} - \overline{Y}) \\
 &= var(\overline{X}) + var(\overline{Y}) \\
 &= \frac{1}{6}\sigma^2 + \frac{1}{4}\sigma^2 \\
 &= \bigg(\frac{1}{6} + \frac{1}{4}\bigg)\sigma^2 \quad (\sigma^2 = var(X_i) = var(Y_i)) \\
@@ -46,15 +46,119 @@ $$
 $$
 $$
 \begin{align}
-\hat{\delta} &\sim N\bigg(\mu_A - \mu_B, \bigg(\frac{1}{6} + \frac{1}{4}\bigg)\sigma^2\bigg) \\
-\Rightarrow Z = \frac{\hat{\delta} - (\mu_A - \mu_B)}{\sqrt{\bigg(\frac{1}{6} + \frac{1}{4}\bigg)\sigma^2}} &\sim N(0, 1) \\
+\hat{\Delta} &\sim N\bigg(\mu_A - \mu_B, \bigg(\frac{1}{6} + \frac{1}{4}\bigg)\sigma^2\bigg) \\
 \end{align}
 $$
+Standard normal variable:  
+$$
+\begin{align}
+Z = \frac{\hat{\Delta} - (\mu_A - \mu_B)}{\sqrt{\bigg(\frac{1}{6} + \frac{1}{4}\bigg)\sigma^2}} &\sim N(0, 1) \\
+\end{align}
+$$
+Chi-squared variable:  
+$$
+\begin{align}
+U = 5\frac{S_X}{\sigma^2} + 3\frac{S_Y}{\sigma^2} &\sim \chi^2_8 \\
+\end{align}
+$$
+where $S_X, S_Y$ are sample variances in cities A and B respectively.  
+Student's t-distribution:  
+$$
+\begin{align}
+T &= \frac{Z}{\sqrt{\frac{U}{8}}} \\
+&= \frac{\frac{\hat{\Delta} - (\mu_A - \mu_B)}{\sqrt{\big(\frac{1}{6} + \frac{1}{4}\big)\sigma^2}}}{\sqrt{\frac{5\frac{S_X}{\sigma^2} + 3\frac{S_Y}{\sigma^2}}{8}}} \\
+&= \frac{\hat{\Delta} - (\mu_A - \mu_B)}{\sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}} \sim t_8 \\
+\end{align}
+$$
+**95% confidence interval**  
+$$
+\begin{align}
+P(−t_0 ≤ T ≤ t_0) &= 0.95 \\
+P\Bigg(−t_0 ≤ \frac{\hat{\Delta} - (\mu_A - \mu_B)}{\sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}} ≤ t_0\Bigg) &= 0.95 \\
+P\Bigg(\hat{\Delta} - t_0 \sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y} \leq \mu_A - \mu_B \leq \hat{\Delta} + t_0 \sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}\Bigg) &= 0.95 \\
+\end{align}
+$$
+$$
+\begin{align}
+\Rightarrow CI_{0.95} = \Bigg[\hat{\Delta} - t_0 \sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}, \hat{\Delta} + t_0 \sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}\Bigg] \quad (\hat{\Delta} = \overline{X} - \overline{Y}, t_0 = q_{0.025}) \\
+\end{align}
+$$
+```{r}
+x <- c(3.9, 4.7, 7.1, 6.9, 4.3, 6.3)
+y <- c(7.3, 6.9, 7.6, 9.1)
 
+x_mean <- mean(x)
+y_mean <- mean(y)
+x_var <- var(x)
+y_var <- var(y)
+t0 <- qchisq(0.025, df = 8)
 
+"Estimate of confidence interval"
+x_mean - y_mean - t0 * sqrt(25/96*x_var + 5/32*y_var) # lower bound
+x_mean + y_mean - t0 * sqrt(25/96*x_var + 5/32*y_var) # upper bound
+```
 
 (b) Do we reject H0 : δ = 0 in favor of H1 : δ 6= 0 at the 5% significance level? Why
-or why not? Find the p-value of this test.
+or why not? Find the p-value of this test.  
+$$
+\begin{align}
+\hat{\Delta} &= \overline{X} - \overline{Y} \sim N\bigg(\mu_A - \mu_B, \frac{5}{12} \sigma^2\bigg) \\
+\end{align}
+$$
+Decision rule:  
+$$
+\begin{align}
+|\hat{\Delta}| &= |\overline{X} - \overline{Y}| > c \Rightarrow \text{reject } H_0 \\
+\end{align}
+$$
+Probability of Type I error:  
+$$
+\begin{align}
+P(|\overline{X} - \overline{Y}| > c \ |\ \mu_A - \mu_B = 0) &= \alpha \quad, \quad c \geq 0 \\
+P(\overline{X} - \overline{Y} < -c\ \cup\ \overline{X} - \overline{Y} > c \ |\ \mu_A - \mu_B = 0) &= \alpha \quad , \quad \overline{X} - \overline{Y}\ |\ \mu_A - \mu_B = 0 \sim N\bigg(0, \frac{5}{12} \sigma^2\bigg) \\
+2P(\overline{X} - \overline{Y} > c \ |\ \mu_A - \mu_B = 0) &= \alpha \\
+P(\overline{X} - \overline{Y} > c \ |\ \mu_A - \mu_B = 0) &= \frac{\alpha}{2} \\
+P\Bigg(\frac{\overline{X} - \overline{Y}}{\sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}} > \frac{c}{\sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}} \ \Bigg|\ \mu_A - \mu_B = 0\Bigg) &= \frac{\alpha}{2} \\
+P\Bigg(T > \frac{c}{\sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}} \ \Bigg|\ \mu_A - \mu_B = 0\Bigg) &= \frac{\alpha}{2} \quad , \quad T \sim t_8 \\
+\frac{c}{\sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}} &= q_{1-\frac{\alpha}{2}} \\
+c &= q_{1-\frac{\alpha}{2}} \sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y} \\
+\end{align}
+$$
+**Rewrite decision rule**  
+$$
+\begin{align}
+|\overline{X} - \overline{Y}| &> q_{1-\frac{\alpha}{2}} \sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y} \Rightarrow \text{reject } H_0 \\
+\frac{|\overline{X} - \overline{Y}|}{\sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}} &> q_{1-\frac{\alpha}{2}} \Rightarrow \text{reject } H_0 \\
+|T| = \Bigg|\frac{\overline{X} - \overline{Y}}{\sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}}\Bigg| &> q_{1-\frac{\alpha}{2}} \Rightarrow \text{reject } H_0 \quad (T \sim t_8) \\
+\end{align}
+$$
+```{r}
+"t-quantile"
+t_quantile <- qt(1-0.05/2, df=8)
+t_quantile
+```
+**Reject H0?**  
+```{r}
+"test-statistic"
+t_stat <- x_mean - y_mean / sqrt(25/96*x_var + 5/32*y_var) # t-statistic
+test_stat <- abs(t_stat)
+test_stat
+
+"Reject?"
+test_stat > t_quantile
+```
+**p-value**  
+$$
+\begin{align}
+P\Bigg(|T| \geq \Bigg|\frac{\overline{x} - \overline{y}}{\sqrt{\frac{25}{96} s_X + \frac{5}{32} s_Y}}\Bigg| \ |\ \mu_A - \mu_B = 0\Bigg) &= 2P\Bigg(T \geq \Bigg|\frac{\overline{x} - \overline{y}}{\sqrt{\frac{25}{96} s_X + \frac{5}{32} s_Y}}\Bigg| \ |\ \mu_A - \mu_B = 0\Bigg) \quad (T \sim t_8) \\
+\end{align}
+$$
+```{r}
+"p-value"
+p_val <- pt(test_stat, df=8, lower.tail = FALSE)
+p_val
+```
+
 (c) Now assume that both samples are from normally distributed populations, as
 before, but two different measurement devices were used and their measurements
 errors are known. We assume that the variances are 2 and 1, respectively, for the
