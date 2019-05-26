@@ -15,7 +15,7 @@ rm(list=ls())
 Carbon monoxide concentrations (in µg/m3
 ) are measured on 6 different days in city
 A and on 4 different days in city B. The following measurements have been obtained
-in cities A and B, respectively: 3.9, 4,7, 7.1, 6.9, 4.3, 6.3 and 7.3, 6.9, 7.6, 9.1. We
+in cities A and B, respectively: 3.9, 4.7, 7.1, 6.9, 4.3, 6.3 and 7.3, 6.9, 7.6, 9.1. We
 assume that these two samples are independent.
 (a) Assume that both samples are from normally distributed populations. We also
 assume that the same type of measurement device was used in both cities so that
@@ -94,8 +94,8 @@ y_var <- var(y)
 t0 <- qchisq(0.025, df = 8)
 
 "Estimate of confidence interval"
-x_mean - y_mean - t0 * sqrt(25/96*x_var + 5/32*y_var) # lower bound
-x_mean + y_mean - t0 * sqrt(25/96*x_var + 5/32*y_var) # upper bound
+confint1 <- (x_mean - y_mean) + t0 * sqrt(25/96*x_var + 5/32*y_var) * c(-1, 1)
+confint1
 ```
 
 (b) Do we reject H0 : δ = 0 in favor of H1 : δ 6= 0 at the 5% significance level? Why
@@ -155,15 +155,70 @@ P\Bigg(|T| \geq \Bigg|\frac{\overline{x} - \overline{y}}{\sqrt{\frac{25}{96} s_X
 $$
 ```{r}
 "p-value"
-p_val <- pt(test_stat, df=8, lower.tail = FALSE)
+p_val <- 2 * pt(test_stat, df=8, lower.tail = FALSE)
 p_val
 ```
 
 (c) Now assume that both samples are from normally distributed populations, as
 before, but two different measurement devices were used and their measurements
 errors are known. We assume that the variances are 2 and 1, respectively, for the
-two samples. Construct the 95% confidence interval for δ.
+two samples. Construct the 95% confidence interval for δ.  
+Recall estimator for δ = µA−µB:  
+$$
+\begin{align}
+\hat{\Delta} &= \overline{X} - \overline{Y} \sim N(\mu_\hat{\Delta}, \sigma^2_\hat{\Delta}) \\
+\end{align}
+$$
+where $\overline{X}, \overline{Y}$ normally distributed ($X_i, Y_i$ normal)  
+$$
+\begin{align}
+\mu_\hat{\Delta} &= \mu_A - \mu_B \\
+\sigma^2_\hat{\Delta} &= var(\overline{X} - \overline{Y}) \\
+&= var(\overline{X}) + var(\overline{Y}) \\
+&= \frac{1}{6}\sigma_X^2 + \frac{1}{4}\sigma_Y^2 \\
+\end{align}
+$$
+$$
+\begin{align}
+\hat{\Delta} &= \overline{X} - \overline{Y} \sim N(\mu_A - \mu_B, \frac{1}{6}\sigma_X^2 + \frac{1}{4}\sigma_Y^2) \\
+\end{align}
+$$
+Standard normal variable:  
+$$
+\begin{align}
+Z = \frac{\hat{\Delta} - (\mu_A - \mu_B)}{\sqrt{\frac{1}{6}\sigma_X^2 + \frac{1}{4}\sigma_Y^2}} &\sim N(0, 1) \\
+\end{align}
+$$
+**95% confidence interval**  
+$$
+\begin{align}
+P\Bigg(lb \leq Z = \frac{\hat{\Delta} - (\mu_A - \mu_B)}{\sqrt{\frac{1}{6}\sigma_X^2 + \frac{1}{4}\sigma_Y^2}} \leq ub\Bigg) = 0.95 \\
+P\Bigg(-z_{0.025} \leq Z = \frac{\hat{\Delta} - (\mu_A - \mu_B)}{\sqrt{\frac{1}{6}\sigma_X^2 + \frac{1}{4}\sigma_Y^2}} \leq z_{0.025}\Bigg) = 0.95 \\
+\Rightarrow CI_{0.95} = \Bigg[\hat{\Delta} - z_{0.025} \sqrt{\frac{1}{6}\sigma_X^2 + \frac{1}{4}\sigma_Y^2}, \hat{\Delta} + z_{0.025} \sqrt{\frac{1}{6}\sigma_X^2 + \frac{1}{4}\sigma_Y^2}\Bigg] \quad (\hat{\Delta} &= \overline{X} - \overline{Y}) \\
+\end{align}
+$$
+```{r}
+"Estimate of confidence interval"
+confint2 <- (x_mean - y_mean) + qnorm(1-0.025) * sqrt(1/6*2 + 1/4*1) * c(-1, 1)
+confint2
+```
+
 (d) Compare confidence intervals you obtained in (a) and (c). Which one is narrower?
-Briefly explain why.
+Briefly explain why.  
+**Narrower CI**  
+```{r}
+conf_span1 <- confint1[2] - confint1[1] # CI in (a)
+conf_span2 <- confint2[2] - confint2[1] # CI in (c)
+if (conf_span1 < conf_span2) "CI in (a)" else "CI in (c)"
+```
+This is due to the fact that the approach in (a) employs more approximation (via the use of t-distribution), hence the resulted greater randomness (larger span) in the confidence interval. Concretely, t-distribution has thicker tails than normal distribution, resulting in t-quantile > normal quantile for same confidence level 95% ($t_0 > z_{0.025}$), thus t-approximation CI (a) tends to be wider than known-variance CI (c).  
+
 (e) Show that (3.9, 7.1) is an approximate 97% confidence interval for the median
 concentration of carbon monoxide in city A.
+
+
+
+
+
+
+
