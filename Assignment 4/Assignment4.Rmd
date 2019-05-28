@@ -1,5 +1,5 @@
 ---
-title: "Assignment 3"
+title: "Assignment 4"
 author: "Vinh Nguyen (ID 1029531)"
 output: html_notebook
 ---
@@ -11,7 +11,7 @@ output: html_notebook
 rm(list=ls())
 ```
 
-## Problem 1.  
+## Problem 1.
 Carbon monoxide concentrations (in µg/m3
 ) are measured on 6 different days in city
 A and on 4 different days in city B. The following measurements have been obtained
@@ -80,7 +80,7 @@ P\Bigg(\hat{\Delta} - t_0 \sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y} \leq \mu_A
 $$
 $$
 \begin{align}
-\Rightarrow CI_{0.95} = \Bigg[\hat{\Delta} - t_0 \sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}, \hat{\Delta} + t_0 \sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}\Bigg] \quad (\hat{\Delta} = \overline{X} - \overline{Y}, t_0 = q_{0.025}) \\
+\Rightarrow CI_{0.95} = \Bigg[\hat{\Delta} - t_0 \sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}, \hat{\Delta} + t_0 \sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}\Bigg] \quad (\hat{\Delta} = \overline{X} - \overline{Y}, t_0 = q_{0.975}) \\
 \end{align}
 $$
 ```{r}
@@ -91,71 +91,35 @@ x_mean <- mean(x)
 y_mean <- mean(y)
 x_var <- var(x)
 y_var <- var(y)
-t0 <- qchisq(0.025, df = 8)
+t0 <- qt(0.975, df=8)
 
-"Estimate of confidence interval"
+"Observed confidence interval"
 confint1 <- (x_mean - y_mean) + t0 * sqrt(25/96*x_var + 5/32*y_var) * c(-1, 1)
 confint1
 ```
 
 (b) Do we reject H0 : δ = 0 in favor of H1 : δ 6= 0 at the 5% significance level? Why
 or why not? Find the p-value of this test.  
-$$
-\begin{align}
-\hat{\Delta} &= \overline{X} - \overline{Y} \sim N\bigg(\mu_A - \mu_B, \frac{5}{12} \sigma^2\bigg) \\
-\end{align}
-$$
-Decision rule:  
-$$
-\begin{align}
-|\hat{\Delta}| &= |\overline{X} - \overline{Y}| > c \Rightarrow \text{reject } H_0 \\
-\end{align}
-$$
-Probability of Type I error:  
-$$
-\begin{align}
-P(|\overline{X} - \overline{Y}| > c \ |\ \mu_A - \mu_B = 0) &= \alpha \quad, \quad c \geq 0 \\
-P(\overline{X} - \overline{Y} < -c\ \cup\ \overline{X} - \overline{Y} > c \ |\ \mu_A - \mu_B = 0) &= \alpha \quad , \quad \overline{X} - \overline{Y}\ |\ \mu_A - \mu_B = 0 \sim N\bigg(0, \frac{5}{12} \sigma^2\bigg) \\
-2P(\overline{X} - \overline{Y} > c \ |\ \mu_A - \mu_B = 0) &= \alpha \\
-P(\overline{X} - \overline{Y} > c \ |\ \mu_A - \mu_B = 0) &= \frac{\alpha}{2} \\
-P\Bigg(\frac{\overline{X} - \overline{Y}}{\sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}} > \frac{c}{\sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}} \ \Bigg|\ \mu_A - \mu_B = 0\Bigg) &= \frac{\alpha}{2} \\
-P\Bigg(T > \frac{c}{\sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}} \ \Bigg|\ \mu_A - \mu_B = 0\Bigg) &= \frac{\alpha}{2} \quad , \quad T \sim t_8 \\
-\frac{c}{\sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}} &= q_{1-\frac{\alpha}{2}} \\
-c &= q_{1-\frac{\alpha}{2}} \sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y} \\
-\end{align}
-$$
-**Rewrite decision rule**  
-$$
-\begin{align}
-|\overline{X} - \overline{Y}| &> q_{1-\frac{\alpha}{2}} \sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y} \Rightarrow \text{reject } H_0 \\
-\frac{|\overline{X} - \overline{Y}|}{\sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}} &> q_{1-\frac{\alpha}{2}} \Rightarrow \text{reject } H_0 \\
-|T| = \Bigg|\frac{\overline{X} - \overline{Y}}{\sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}}\Bigg| &> q_{1-\frac{\alpha}{2}} \Rightarrow \text{reject } H_0 \quad (T \sim t_8) \\
-\end{align}
-$$
+**Reject H0 (0 outside of observed confidence interval)?**  
 ```{r}
-"t-quantile"
-t_quantile <- qt(1-0.05/2, df=8)
-t_quantile
+0 < confint1[1] | 0 > confint1[2]
 ```
-**Reject H0?**  
-```{r}
-"test-statistic"
-t_stat <- x_mean - y_mean / sqrt(25/96*x_var + 5/32*y_var) # t-statistic
-test_stat <- abs(t_stat)
-test_stat
-
-"Reject?"
-test_stat > t_quantile
-```
+Test statistic:  
+$$
+\begin{align}
+T &= \frac{\hat{\Delta} - (\mu_A - \mu_B)}{\sqrt{\frac{25}{96} S_X + \frac{5}{32} S_Y}} \sim t_8 \\
+\end{align}
+$$
 **p-value**  
 $$
 \begin{align}
-P\Bigg(|T| \geq \Bigg|\frac{\overline{x} - \overline{y}}{\sqrt{\frac{25}{96} s_X + \frac{5}{32} s_Y}}\Bigg| \ |\ \mu_A - \mu_B = 0\Bigg) &= 2P\Bigg(T \geq \Bigg|\frac{\overline{x} - \overline{y}}{\sqrt{\frac{25}{96} s_X + \frac{5}{32} s_Y}}\Bigg| \ |\ \mu_A - \mu_B = 0\Bigg) \quad (T \sim t_8) \\
+P\Bigg(|T| \geq \Bigg|\frac{\hat{\delta}}{\sqrt{\frac{25}{96} s_X + \frac{5}{32} s_Y}}\Bigg| \ |\ \mu_A - \mu_B = 0\Bigg) &= 2P\Bigg(T \geq \Bigg|\frac{\hat{\delta}}{\sqrt{\frac{25}{96} s_X + \frac{5}{32} s_Y}}\Bigg| \ |\ \mu_A - \mu_B = 0\Bigg) \quad (T \sim t_8, \hat{\delta} = \overline{x} - \overline{y}) \\
 \end{align}
 $$
 ```{r}
 "p-value"
-p_val <- 2 * pt(test_stat, df=8, lower.tail = FALSE)
+test_stat <- x_mean - y_mean / sqrt(25/96*x_var + 5/32*y_var) # test statistic
+p_val <- 2 * pt(abs(test_stat), df=8, lower.tail = FALSE)
 p_val
 ```
 
@@ -198,7 +162,7 @@ P\Bigg(-z_{0.025} \leq Z = \frac{\hat{\Delta} - (\mu_A - \mu_B)}{\sqrt{\frac{1}{
 \end{align}
 $$
 ```{r}
-"Estimate of confidence interval"
+"Observed confidence interval"
 confint2 <- (x_mean - y_mean) + qnorm(1-0.025) * sqrt(1/6*2 + 1/4*1) * c(-1, 1)
 confint2
 ```
@@ -211,14 +175,183 @@ conf_span1 <- confint1[2] - confint1[1] # CI in (a)
 conf_span2 <- confint2[2] - confint2[1] # CI in (c)
 if (conf_span1 < conf_span2) "CI in (a)" else "CI in (c)"
 ```
-This is due to the fact that the approach in (a) employs more approximation (via the use of t-distribution), hence the resulted greater randomness (larger span) in the confidence interval. Concretely, t-distribution has thicker tails than normal distribution, resulting in t-quantile > normal quantile for same confidence level 95% ($t_0 > z_{0.025}$), thus t-approximation CI (a) tends to be wider than known-variance CI (c).  
+This is due to the fact that the approach in (a) employs more approximation (via the use of t-distribution), hence the resulted greater uncertainty (larger span) in the confidence interval. Concretely, t-distribution has thicker tails than normal distribution, resulting in t-quantile > normal quantile for same confidence level 95% ($t_0 > z_{0.025}$), thus t-approximation CI (a) tends to be wider than known-variance CI (c).  
 
 (e) Show that (3.9, 7.1) is an approximate 97% confidence interval for the median
-concentration of carbon monoxide in city A.
+concentration of carbon monoxide in city A.  
+Sort measurements in city A:  
+```{r}
+x_sorted <- sort(x)
+x_sorted
+```
+Order statistics of confidence interval:  
+```{r}
+orders <- match(c(3.9, 7.1), x_sorted)
+orders
+```
+Let W: number of $X_{(i)} \leq m \Rightarrow W \sim Bi(n=6, p=0.5)$  
+**Confidence level**  
+```{r}
+sprintf("P(X(%s) <= m <= X(%s))", orders[1], orders[2])
+sprintf("P(%s <= W <= %s)", orders[1], orders[2]-1)
+pbinom(orders[2]-1, size=6, prob=0.5) - pbinom(orders[1]-1, size=6, prob=0.5)
+```
 
+## Problem 2.
+Let X1, X2, . . . , X10 be a sample of size 10 from an exponential distribution with the
+density function
+f(x; λ) = (
+λe−λx, x > 0,
+0, otherwise.
+We reject H0 : λ = 1 in favor of H1 : λ = 2 if the observed value of Y =
+P10
+i=1 Xi
+is
+smaller than 6.
+(a) Find the probability of type 1 error for this test.  
+$$
+\begin{align}
+Y = \sum_{i=1}^{10}X_i \sim Gamma(\alpha=10, \beta=\lambda) \\
+\end{align}
+$$
+**Type 1 error**  
+$$
+\begin{align}
+P(Y < 6|λ = 1) \\
+\end{align}
+$$
+```{r}
+type1 <- pgamma(6, shape=10, rate = 1)
+type1
+```
 
+(b) Find the probability of type 2 error for this test.  
+**Type 2 error**  
+$$
+\begin{align}
+P(Y \geq 6|λ = 2) \\
+\end{align}
+$$
+```{r}
+type2 <- pgamma(6, shape=10, rate = 2, lower.tail = FALSE)
+type2
+```
 
+(c) Let y = 5 be the observed value of Y . Find the p-value for this test.  
+**p-value**  
+$$
+\begin{align}
+P(Y < 5|λ = 1) \\
+\end{align}
+$$
+```{r}
+pgamma(5, shape=10, rate = 1)
+```
 
+(d) Let y = 5 be the observed value of Y . Construct the exact 95% confidence interval
+for λ. Hint: λY ∼ Gamma(10, 1).  
+Pivot  
+$$
+\begin{align}
+λY ∼ Gamma(\alpha=10, \beta=1) \\
+\end{align}
+$$
+**95% confidence interval**  
+$$
+\begin{align}
+P(q_{0.05} \leq λY < \infty) &= 0.95 \\
+P(\frac{q_{0.05}}{Y} \leq λ < \infty) &= 0.95 \\
+\Rightarrow CI_{0.95} = [\frac{q_{0.05}}{Y}, \infty] \\
+\end{align}
+$$
+```{r}
+q <- qgamma(0.05, shape=10, rate = 1)
+"Observed 95% confidence interval"
+c(q/5, Inf)
+```
 
+## Problem 3.
+The number of faults over a period of time was collected for a sample of 100 datatransmission lines. We want to test if the data come from a Poisson distribution.  
+number of faults 0 1 2 3 4 5 > 5  
+number of lines 38 30 16 9 5 2 0  
+(a) Assuming the number of faults for a data-transmission line, Yi
+, i = 1, . . . , 100,
+follows a Poisson distribution with parameter λ, find the maximum likelihood
+estimate of λ for these data.  
+Let $y = (y_1, \dots, y_{100})$  
+Maximum Likelihood function:  
+$$
+\begin{align}
+\mathcal{L}(y) &= \prod_{i=1}^{100} f_{Y_i}(y_i) \\
+&= \prod_{i=1}^{100} \frac{\lambda^{y_i} e^{-\lambda}}{y_i!} \\
+&= C \lambda^{\sum_{i=1}^{100}y_i} e^{-100\lambda} \quad \bigg(C = \prod_{i=1}^{100} \frac{1}{y_i!}\bigg) \\
+ln \mathcal{L}(y) &= lnC + \sum_{i=1}^{100}y_i ln\lambda - 100\lambda \\
+\frac{d ln \mathcal{L}(y)}{d\lambda} &= \sum_{i=1}^{100}y_i \frac{1}{\lambda} - 100 \stackrel{set}{=} 0 \\
+\Rightarrow \lambda &= \frac{1}{100} \sum_{i=1}^{100}y_i = \overline{y} \\
+\end{align}
+$$
+$$
+\begin{align}
+\frac{d^2 ln \mathcal{L}(y)}{(d\lambda)^2} &= -\frac{1}{\lambda^2} \sum_{i=1}^{100}y_i < 0 \\
+\end{align}
+$$
+**Estimator for λ**  
+$$
+\begin{align}
+\hat{\Lambda} &= \frac{1}{100} \sum_{i=1}^{100}Y_i = \overline{Y} \\
+\end{align}
+$$
+```{r}
+faults <- c(0, 1, 2, 3, 4, 5, Inf) # Inf represents > 5
+counts <- c(38, 30, 16, 9, 5, 2, 0)
+"Estimate of λ"
+lambda <- weighted.mean(faults, counts)
+lambda
+```
 
+(b) Test the hypothesis that the number of faults for a data-transmission line follows
+a Poisson distribution using the chi-squared test. Do we reject the null hypothesis
+at the 5% significance level? Hint: You should combine the observed data into
+several groups such that expected frequencies are greater or equal to 5 for each
+group.  
+Raw expected frequencies $np_{Y_i}(k), k = 0, 1, 2, \dots$  
+```{r}
+n <- 100 # sample size
+n * dpois(0:5, lambda = lambda)
+```
+Groups (with expected frequencies greater or equal to 5)  
+```{r}
+sep <- 3 # number of points that remain separate
 
+groups <- c(faults[1:sep], Inf) # Inf represents the remaining values of faults (upper tail)
+groups
+
+observed <- c(counts[1:sep], sum(counts[-(1:sep)])) # few first counts remain separate, remaining counts are summed up
+observed
+```
+Chi-squared test:  
+```{r}
+"Probability distribution"
+pmfs <- c(dpois(faults[1:sep], lambda = lambda), ppois(faults[sep], lambda = lambda, lower.tail = FALSE)
+)
+pmfs
+
+"Expected frequencies >= 5?"
+expected <- n * pmfs
+all(expected >= 5)
+
+"Degrees of freedom"
+df <- (length(groups) - 1) - (1)
+df
+
+"Test statistic"
+chi_stat <- sum((observed-expected)^2 / expected)
+chi_stat
+
+"p-value"
+p_val <- pchisq(chi_stat, df = df, lower.tail = FALSE)
+p_val
+
+"Reject the null hypothesis at the 5% significance level?"
+p_val < 0.05
+```
